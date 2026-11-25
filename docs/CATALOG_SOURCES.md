@@ -338,3 +338,47 @@ Fuentes:
 
 
 **Detalle técnico adicional verificado en la documentación de desarrollo CELLAR:** la Oficina de Publicaciones publica una guía para desarrolladores con ejemplo de consulta SPARQL y recuperación de ficheros. El grafo organiza cada publicación en jerarquía WEMI (Work, Expression, Manifestation, Item); el identificador/URL del fichero está en Item. La guía muestra el endpoint `https://publications.europa.eu/webapi/rdf/sparql` y descarga mediante URL de recurso CELLAR con negociación HTTP (por ejemplo, `Accept: application/zip;mtype=fmx4` y `Accept-Language`). Esto concreta el camino técnico y confirma que el adaptador no dependería de automatizar el HTML de EUR-Lex. La guía es un ejemplo de integración, no una consulta específica de monedas ya ejecutada. [Guía oficial de desarrolladores CELLAR](https://op.europa.eu/documents/d/cellar/cellar_ml_dataset_guide) · [Colección Postman oficial CELLAR](https://op.europa.eu/documents/d/cellar/cellartraining-postman_collection_january2025).
+
+
+### 6. Prueba de concepto CELLAR: consulta preparada y límites de ejecución (25/11/2026)
+
+**Verificado con un documento concreto:** el aviso oficial [C/2026/406 — Lituania](https://eur-lex.europa.eu/eli/C/2026/406/oj/eng) aparece en la serie C y contiene emisor, tema, descripción, diseñador, tirada estimada y fecha de emisión. El motor de búsqueda web recupera el texto completo del aviso. Esto confirma que la fuente primaria tiene los campos necesarios para una ficha de staging.
+
+**Prueba de endpoint:** se intentó abrir el endpoint SPARQL con una consulta GET y acceder al feed de notificaciones desde el entorno de investigación. El endpoint y el feed están documentados oficialmente, pero el entorno de consulta rechazó las peticiones directas a esas URLs; el entorno de ejecución local tampoco dispone de salida DNS/red. Por tanto, **no se considera ejecutada una consulta SPARQL ni una descarga Formex**. No se afirma que CELLAR esté caído: el bloqueo es de acceso desde esta sesión.
+
+**Consulta SPARQL preparada para ejecutar en el editor oficial** ([Advanced SPARQL Query Editor](https://op.europa.eu/en/advanced-sparql-query-editor)); utiliza el ELI de un aviso real y devuelve la jerarquía WEMI, idioma, formato e identificador del fichero:
+
+~~~sparql
+PREFIX cdm: <http://publications.europa.eu/ontology/cdm#>
+PREFIX purl: <http://purl.org/dc/elements/1.1/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT DISTINCT ?work ?expr ?languageCode ?title ?manifestation ?format ?item
+WHERE {
+  ?work owl:sameAs <http://data.europa.eu/eli/C/2026/406/oj> .
+
+  ?expr cdm:expression_belongs_to_work ?work ;
+        cdm:expression_uses_language ?language ;
+        cdm:expression_title ?title .
+  ?language purl:identifier ?languageCode .
+  FILTER(STR(?languageCode) = "ENG")
+
+  OPTIONAL {
+    ?manifestation cdm:manifestation_manifests_expression ?expr ;
+                   cdm:manifestation_type ?format .
+    ?item cdm:item_belongs_to_manifestation ?manifestation .
+  }
+}
+LIMIT 100
+~~~
+
+La consulta se ha construido a partir de las propiedades y relaciones que la documentación oficial utiliza para extraer WEMI y filtrar idioma. **Debe ejecutarse y validarse** en el editor: en particular, confirmar que el ELI aparece como owl:sameAs y que devuelve un Item Formex. Si CELLAR no expone ese ELI en esa relación, la alternativa es localizar el Work por el identificador de producción OJ/PUB y repetir la extracción desde su URI.
+
+**RSS/Atom:** el feed de ingesta de CELLAR no es una alerta filtrada por monedas. Permite filtrar por fecha, tipo de evento (CREATE/UPDATE/DELETE) y clase WEMI, pero puede contener publicaciones de muchas colecciones. El patrón viable es consumirlo incrementalmente, deduplicar por cellarId/rootCellarId, recuperar el notice de cada Work y filtrar por título/clase/identificadores. EUR-Lex también permite crear alertas RSS personalizadas a partir de búsquedas guardadas, pero requiere sesión registrada. No se ha creado ninguna alerta ni se ha medido latencia.
+
+**Conclusión de la prueba:** la fuente primaria y los campos de negocio están comprobados; la ruta de datos WEMI y el mecanismo de notificación están documentados; la ejecución de SPARQL, la recuperación del Item y la descarga/parseo de Formex quedan **pendientes de ejecución fuera de este entorno**. No escribir todavía un importador ni marcar la automatización como operativa.
+
+Fuentes adicionales:
+- [CELLAR Knowledge Graph: consultas y relaciones WEMI](https://op.europa.eu/en/web/cellar/cellar-data/metadata/knowledge-graph)
+- [CELLAR RSS/Atom: parámetros de notificación y paginación](https://op.europa.eu/en/web/cellar/cellar-data/rss-and-atom-feeds)
+- [EUR-Lex: alertas RSS personalizadas desde búsquedas guardadas](https://eur-lex.europa.eu/content/help/my-eurlex/my-searches.html?locale=en)
