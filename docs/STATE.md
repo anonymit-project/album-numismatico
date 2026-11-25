@@ -3,7 +3,7 @@
 **Fase:** 0 — descubrimiento, sin código de producto.
 **Criterio de reutilización:** solo fuentes con derechos de uso claros y compatibles; no se solicitarán permisos particulares.
 **Actualizado:** 2026-11-25
-**Rama de trabajo:** `research/catalog-coverage-2026-11`
+**Rama de trabajo:** `research/source-automation-2026-11`
 **Rama base:** `docs/phase-0-project-context`
 **Pull request #1:** [abierto y en borrador](https://github.com/anonymit-project/album-numismatico/pull/1), sin fusionar ni modificar.\n**Pull request #2:** [abierto y en borrador](https://github.com/anonymit-project/album-numismatico/pull/2), dirigido a la rama de documentación de la PR #1.
 
@@ -47,8 +47,38 @@ No se ha añadido ninguna decisión de producto. D-001 a D-008 siguen vigentes. 
 
 ## Siguiente paso exacto
 
-Completar una pasada acotada de fuentes estructuradas y automatización: comprobar los feeds/consultas del DOUE para monedas euro, documentar la estructura de las páginas BEAC/BCEAO y localizar una fuente primaria verificable para CUP/CUC. Mantener las imágenes en placeholder salvo licencia y reglas de reproducción inequívocas. No iniciar el MVP.
+La siguiente iteración debe probar una consulta SPARQL/REST o alerta RSS personalizada de EUR-Lex con un filtro real para «New national side of euro coins intended for circulation», confirmar los campos CDM/Formex y diseñar el importador de staging. Para BEAC/BCEAO, preparar una extracción controlada de texto desde el manifiesto de páginas, con detección de cambios y revisión humana. Cuba permanece sin ingesta automatizada ni imágenes. No iniciar el MVP.
 
 ## Reglas para retomar
 
 Leer, en este orden: `AGENTS.md`, este archivo, `docs/PRD.md`, `docs/DECISIONS.md`, `docs/DATA_MODEL.md`, `docs/BACKLOG.md` y `docs/CATALOG_SOURCES.md`. El repositorio es la fuente de verdad; si el chat contradice estos documentos, identificar la discrepancia y actualizar la documentación con el usuario.
+
+
+## Iteración de automatización y fuentes estructuradas (25/11/2026)
+
+**Rama:** `research/source-automation-2026-11`, creada desde `research/catalog-coverage-2026-11`.
+
+### Hecho
+- Releída la documentación de Fase 0 y comprobado el estado de PR #1 y PR #2 (abiertos, draft, sin fusionar). PR #3 también sigue abierto y draft, pero es una rama documental paralela basada en PR #2.
+- Verificada la infraestructura de EUR-Lex/CELLAR: servicio SOAP/XML con registro, REST, SPARQL, RSS/Atom y documentos Formex. Identificados ejemplos 2026 de avisos del DOUE para conmemorativas de 2 € y cambio de caras nacionales regulares.
+- Documentados campos observables en los avisos: país emisor, tema, descripción, diseñador cuando consta, tirada estimada y fecha de emisión.
+- Verificada la estructura HTML de BEAC: familias actuales e históricas, enlaces a PDF y tabla documental de piezas demonetizadas; detectada prohibición expresa de reproducción en una brochure oficial.
+- Verificada la estructura HTML de BCEAO: billetes vigentes, retirados, anteriores a BCEAO y monedas; las páginas históricas están organizadas por los ocho estados miembros. La página de monedas ofrece datos técnicos de al menos las piezas de 200 y 500 FCFA.
+- Localizados textos normativos primarios cubanos sobre emisión y reproducción de dinero; la Resolución 357/1994 describe la emisión inicial de CUC, pero la copia localizada está alojada fuera de un dominio institucional. No se encontró catálogo abierto ni API.
+- Actualizado `docs/CATALOG_SOURCES.md` con métodos de extracción, límites, URLs y condiciones de reutilización.
+
+### Resultado
+- **Euro:** automatización viable a nivel de detección y recuperación de metadatos/documentos mediante CELLAR/EUR-Lex; aún falta probar la consulta filtrada exacta.
+- **BEAC/BCEAO:** extracción de metadatos por lotes factible desde páginas concretas; no hay API/feed de emisiones identificado. Revisión humana obligatoria.
+- **Cuba:** sigue siendo la mayor laguna; solo se puede avanzar con documentación jurídica y curación manual limitada.
+- **Imágenes:** no se aprueba ninguna imagen nueva. Las imágenes monetarias quedan fuera de la ingesta por defecto.
+
+### Pendiente y bloqueos
+1. No se ha ejecutado una consulta SPARQL ni configurado una alerta RSS personalizada; la automatización de euro está verificada a nivel de interfaz, no de prueba de concepto.
+2. No se ha probado un parser en BEAC/BCEAO ni se ha auditado exhaustivamente cada PDF; la extracción propuesta es documental, no código ejecutado.
+3. La Resolución 357/1994 del CUC se ha localizado en una copia secundaria; falta una copia oficial accesible. No tratarla como fuente de importación.
+4. No se ha encontrado licencia abierta general para imágenes de BEAC/BCEAO/Cuba.
+5. No hay un dataset moderno maestro de monedas y billetes.
+
+### Siguiente paso exacto
+Probar en un entorno de investigación una consulta SPARQL/REST de CELLAR o una alerta RSS personalizada para recuperar un conjunto pequeño de avisos de monedas euro y validar los campos de Formex. En paralelo, definir el manifiesto versionado de páginas BEAC/BCEAO (sin descargar imágenes). Mantener Cuba en estado manual/documental. No iniciar el MVP.
