@@ -33,7 +33,8 @@ MVP previsto para 2 usuarios: España (pesetas y euros, incluidas conmemorativas
 3. Trabajar incrementalmente en ramas; no modificar `main` directamente.
 4. No introducir código de producto hasta que el usuario apruebe el cierre de Fase 0.
 5. Verificar documentación oficial para precios, cuotas, APIs, versiones y licencias.
-6. Al cerrar cada iteración, actualizar STATE, DECISIONS y BACKLOG y dejar instrucciones de continuación.
+6. Al cerrar cada iteración, actualizar STATE, DECISIONS y BACKLOG.
+7. **No dejar ningún chat sin un cierre accionable:** terminar siempre con una pregunta concreta para el usuario o con un prompt de relevo autosuficiente listo para el siguiente chat. Aplicar el detalle de `AGENTS.md`.
 
 ## Documentación
 
