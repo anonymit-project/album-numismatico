@@ -68,4 +68,6 @@ Prioridad orientativa. No implica autorización para saltarse el cierre de Fase 
 - [ ] Comprobar individualmente las condiciones de reutilización de cada PDF o texto de BEAC/BCEAO antes de almacenar copias; no extraer imágenes.
 - [ ] Continuar Cuba solo con ejemplares oficiales de la Gaceta y catálogos institucionales accesibles; mantener las copias secundarias como pistas, no como autoridad de importación.
 
+**Organización del trabajo:** [x] Registrar en `AGENTS.md` la preferencia del usuario por chats breves y tareas atómicas, con prompt de relevo obligatorio al cerrar cada tarea. Aplicar esta norma en las siguientes iteraciones.
+
 **Límite actual de la validación CELLAR:** pruebas manuales positivas para C/2026/406 (Lituania) y C/2026/419 (Mónaco). La investigación de RSS/Atom y alertas EUR-Lex es documental; no acredita ejecución del feed, alerta configurada, automatización desatendida, parser probado, cobertura general ni derechos de reutilización de imágenes.
