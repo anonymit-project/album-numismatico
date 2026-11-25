@@ -92,3 +92,12 @@ La página 1 se ha descargado desde PowerShell con HTTP 200 y 1.000 entradas. Un
 La paginación queda **validada parcialmente**, no completada. P1–P5 devuelven HTTP 200 y 1.000 entradas cada una; moreEntries=true se observó en P3–P5. Se comprobaron tres fronteras: comparten timestamp, pero no se repiten claves cellarId|updated. P1–P3 mantuvieron los mismos hashes de claves ordenadas en consultas repetidas, incluida una tras unos 15 minutos. Esto no demuestra estabilidad ante inserciones tardías ni estabilidad de las páginas más recientes. Detalle en docs/CELLAR_POC.md, sección 11.
 
 **Siguiente acción atómica:** continuar desde page=6 hasta la condición terminal notifReq:moreEntries; registrar recuentos y límites. No implementar aún sincronización incremental ni asumir unicidad global de cellarId|updated.
+
+### Actualización de paginación CELLAR RSS/Atom — 25/11/2026
+
+- [x] Inspeccionar metadatos de la respuesta Atom: se observan `startDate`, `endDate`, `page` y `moreEntries`; no se observó total de resultados ni enlace a última página.
+- [x] Aplicar búsqueda exponencial/binaria para localizar el cambio comunicado entre P330 (`moreEntries=true`) y P331 (`moreEntries=false`), evitando recorrer secuencialmente las páginas intermedias.
+- [ ] Confirmar directamente P330 y P331: HTTP, recuento de entradas, número de página, `moreEntries`, primer/último `updated` y continuidad de frontera.
+- [ ] Caracterizar opcionalmente P332 una sola vez después de confirmar P331, para observar el comportamiento posterior al final.
+
+**Límite:** no dar por cerrada la validación de paginación hasta caracterizar P331 y comprobar la frontera P330→P331. No diseñar aún cursor incremental ni implementar sincronizador/parser. Detalle en `docs/CELLAR_POC.md`, sección 12.
