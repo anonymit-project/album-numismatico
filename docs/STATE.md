@@ -161,3 +161,8 @@ No se ha ejecutado el endpoint RSS/Atom, comprobado su paginación en operación
 ### Siguiente paso exacto
 
 Repetir la prueba operativa desde un entorno con DNS/HTTPS funcional, conservar respuestas RSS/Atom originales, validar filtros por separado, comprobar paginación y seguir eventos hasta sus metadatos WEMI. La tarea permanece abierta; no marcarla como completada.
+
+
+## Preferencia de organización del trabajo (25/11/2026)
+
+El usuario prefiere trabajar mediante muchos chats breves, cada uno centrado en una tarea sencilla y acotada, en lugar de conversaciones largas con varias tareas acumuladas. Al cerrar cada tarea, preparar un prompt de relevo autosuficiente para un chat nuevo. Mantener además el aviso proactivo cuando el contexto se aproxime a su límite. Norma detallada en `AGENTS.md`.
