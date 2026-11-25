@@ -8,6 +8,9 @@ Este repositorio corresponde al proyecto Álbum numismático. El usuario es un i
 2. El repositorio es la fuente de verdad, no el historial del chat. No pedir de nuevo información ya documentada.
 3. Al cerrar cada iteración, actualizar como mínimo `docs/STATE.md`, `docs/DECISIONS.md` si hubo decisiones, y `docs/BACKLOG.md`.
 4. Dejar un resumen de lo realizado, errores, decisiones, bloqueos y siguiente paso exacto. Preparar un prompt de relevo autosuficiente cuando el usuario lo solicite o antes de cambiar de sesión/contexto.
+5. **No terminar nunca un chat con una respuesta sin continuidad explícita.** Todo mensaje que cierre una tarea o conversación debe acabar con una pregunta concreta dirigida al usuario o, si el trabajo debe continuar en otro chat, con un prompt de relevo autosuficiente listo para copiar. No basta con enumerar posibles siguientes pasos ni con una frase genérica como «cuando quieras seguimos».
+6. **Vigilar proactivamente la capacidad del contexto.** Cuando la conversación se acerque a un nivel en el que pueda perderse información relevante, avisar antes de que ocurra y preparar el prompt de relevo; no esperar a que el usuario lo solicite ni a que el contexto esté agotado.
+7. Estas reglas se aplican también a respuestas breves, cambios de tarea y chats de investigación. Solo se omite la pregunta/prompt si el usuario pide expresamente que no se añada.
 
 ## Reglas de producto
 
