@@ -74,7 +74,7 @@ Leer, en este orden: `AGENTS.md`, este archivo, `docs/PRD.md`, `docs/DECISIONS.m
 - **Imágenes:** no se aprueba ninguna imagen nueva. Las imágenes monetarias quedan fuera de la ingesta por defecto.
 
 ### Pendiente y bloqueos
-1. No se ha ejecutado una consulta SPARQL ni configurado una alerta RSS personalizada; la automatización de euro está verificada a nivel de interfaz, no de prueba de concepto.
+1. Se ha preparado una consulta SPARQL con un ELI real y confirmado el contenido del aviso desde el índice web, pero no se ha podido ejecutar el endpoint ni descargar Formex desde este entorno; no considerar validada la automatización de extremo a extremo.
 2. No se ha probado un parser en BEAC/BCEAO ni se ha auditado exhaustivamente cada PDF; la extracción propuesta es documental, no código ejecutado.
 3. La Resolución 357/1994 del CUC se ha localizado en una copia secundaria; falta una copia oficial accesible. No tratarla como fuente de importación.
 4. No se ha encontrado licencia abierta general para imágenes de BEAC/BCEAO/Cuba.
@@ -82,3 +82,16 @@ Leer, en este orden: `AGENTS.md`, este archivo, `docs/PRD.md`, `docs/DECISIONS.m
 
 ### Siguiente paso exacto
 Ejecutar una prueba de concepto de CELLAR: consulta SPARQL de avisos de monedas euro, recuperación del recurso Item y descarga Formex/XML por negociación HTTP; contrastar el resultado con una alerta RSS personalizada. Validar el mapeo de campos antes de plantear un importador. En paralelo, definir el manifiesto versionado de páginas BEAC/BCEAO (sin descargar imágenes). Mantener Cuba en estado manual/documental. No iniciar el MVP.
+
+
+## Prueba de concepto CELLAR (25/11/2026)
+
+- Recuperado desde el índice web oficial el texto de C/2026/406 (Lituania), confirmando los campos numismáticos del aviso: país emisor, tema, descripción, diseñador, tirada estimada y fecha de emisión.
+- Revisada la documentación oficial de CELLAR Knowledge Graph y RSS/Atom; se preparó una consulta SPARQL concreta contra el ELI de C/2026/406 para extraer Work/Expression/Manifestation/Item, idioma y formato.
+- **No se pudo ejecutar la consulta ni descargar el Formex:** las peticiones directas al endpoint SPARQL/feed no son accesibles desde el entorno de esta sesión y el entorno local carece de salida de red/DNS. No es evidencia de caída del servicio.
+- No se ha configurado una alerta EUR-Lex ni se ha ejecutado un parser. La prueba confirma los datos de origen y deja preparada la consulta, pero la automatización no está todavía validada de extremo a extremo.
+- CELLAR ingestion RSS admite filtros por fecha, tipo CREATE/UPDATE/DELETE y clases WEMI, no por título/tema; haría falta filtrar localmente los notices. Las alertas RSS personalizadas de EUR-Lex requieren sesión registrada.
+- Se mantiene el alcance sin código de producto, sin imágenes y con revisión humana.
+
+### Siguiente paso exacto
+Ejecutar la consulta SPARQL preparada en docs/CATALOG_SOURCES.md desde el editor oficial de CELLAR y guardar el resultado real (URI Work, Item y formato). Después recuperar el XML Formex mediante REST y validar un parser pequeño contra C/2026/406. Si el entorno de ejecución del agente sigue sin acceso externo, pedir al usuario únicamente el resultado exportado del editor SPARQL, no credenciales ni permisos.
