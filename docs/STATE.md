@@ -4,8 +4,9 @@
 **Criterio de reutilización:** solo fuentes con derechos de uso claros y compatibles; no se solicitarán permisos particulares.
 **Actualizado:** 2026-11-25
 **Rama de trabajo:** `research/source-automation-2026-11`
-**Rama base:** `docs/phase-0-project-context`
-**Pull request #1:** [abierto y en borrador](https://github.com/anonymit-project/album-numismatico/pull/1), sin fusionar ni modificar.\n**Pull request #2:** [abierto y en borrador](https://github.com/anonymit-project/album-numismatico/pull/2), dirigido a la rama de documentación de la PR #1.
+**Rama base:** `research/catalog-coverage-2026-11`
+**Pull request #1:** [abierto y en borrador](https://github.com/anonymit-project/album-numismatico/pull/1), sin fusionar ni modificar.
+**Pull request #2:** [abierto y en borrador](https://github.com/anonymit-project/album-numismatico/pull/2), dirigido a la rama de documentación de la PR #1.
 
 ## Objetivo de la iteración
 
@@ -42,12 +43,11 @@ No se ha añadido ninguna decisión de producto. D-001 a D-008 siguen vigentes. 
 3. Las imágenes oficiales de Andorra, Ecuador, BEAC y BCEAO no muestran una licencia abierta general en los recursos revisados.
 4. Las imágenes de pesetas y monedas euro encontradas en Commons no se aprueban automáticamente; la compatibilidad de la reproducción concreta debe quedar acreditada antes de incorporarlas.
 5. Las imágenes oficiales de billetes euro solo son candidatas si se usan tal como permite el BCE, con «SPECIMEN» y los límites técnicos.
-6. Sigue pendiente probar automatización concreta del DOUE/Comisión y autoridades emisoras, más allá de la localización de páginas y documentos.
-7. Continúan pendientes las validaciones de modelo, mapa, conservación, valoración histórica, backend/hosting, privacidad de identificación por foto, mockups y aprobación de cierre de Fase 0.
+6. Continúan pendientes las validaciones de modelo, mapa, conservación, valoración histórica, backend/hosting, privacidad de identificación por foto, mockups y aprobación de cierre de Fase 0.
 
 ## Siguiente paso exacto
 
-La siguiente iteración debe probar una consulta SPARQL/REST o alerta RSS personalizada de EUR-Lex con un filtro real para «New national side of euro coins intended for circulation», confirmar los campos CDM/Formex y diseñar el importador de staging. Para BEAC/BCEAO, preparar una extracción controlada de texto desde el manifiesto de páginas, con detección de cambios y revisión humana. Cuba permanece sin ingesta automatizada ni imágenes. No iniciar el MVP.
+Probar CELLAR con un segundo aviso de moneda euro de otra clase (preferiblemente una nueva cara nacional regular, además de la conmemorativa de 2 € ya validada). Después, definir y probar un mapeo pequeño Formex/XML → staging con tests, sin conectarlo todavía al catálogo de producto. Para BEAC/BCEAO, preparar una extracción controlada de texto desde el manifiesto de páginas, con detección de cambios y revisión humana. Cuba permanece sin ingesta automatizada ni imágenes. No iniciar el MVP.
 
 ## Reglas para retomar
 
@@ -87,11 +87,27 @@ Ejecutar una prueba de concepto de CELLAR: consulta SPARQL de avisos de monedas 
 ## Prueba de concepto CELLAR (25/11/2026)
 
 - Recuperado desde el índice web oficial el texto de C/2026/406 (Lituania), confirmando los campos numismáticos del aviso: país emisor, tema, descripción, diseñador, tirada estimada y fecha de emisión.
-- Revisada la documentación oficial de CELLAR Knowledge Graph y RSS/Atom; se preparó una consulta SPARQL concreta contra el ELI de C/2026/406 para extraer Work/Expression/Manifestation/Item, idioma y formato.
-- **No se pudo ejecutar la consulta ni descargar el Formex:** las peticiones directas al endpoint SPARQL/feed no son accesibles desde el entorno de esta sesión y el entorno local carece de salida de red/DNS. No es evidencia de caída del servicio.
-- No se ha configurado una alerta EUR-Lex ni se ha ejecutado un parser. La prueba confirma los datos de origen y deja preparada la consulta, pero la automatización no está todavía validada de extremo a extremo.
-- CELLAR ingestion RSS admite filtros por fecha, tipo CREATE/UPDATE/DELETE y clases WEMI, no por título/tema; haría falta filtrar localmente los notices. Las alertas RSS personalizadas de EUR-Lex requieren sesión registrada.
-- Se mantiene el alcance sin código de producto, sin imágenes y con revisión humana.
+- Revisada la documentación oficial de CELLAR Knowledge Graph y RSS/Atom; se preparó una consulta SPARQL concreta contra el ELI de C/2026/406 para extraer Work/Expression/Manifestation/Item.
+- **No se pudo ejecutar la consulta ni descargar el Formex desde el entorno del agente.** Las pruebas directas fallaron por restricciones de red/DNS de esta sesión, no por un fallo demostrado de CELLAR.
+- No se había configurado una alerta EUR-Lex ni ejecutado un parser. La prueba documental inicial no validaba todavía la cadena técnica.
 
-### Siguiente paso exacto
-Ejecutar la consulta SPARQL preparada en docs/CATALOG_SOURCES.md desde el editor oficial de CELLAR y guardar el resultado real (URI Work, Item y formato). Después recuperar el XML Formex mediante REST y validar un parser pequeño contra C/2026/406. Si el entorno de ejecución del agente sigue sin acceso externo, pedir al usuario únicamente el resultado exportado del editor SPARQL, no credenciales ni permisos.
+### Resultado actualizado tras la ejecución manual del usuario
+- El usuario ejecutó la consulta SPARQL en el editor oficial de CELLAR y obtuvo **seis resultados**: tres manifestaciones para español (`SPA`) y tres para lituano (`LIT`), en formatos `pdfa2a`, `fmx4` y `xhtml`.
+- Se recuperó en navegador el Item XHTML español y se visualizó el aviso completo.
+- Se descargó el Item Formex español como ZIP, con tres XML y un TIFF. Se examinó el XML principal español y se confirmó que contiene el texto del aviso, la referencia a la imagen y los campos numismáticos.
+- Se examinó el XML principal lituano proporcionado por el usuario. Conserva una estructura Formex equivalente y permite identificar los mismos datos numismáticos en lituano.
+- Campos contrastados en ambas expresiones: emisor (Lituania), tema (Lituania Menor), diseñador (Rolandas Rimkūnas), autor del escudo (Arvydas Každailis), tirada estimada (500.000) y fecha de emisión (cuarto trimestre de 2025).
+- La consulta, los URIs, los recursos recuperados, el contenido XML y los límites están documentados en [`docs/CELLAR_POC.md`](CELLAR_POC.md).
+
+### Conclusión
+**Prueba manual positiva de extremo a extremo para un aviso concreto y dos idiomas.** Queda demostrado el acceso SPARQL, la localización WEMI, la recuperación de XHTML/Formex y la lectura de los campos numismáticos. No equivale a automatización desatendida, parser probado, cobertura general ni autorización para reutilizar las imágenes.
+
+### Pendiente
+1. Validar un segundo aviso de otra clase (preferiblemente una nueva cara nacional regular) para comprobar variación documental.
+2. Implementar y probar, solo como herramienta de investigación y no como código de producto, un mapeo Formex/XML a un esquema de staging con tests.
+3. Mantener sin cambios la política de imágenes: no incorporar el TIFF ni otros diseños monetarios sin derechos verificados.
+4. Continuar las tareas de Fase 0 de modelo, fuentes, licencias, mapa, valoración, mockups y costes.
+
+## Estado de PR #4
+
+PR #4 permanece abierta, en borrador y sin fusionar. Los cambios de esta iteración se registran en la misma rama de investigación; no se modifica `main` ni se inicia el MVP.
