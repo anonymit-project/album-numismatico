@@ -11,10 +11,15 @@ Prioridad orientativa. No implica autorización para saltarse el cierre de Fase 
 - [x] Verificar cuota/precio y condiciones de Numista; documentar riesgo contractual para una PWA privada multiusuario.
 - [x] Documentar límites operativos actuales de Wikimedia API y Wikidata SPARQL.
 - [x] Excluir Numista de la ingesta y de la aplicación: sus condiciones no garantizan el uso previsto y no se solicitarán excepciones.
-- [ ] Probar cobertura real con una muestra representativa: pesetas, euros regulares y conmemorativos, billetes españoles, Andorra, Cuba CUP/CUC, Ecuador, XOF/XAF y emisores históricos.
-- [ ] Identificar datasets especializados abiertos de monedas y billetes con licencia explícita compatible y mantenimiento suficiente.
-- [ ] Verificar APIs/feeds de la Comisión y Diario Oficial UE para automatizar altas de monedas euro y conmemorativas.
-- [ ] Revisar licencias y derechos de cada imagen concreta que se proponga incorporar; en España, considerar autorización del Banco de España para reproducciones de pesetas y billetes euro.
+- [x] Realizar prueba documental de cobertura con ejemplos concretos de pesetas, euros regulares y conmemorativos, billetes españoles, Andorra, Cuba CUP/CUC, Ecuador sucre/USD y monedas XOF/XAF.
+- [x] Revisar ejemplos individuales de imágenes Commons y separar licencia de la fotografía de derechos/reglas del diseño monetario; no aprobar assets en esta iteración.
+- [x] Evaluar Nomisma, Syllogeum y CANOA; confirmar que su cobertura es principalmente de moneda antigua y no satisface el catálogo moderno.
+- [x] Identificar NumisLib como candidato auxiliar, pendiente de verificar licencia exacta y trazabilidad de la base.
+- [ ] Identificar dataset especializado de monedas y billetes modernos con licencia explícita compatible y mantenimiento suficiente.
+- [ ] Localizar una fuente primaria estructurada y reutilizable para el catálogo histórico de Cuba CUP/CUC.
+- [ ] Verificar automatización concreta del Diario Oficial/Comisión UE para altas de monedas euro y conmemorativas.
+- [ ] Verificar opciones de extracción/versionado por lotes de fuentes BEAC y BCEAO sin depender de imágenes sin licencia.
+- [ ] Aprobar imágenes concretas solo tras verificar licencia de archivo y derechos/reglas de reproducción del objeto monetario; en caso contrario mantener placeholder.
 - [ ] Validar el modelo con Andorra, Cuba CUP/CUC, Ecuador, euro, CFA, peseta y estados históricos.
 - [ ] Definir tratamiento cartográfico de microestados, territorios y estados desaparecidos.
 - [ ] Resolver valoración de monedas sin cotización y equivalencias históricas.
