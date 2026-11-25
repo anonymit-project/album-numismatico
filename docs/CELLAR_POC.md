@@ -338,3 +338,82 @@ La coincidencia de fecha **no demuestra duplicidad**: eventos distintos pueden c
 En una misma ejecución de PowerShell, descargar página 1 y página 2 con `-UseBasicParsing`, conservar ambas respuestas y comparar los elementos de frontera usando los campos XML reales que existan (primero inspeccionarlos, sin asumir que `id`/ `title` son correctos). Registrar el primer y último elemento de cada página y comprobar si el final de página 1 reaparece al principio de página 2. Si los campos identificadores siguen apareciendo como plantillas `$item.*`, inspeccionar el XML Atom crudo y sus namespaces antes de concluir.
 
 No ampliar todavía a DELETE, valores múltiples de `wemiClasses` ni automatización permanente.
+
+
+## 11. Paginación operativa y estabilidad del feed — 25/11/2026
+
+**Estado:** paginación manual validada parcialmente hasta la página 5; el recorrido completo, el final del conjunto y la estabilidad ante nuevas notificaciones siguen pendientes.
+
+### Petición y ventana
+
+- Endpoint: https://publications.europa.eu/webapi/notification/ingestion
+- Cabecera: Accept: application/atom+xml
+- Ventana: startDate=2026-11-19&endDate=2026-11-25
+- Parámetro de página: page=N
+- Ejecución desde PowerShell del usuario con Invoke-WebRequest -UseBasicParsing.
+
+### Páginas recuperadas
+
+Las páginas 1 a 5 devolvieron HTTP 200 y 1.000 entradas cada una. Se han recuperado al menos 5.000 entradas; no se conoce el total.
+
+| Página | Primera fecha updated | Última fecha updated | moreEntries |
+|---|---|---|---|
+| 1 | 2026-11-19T00:00:53.711+01:00 | 2026-11-19T00:49:36.274+01:00 | No registrado en esta tanda |
+| 2 | 2026-11-19T00:49:36.274+01:00 | 2026-11-19T02:36:06.635+01:00 | No registrado en esta tanda |
+| 3 | 2026-11-19T02:36:06.635+01:00 | 2026-11-19T02:40:34.279+01:00 | true |
+| 4 | 2026-11-19T02:40:34.279+01:00 | 2026-11-19T02:44:07.915+01:00 | true |
+| 5 | 2026-11-19T02:44:07.915+01:00 | 2026-11-19T02:48:34.936+01:00 | true |
+
+### Fronteras entre páginas
+
+| Frontera | Timestamp compartido | Entradas con ese timestamp en página anterior | En página siguiente | Claves repetidas |
+|---|---|---:|---:|---:|
+| P1 → P2 | 2026-11-19T00:49:36.274+01:00 | 38 | 11 | 0 |
+| P2 → P3 | 2026-11-19T02:36:06.635+01:00 | 4 | 4 | 0 |
+| P3 → P4 | 2026-11-19T02:40:34.279+01:00 | 68 | 5 | 0 |
+
+Se comparó la clave candidata cellarId + "|" + updated. Un mismo timestamp puede abarcar muchas notificaciones y dividirse entre páginas; updated no debe usarse como cursor exclusivo. En las fronteras examinadas no se observó duplicación de la clave compuesta.
+
+En P1+P2 (2.000 entradas) se observaron 1.922 cellarId distintos. Siete cellarId aparecen más de una vez, pero corresponden a eventos update distintos, con updated y XML diferentes. La clave cellarId + updated no se repitió en esa muestra. Es una **clave candidata de deduplicación**, no una garantía de unicidad global ni sustituto probado del identificador de evento.
+
+### Metadato de continuación
+
+El XML Atom incluye notifReq:moreEntries. Se observó true en P3, P4 y P5 (y previamente en P1). Aún no se ha observado una página final con moreEntries=false ni una página vacía. El recorrido debe seguir el metadato, no un número de páginas prefijado.
+
+### Estabilidad entre consultas
+
+Se descargaron repetidamente P1, P2 y P3 y se calcularon SHA-256 sobre la secuencia ordenada de claves cellarId|updated (no sobre el XML completo). Los hashes permanecieron idénticos en todas las capturas, incluida una repetición tras aproximadamente 15 minutos:
+
+| Página | SHA-256 de claves ordenadas | Diferencias |
+|---|---|---:|
+| 1 | 2C9038FBB91FF4645D22F039FE93D1A9E55C3E935C9EB5FCAACC6EEA66B9A1C7 | 0 |
+| 2 | 34606555E4053520A4215776D4BCC46511452C96163E569A6ACD2EE18F39C686 | 0 |
+| 3 | 5940A2FC71489FB2E1420263C7BF7BDA4EDFB90C7BF3AB55AB3D59D38F731C74 | 0 |
+
+El primer cálculo falló por incompatibilidad: la versión de .NET disponible no contiene Convert.ToHexString. Se corrigió usando BitConverter.
+
+**Interpretación limitada:** las claves y su orden en P1–P3 permanecieron iguales durante las consultas realizadas. No se ha probado que el XML completo sea idéntico ni que P4/P5 permanezcan estables cuando entren nuevas notificaciones. Que las páginas antiguas no cambien si las nuevas entradas se añaden al final es una hipótesis plausible, no una regla demostrada del servicio.
+
+### Conclusiones verificadas
+
+1. page permite recuperar páginas adicionales de 1.000 entradas.
+2. P1–P5 devolvieron HTTP 200; el conjunto observado supera las 5.000 entradas.
+3. Las fronteras comparten timestamps, pero las claves cellarId|updated examinadas no se solapan.
+4. moreEntries=true aparece en páginas intermedias.
+5. Las secuencias de claves P1–P3 permanecieron idénticas en las consultas repetidas durante el intervalo probado.
+
+### No demostrado
+
+- Total de entradas y página final; no se ha observado moreEntries=false.
+- Comportamiento de una página vacía o final con menos de 1.000 entradas.
+- Estabilidad de P4/P5 ante nuevas notificaciones.
+- Efecto de inserciones tardías que pudieran desplazar entradas entre páginas.
+- Unicidad global de cellarId|updated; se debe conservar el identificador de evento original cuando se resuelva cómo extraerlo correctamente.
+- Identidad del XML completo: los hashes solo cubren claves y orden.
+- Eventos DELETE, múltiples valores de wemiClasses y seguimiento de un evento hasta sus recursos WEMI.
+
+### Próxima prueba recomendada
+
+Continuar desde page=6 y seguir incrementando page mientras notifReq:moreEntries sea true. Registrar por página HTTP, número de entradas, moreEntries, primer/último updated y huella de claves. Detenerse al observar la condición terminal y comprobar si la última página está vacía o contiene menos de 1.000 entradas. Después probar la estabilidad de las páginas más recientes. No implementar todavía sincronizador ni aprobar una estrategia de cursor.
+
+**No se ha escrito código de producto, implementado parser ni incorporado datos o imágenes al catálogo.** Se mantienen Fase 0, D-008, staging y revisión humana.
