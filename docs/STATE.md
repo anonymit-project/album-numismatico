@@ -204,3 +204,17 @@ Se mantiene Fase 0, D-008 y revisión humana. No se ha escrito código ni incorp
 ### Siguiente paso exacto
 
 Descargar página 1 y página 2 en una sola ejecución de PowerShell, conservar las respuestas y comparar sus elementos de frontera usando los campos XML reales. Inspeccionar XML crudo si los campos de identidad aparecen como plantillas. No abordar todavía otros filtros ni automatización.
+
+
+## Actualización: paginación operativa CELLAR — 25/11/2026
+
+- P1–P5 de la ventana 19–25/11/2026 descargadas desde PowerShell: HTTP 200 y 1.000 entradas por página; al menos 5.000 entradas recuperadas.
+- notifReq:moreEntries=true observado en P3, P4 y P5; no se ha localizado la página final.
+- Fronteras P1/P2, P2/P3 y P3/P4: timestamp compartido, pero cero claves cellarId|updated repetidas. Recuentos de entradas con el timestamp frontera: 38/11, 4/4 y 68/5.
+- P1–P3 conservaron hashes idénticos de claves ordenadas en consultas repetidas, incluida una tras unos 15 minutos. Esto no demuestra estabilidad ante inserciones ni estabilidad de P4/P5.
+- cellarId|updated es una clave candidata de deduplicación, no una garantía global. No usar updated solo como cursor.
+- Evidencia detallada en docs/CELLAR_POC.md, sección 11.
+
+### Siguiente paso exacto
+
+Continuar desde page=6 hasta la condición terminal notifReq:moreEntries. Registrar por página el número de entradas, moreEntries y límites temporales. No diseñar aún el cursor incremental ni implementar sincronizador. Después probar estabilidad de las páginas más recientes y cambios por inserciones tardías. Mantener Fase 0 y no iniciar el MVP.
