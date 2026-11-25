@@ -104,3 +104,19 @@ La licencia API tampoco equivale a una licencia general de las fotografías. Par
 - [ECB euro reference exchange rates](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html)
 
 **Nota de alcance:** esta investigación documental no sustituye asesoramiento jurídico ni constituye una auditoría de cada imagen o dataset. Las cuotas y políticas de servicios externos deben revalidarse antes de desplegar una integración.
+
+
+## Fuentes oficiales de tipos de cambio (complementario)
+
+El [BCE publica tipos de cambio de referencia frente al euro](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html) para una selección de divisas, normalmente cada día hábil alrededor de las 16:00 CET (salvo cierres TARGET). Ofrece descargas CSV/XML y un servicio web SDMX para consulta automatizada ([documentación SDMX](https://data.ecb.europa.eu/help/getting-data-web-services-sdmx-0)).
+
+- Son tipos informativos, no cotizaciones de transacción.
+- La cobertura es una selección de monedas; no debe suponerse que incluya divisas históricas, exóticas, suspendidas o monedas sin mercado representativo.
+- El BCE suspendió la publicación del tipo de referencia EUR/RUB desde marzo de 2022 por falta de representatividad.
+- Recomendación: usarlo como fuente gratuita primaria para las divisas que cubre, guardar fecha y fuente de cada tasa y dejar sin valoración automática las monedas sin tipo fiable. Para monedas extinguidas, utilizar factores históricos de conversión documentados, no tipos FX actuales.
+
+La API SDMX ofrece acceso programático a datos y metadatos; no se ha identificado una cuota numérica pública ni un precio por consulta en la documentación consultada. Deben respetarse las condiciones del portal y evitar asumir SLA o disponibilidad ilimitada.
+
+## Bancos centrales y autoridades emisoras nacionales
+
+No se ha localizado una API mundial común de bancos centrales. La estrategia realista es una lista de autoridades por emisor: banco central, tesoro, casa de moneda o imprenta oficial según quién publique la información. Sus webs y catálogos son fuentes primarias para emisiones y diseños, pero **no debe inferirse una licencia abierta por el mero hecho de que el contenido sea oficial**. Registrar condiciones de reutilización por país y por recurso; si no hay licencia clara, usar la fuente para verificar metadatos y conservar solo el enlace.
