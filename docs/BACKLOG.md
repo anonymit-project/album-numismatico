@@ -54,8 +54,8 @@ Prioridad orientativa. No implica autorización para saltarse el cierre de Fase 
 
 ## Investigación operativa — siguiente bloque técnico (sin código de producto)
 
-- [ ] Ejecutar una prueba de concepto SPARQL de CELLAR para filtrar publicaciones del DOUE con el título «New national side of euro coins intended for circulation», recuperar la jerarquía WEMI/URL Item y descargar el Formex/XML.
-- [ ] Comparar el resultado SPARQL con una alerta RSS personalizada de EUR-Lex y medir duplicados, latencia y correcciones.
+- [ ] Ejecutar en el editor oficial la consulta SPARQL preparada para C/2026/406; confirmar relación ELI/owl:sameAs, URI Item y formato Formex (la ejecución directa desde este entorno quedó bloqueada).
+- [ ] Recuperar el XML Formex por REST y validar el mapeo de campos a staging. Después comparar la detección por SPARQL con CELLAR ingestion RSS o una alerta EUR-Lex personalizada; medir duplicados y correcciones.
 - [ ] Documentar el mapeo Formex/XML a campos de staging y guardar ejemplos de entrada/salida con procedencia.
 - [ ] Crear manifiesto versionado de URLs BEAC/BCEAO por familia, estado legal, país y fecha de consulta; validar cambios de HTML antes de automatizar extracción.
 - [ ] Comprobar individualmente las condiciones de reutilización de cada PDF o texto de BEAC/BCEAO antes de almacenar copias; no extraer imágenes.
