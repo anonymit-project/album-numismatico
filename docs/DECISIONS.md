@@ -43,3 +43,12 @@ Registro vivo de decisiones de producto. Las propuestas no aprobadas se etiqueta
 
 - **Estado:** Aprobada.
 - **Decisión:** trabajar en ramas y proponer cambios mediante pull request; no modificar `main` directamente ni fusionar sin autorización explícita.
+
+
+## D-008 — Política conservadora de fuentes y reutilización
+
+- **Estado:** Aprobada.
+- **Decisión:** utilizar únicamente datos, imágenes y materiales cuya reutilización en el proyecto esté respaldada por una licencia abierta explícita, dominio público verificable o permiso ya concedido. No contactar con proveedores ni titulares para solicitar excepciones o aclaraciones. Si las condiciones son ambiguas, restrictivas o no se pueden comprobar, no incorporar el material; usar la fuente solo como referencia bibliográfica/enlace o dejar un placeholder.
+- **Aplicación:** Wikidata para datos estructurados CC0; Wikimedia Commons solo para archivos cuya licencia individual permita el uso previsto y tras registrar atribución y condiciones; Natural Earth para cartografía en dominio público; fuentes oficiales para verificar hechos, sin reutilizar automáticamente sus imágenes o textos protegidos. Numista queda excluida como fuente de importación o integración mientras no exista una licencia pública inequívoca compatible con el uso previsto.
+- **Motivo:** evitar riesgos contractuales y de propiedad intelectual, mantener el presupuesto objetivo de 0 € y no añadir decisiones legales innecesarias al usuario.
+- **Consecuencia:** primar catálogo pequeño y fiable, aunque haya menos imágenes o cobertura; las fichas sin imagen usarán placeholder.
