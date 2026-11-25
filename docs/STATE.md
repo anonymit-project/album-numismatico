@@ -190,3 +190,17 @@ Esta actualización complementa el resultado anterior de bloqueo DNS: el intento
 5. Solo después, valorar un cliente de investigación con persistencia y trazabilidad; no iniciar automatización de producto.
 
 Se mantiene Fase 0, D-008 y revisión humana. No se ha escrito código ni incorporado datos o imágenes al catálogo.
+
+
+## Actualización de paginación CELLAR RSS/Atom (25/11/2026)
+
+- Página 1 del feed ingestion, para la ventana 19–25/11/2026, descargada desde PowerShell: HTTP 200 y 1.000 entradas.
+- En una prueba previa comunicada, página 2 también devolvió HTTP 200 y 1.000 entradas.
+- Las tres primeras entradas de página 2 comparten timestamp con la última observada de página 1 (`2026-11-19T00:49:36.274+01:00`). Esto no prueba duplicidad; falta comparar identificadores y contenido.
+- La descarga de página 1 se hizo con URL literal completa. Para PowerShell se recomienda `Invoke-WebRequest -UseBasicParsing`; no depender de variables creadas en ejecuciones anteriores.
+- **Estado:** acceso a ambas páginas observado, pero continuidad, huecos y duplicados siguen sin validar. No deduplicar por timestamp.
+- Evidencia y siguiente prueba en la sección 10 de `docs/CELLAR_POC.md`.
+
+### Siguiente paso exacto
+
+Descargar página 1 y página 2 en una sola ejecución de PowerShell, conservar las respuestas y comparar sus elementos de frontera usando los campos XML reales. Inspeccionar XML crudo si los campos de identidad aparecen como plantillas. No abordar todavía otros filtros ni automatización.
