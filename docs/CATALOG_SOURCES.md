@@ -213,3 +213,125 @@ Se han localizado ejemplos concretos en Commons, entre ellos una fotografía de 
 - [NumisLib](https://numislib.com/)
 
 **Alcance jurídico:** evaluación conservadora de fuentes públicas, no dictamen legal. No se han solicitado permisos ni aclaraciones a titulares, de acuerdo con D-008.
+
+
+## Investigación operativa de fuentes y automatización (25/11/2026)
+
+### 1. Euro: Diario Oficial, EUR-Lex y CELLAR
+
+**Hallazgo:** existe una vía oficial estructurada y reutilizable para detectar y recuperar publicaciones sobre nuevas caras nacionales y emisiones conmemorativas. No hace falta depender de scraping visual del sitio del BCE.
+
+- EUR-Lex ofrece un servicio web SOAP para usuarios registrados, con resultados XML. Es gratuito tras registro y tiene límites diarios de llamadas; sirve para buscar, pero no descarga directamente los documentos.
+- El repositorio CELLAR de la Oficina de Publicaciones expone metadatos mediante SPARQL y REST, además de documentos en varios formatos. Para actos del Diario Oficial hay contenido en XML Formex; también se ofrecen HTML/XHTML y PDF cuando están disponibles.
+- CELLAR ofrece feeds RSS y Atom de ingesta que notifican nuevas publicaciones y modificaciones de documentos/metadatos, incluso por idioma. El feed general puede ser voluminoso y no es, por sí solo, un feed filtrado de monedas.
+- EUR-Lex dispone de RSS predefinidos para categorías del Diario Oficial L y C, y permite crear alertas RSS personalizadas para búsquedas/documentos cuando se inicia sesión. La serie C es relevante porque los avisos «New national side of euro coins intended for circulation» se publican ahí.
+- La Comisión declara que publica descripciones de los nuevos diseños de monedas. Los avisos encontrados incluyen país emisor, tema de conmemoración, descripción del diseño, tirada estimada y fecha prevista de emisión. También se publican cambios de caras nacionales de monedas regulares (ejemplo: Mónaco, C/2026/419), por lo que el flujo no debe limitarse a 2 € conmemorativas.
+
+**Ejemplos verificables de 2026:**
+- [C/2026/406 — Lituania, moneda conmemorativa de 2 €](https://eur-lex.europa.eu/eli/C/2026/406/oj/eng)
+- [C/2026/412 — Andorra, moneda conmemorativa de 2 €](https://eur-lex.europa.eu/eli/C/2026/412/oj)
+- [C/2026/419 — nuevas caras nacionales regulares de Mónaco](https://eur-lex.europa.eu/eli/C/2026/419/oj/eng)
+
+**Diseño de ingesta recomendado (propuesta, no implementada):**
+1. Consultar publicaciones de la serie C mediante CELLAR SPARQL/REST o una alerta RSS de búsqueda EUR-Lex; no consumir sin filtrar el feed global de CELLAR.
+2. Filtrar por el título estable «New national side of euro coins intended for circulation» y por el identificador/serie del Diario Oficial. Mantener también una búsqueda secundaria por términos multilingües para detectar cambios de redacción.
+3. Obtener el registro/notice y el documento Formex/XML; conservar ELI, CELEX/PUB si existe, número del DOUE, fecha, idioma y URL estable.
+4. Extraer campos en una tabla de staging: emisor, tipo (regular/conmemorativa), denominación si se indica, tema, descripción, diseñador, tirada estimada, fecha de emisión y fuente.
+5. Generar propuesta de cambio para revisión humana. No crear una pieza definitiva ni sustituir una cara nacional de forma automática.
+6. Reconciliar avisos repetidos o correcciones por ELI/identificador de publicación, no por título.
+
+**Limitación pendiente:** se ha verificado la existencia de interfaces y formatos oficiales, y se han identificado ejemplos reales, pero no se ha ejecutado una consulta SPARQL ni configurado una alerta personalizada. La sintaxis final de consulta, los campos CDM más robustos y el comportamiento de paginación deben probarse antes de escribir el importador.
+
+**Reutilización:** la Decisión 2011/833/UE establece reutilización general gratuita de documentos de la Comisión, sujeta a condiciones como citar la fuente y no alterar el sentido, pero excluye materiales que la Comisión no pueda reutilizar por derechos de terceros. Esto permite tratar los metadatos y textos oficiales como candidatos reutilizables con atribución; **no convierte automáticamente las imágenes de diseños monetarios en assets libres**. Las caras nacionales y los derechos de diseños/imágenes deben seguir verificándose por emisor y recurso. No copiar imágenes del DOUE en esta fase.
+
+Fuentes:
+- [EUR-Lex — servicio web SOAP/XML y registro](https://eur-lex.europa.eu/content/help/data-reuse/webservice.html?locale=es)
+- [EUR-Lex — reutilización de contenido, CELLAR, REST, SPARQL y Formex](https://eur-lex.europa.eu/content/help/data-reuse/reuse-contents-eurlex-details.html?locale=es)
+- [CELLAR — datos y servicios](https://op.europa.eu/en/web/cellar/cellar-data)
+- [CELLAR — RSS y Atom](https://op.europa.eu/en/web/cellar/cellar-data/rss-and-atom-feeds)
+- [EUR-Lex — alertas RSS predefinidas](https://eur-lex.europa.eu/content/help/search/predefined-rss.html)
+- [Decisión 2011/833/UE sobre reutilización de documentos de la Comisión](https://eur-lex.europa.eu/eli/dec/2011/833/oj/spa)
+
+### 2. BEAC (XAF): estructura y extracción controlada
+
+**Hallazgo:** la BEAC mantiene una sección oficial organizada por familias y estados, con páginas HTML y documentos PDF descargables. No se ha identificado API pública, feed específico de emisiones ni dataset estructurado descargable.
+
+- La página [Signes monétaires](https://www.beac.int/billets-pieces/signes-monetaires/) enlaza páginas diferenciadas para billetes 2020, billetes 2002, tipos antiguos, billetes demonetizados 1992/1982/1972, monedas 2006, nueva gama de monedas «Type 2024» y monedas demonetizadas.
+- La ficha HTML de la gama 2020 describe cinco denominaciones (500, 1.000, 2.000, 5.000 y 10.000 XAF) y sus temas/iconografía. La información está en texto HTML, acompañada de imágenes.
+- La sección de billetes demonetizados declara que las gamas 1972, 1982 y los tipos antiguos dejaron de tener curso legal el 1/4/2004; el canje en BEAC terminó el 30/9/2006. La ficha enlaza documentos de las familias.
+- La sección de monedas demonetizadas publica una tabla con título, tamaño, ámbito y año; en la consulta aparece una nota de 2026 relativa a la demonetización de la antigua gama.
+- Hay PDFs institucionales asociados a las familias y a la historia. Una brochure oficial de la BEAC contiene una prohibición expresa de reproducción o representación, total o parcial, del texto y/o billetes contenidos en esa publicación. Sus imágenes quedan descartadas; no se debe interpretar que la presencia de archivos descargables concede derechos.
+
+**Extracción controlada recomendada:**
+- Mantener un manifiesto pequeño de URLs oficiales por familia, con idioma, fecha de revisión, hash/contenido observado y enlace de origen.
+- Extraer solo texto HTML visible: denominación, tipo/gama, fechas, estado legal, descripciones y enlaces documentales.
+- Tratar los PDF como documentos de referencia; extraer metadatos textuales solo cuando el contenido y sus condiciones lo permitan. No guardar ni redistribuir imágenes.
+- Registrar por separado la fecha de emisión, entrada en circulación, retirada de curso legal y fin del canje: no son el mismo evento.
+- Toda modificación detectada genera una propuesta revisable. No inferir el estado actual solo por la existencia de una página bajo «signes monétaires».
+- Revalidar con las decisiones y notas oficiales de demonetización, especialmente la nota de 2026 de monedas antiguas.
+
+Fuentes:
+- [BEAC — Signes monétaires](https://www.beac.int/billets-pieces/signes-monetaires/)
+- [BEAC — Billets de la gamme 2020](https://www.beac.int/billets-pieces/signes-monetaires/billets-de-gamme-2020/)
+- [BEAC — Billets démonétisés](https://www.beac.int/billets-pieces/signes-monetaires/billets-demonetises/)
+- [BEAC — Pièces démonétisées](https://www.beac.int/billets-pieces/signes-monetaires/pieces-demonetisees/)
+- [BEAC — brochure du 30ème anniversaire (incluye prohibición expresa de reproducción)](https://www.beac.int/wp-content/uploads/2016/11/billets-et-pieces-brochure-du-30eme-anniversaire.pdf)
+- [Estatutos BEAC revisados en 2021, art. 74](https://www.beac.int/wp-content/uploads/2021/11/Statuts-de-la-BEAC-modifi%C3%A9s-2021.pdf)
+
+### 3. BCEAO (XOF): estructura y extracción controlada
+
+**Hallazgo:** la BCEAO también mantiene páginas HTML oficiales separadas por estado y tipo de pieza. No se ha identificado API pública, feed específico de emisiones ni dataset estructurado descargable.
+
+- El índice [Billets et pièces](https://www.bceao.int/fr/content/billets-et-pieces) enlaza billetes con curso legal, billetes demonetizados, billetes anteriores a la BCEAO y monedas en circulación.
+- La sección de billetes retirados organiza el material por cada uno de los ocho estados miembros; la sección de billetes anteriores a BCEAO es una categoría histórica separada.
+- La página de monedas en circulación publica para las piezas de 500 y 200 FCFA fecha de puesta en circulación (24/12/2003), diámetro, grosor, peso, composición bicolor y temas de anverso/reverso. No es un inventario exhaustivo de todas las denominaciones.
+- La página de historia del franco CFA distingue la zona UMOA/BCEAO (ocho miembros) de la zona CEMAC/BEAC (seis miembros); no se deben fusionar XOF y XAF en una moneda o autoridad única.
+
+**Extracción controlada recomendada:**
+- Mantener URLs de índice y páginas hijas por estado/serie; detectar altas o cambios en el HTML y en sus enlaces.
+- Extraer texto técnico y cronológico, enlazando cada dato con su página concreta.
+- Para galerías históricas, tratar cada imagen como referencia no reutilizable salvo licencia expresa del archivo; no descargar en lote.
+- No asumir que la página «en circulation» enumera toda la familia: usarla como muestra parcial y mantener los huecos explícitos.
+- Revisar la sección de billetes anteriores a BCEAO por país/territorio y periodo antes de modelar esos ejemplares.
+
+Fuentes:
+- [BCEAO — Billets et pièces](https://www.bceao.int/fr/content/billets-et-pieces)
+- [BCEAO — Billets ayant cours légal](https://www.bceao.int/fr/content/billets-et-pieces)
+- [BCEAO — Anciens billets retirés](https://www.bceao.int/album-photo/anciens-billets-de-la-bceao-retires-de-la-circulation)
+- [BCEAO — Billets antérieurs à la BCEAO](https://www.bceao.int/album-photo/billets-anterieurs-la-bceao)
+- [BCEAO — Pièces en circulation](https://www.bceao.int/fr/content/pieces-en-circulation)
+- [BCEAO — Histoire du franc CFA et estados miembros](https://www.bceao.int/fr/content/histoire-du-franc-cfa)
+
+### 4. Cuba (CUP/CUC): fuentes primarias y límite de cobertura
+
+**Hallazgo:** se han encontrado instrumentos normativos primarios que permiten verificar hechos de emisión y algunos atributos, pero no un catálogo oficial abierto, estructurado y con licencia reutilizable para cubrir las series CUP/CUC.
+
+- El [Decreto-Ley 361/2018 del Banco Central de Cuba](https://233773342789-lic.s3.eu-central-1.amazonaws.com/attachments/legislation/cuba/Decreto%20No.361%20-%20Banco%20central%20de%20Cuba_14.09.2018.pdf), publicado en la Gaceta Oficial, establece que el Banco Central tiene el derecho exclusivo de emitir moneda nacional y responsabilidad sobre billetes y monedas (art. 61). El art. 65 exige autorización previa del Banco Central para publicidad que utilice total o parcialmente billetes o monedas que tengan o hayan tenido curso legal o sus reproducciones. La tercera disposición especial también confirma que el Banco Central aprueba y supervisa emisiones numismáticas conmemorativas.
+- Se localizó el texto de la [Resolución 357/1994 del Banco Nacional de Cuba sobre la emisión del peso convertible](https://www.oncubanews.com/wmag/wp-content/uploads/2013/12/5.01-Resoluci%C3%B3n-No.-357-de-de-20-de-diciembre-de-1994.-Sobre-la-emisi%C3%B3n-del-peso-convertible.pdf). Es una norma primaria reproducida en un servidor no institucional, no un repositorio oficial. El texto describe la emisión inicial de billetes CUC y enumera denominaciones de 1, 3, 5, 10, 20, 50 y 100 pesos convertibles, con rasgos de diseño y dimensiones. Sirve como pista documental para contrastar, no como dataset ni como permiso de reutilización.
+- La [Resolución 50/2003](https://www.cibercuba.com/s/gacetaoficial/resolucion-50-de-2003-de-banco-central-de-cuba) documenta la desmonetización de billetes CUP impresos por el Banco Nacional hasta 1990. El texto se ha localizado en una reproducción secundaria de la Gaceta; conviene localizar el ejemplar oficial antes de utilizarlo como base de datos.
+- Se encontró una referencia bibliográfica a un catálogo impreso del Museo Numismático del Banco Nacional de Cuba, «Cuba: Emisiones de Monedas y Billetes 1915–1980», con descripción de campos (fechas, impresor, colores, medidas, aleación, peso y diámetro). No se ha localizado un ejemplar digital oficial abierto ni licencia de reutilización; la referencia comercial no valida el contenido del libro.
+- Las búsquedas en los dominios institucionales consultados no localizaron API, CSV, catálogo descargable ni política abierta de reutilización para diseños/imagenes CUP/CUC.
+
+**Conclusión:** para Cuba se puede mantener un esqueleto cronológico apoyado en legislación y fuentes secundarias claramente etiquetadas, pero no generar una carga automática ni declarar completa ninguna serie. Las denominaciones de la Resolución 357/1994 corresponden a la emisión inicial descrita por ese texto, no prueban por sí solas todas las variantes, fechas o emisiones CUC posteriores.
+
+**Restricción de imágenes:** no reutilizar billetes/monedas cubanos ni reproducciones de ellos. El art. 65 del Decreto-Ley 361/2018 exige autorización previa para usos publicitarios; D-008 prohíbe contactar para pedir excepciones. Mantener placeholders y enlaces de referencia. No se ha localizado licencia abierta que permita salvar esta restricción.
+
+Fuentes:
+- [Gaceta Oficial — Decreto-Ley 361/2018 (copia digital del texto oficial)](https://233773342789-lic.s3.eu-central-1.amazonaws.com/attachments/legislation/cuba/Decreto%20No.361%20-%20Banco%20central%20de%20Cuba_14.09.2018.pdf)
+- [Resolución 357/1994 — texto reproducido, alojamiento no institucional](https://www.oncubanews.com/wmag/wp-content/uploads/2013/12/5.01-Resoluci%C3%B3n-No.-357-de-de-20-de-diciembre-de-1994.-Sobre-la-emisi%C3%B3n-del-peso-convertible.pdf)
+- [Resolución 50/2003 — reproducción secundaria de la Gaceta Oficial](https://www.cibercuba.com/s/gacetaoficial/resolucion-50-de-2003-de-banco-central-de-cuba)
+- [Referencia bibliográfica del catálogo del Museo Numismático 1915–1980](https://www.cubacollectibles.com/cuba-book-numismatic-museum-cat.html)
+- [Bundesbank — metadatos sobre Cuba y unificación monetaria](https://www.bundesbank.de/resource/blob/710190/bdb65d76a0d2f93425fdb54224dc87ef/472B63F073F071307366337C94F8C870/metadaten-en-data.pdf)
+
+### 5. Resultado operativo
+
+| Fuente | Estructura encontrada | Automatización realista | Reutilización |
+|---|---|---|---|
+| EUR-Lex/CELLAR | SPARQL, REST, RSS/Atom, XML Formex, HTML/PDF | **Alta para detección y descarga de metadatos/textos**; falta probar consulta filtrada de monedas | Metadatos/textos sujetos a política de reutilización y derechos de terceros; imágenes monetarias excluidas por defecto |
+| BEAC | HTML por familias/estado + PDFs | **Media**: extracción controlada por URLs conocidas y revisión de cambios; sin API localizada | No usar imágenes; brochure oficial prohíbe expresamente reproducción |
+| BCEAO | HTML por categorías y país + galerías | **Media**: extracción controlada de textos y metadatos; sin API localizada | No se localizó licencia abierta de imágenes |
+| Cuba CUP/CUC | Legislación y normas dispersas; catálogo impreso referenciado | **Baja**: investigación y curación manual; sin dataset ni API identificados | No usar imágenes; restricción legal y D-008 |
+
+**Decisión de ingeniería recomendada, aún no implementada:** usar un pipeline de ingesta por lotes con manifiestos de fuentes, extracción de metadatos y staging de propuestas; no hacer scraping general ni cargar imágenes. EUR-Lex/CELLAR sería el primer adaptador automatizable. BEAC/BCEAO tendrían adaptadores de páginas específicas con revisión humana. Cuba seguiría como carga manual/documental hasta encontrar un catálogo primario reutilizable.
+
+**Alcance jurídico:** revisión conservadora de documentación pública, no dictamen legal. No se ha contactado con proveedores, autoridades ni titulares; se mantiene D-008.
