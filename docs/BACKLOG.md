@@ -16,10 +16,10 @@ Prioridad orientativa. No implica autorización para saltarse el cierre de Fase 
 - [x] Evaluar Nomisma, Syllogeum y CANOA; confirmar que su cobertura es principalmente de moneda antigua y no satisface el catálogo moderno.
 - [x] Identificar NumisLib como candidato auxiliar, pendiente de verificar licencia exacta y trazabilidad de la base.
 - [ ] Identificar dataset especializado de monedas y billetes modernos con licencia explícita compatible y mantenimiento suficiente.
-- [ ] Localizar una fuente primaria estructurada y reutilizable para el catálogo histórico de Cuba CUP/CUC.
-- [ ] Verificar automatización concreta del Diario Oficial/Comisión UE para altas de monedas euro y conmemorativas.
-- [ ] Verificar opciones de extracción/versionado por lotes de fuentes BEAC y BCEAO sin depender de imágenes sin licencia.
-- [ ] Aprobar imágenes concretas solo tras verificar licencia de archivo y derechos/reglas de reproducción del objeto monetario; en caso contrario mantener placeholder.
+- [x] Buscar fuentes primarias y estructuradas para Cuba CUP/CUC: se localizaron normas de emisión y retirada, pero no catálogo abierto ni API. Se mantiene el bloqueo de ingesta automatizada.
+- [x] Verificar las interfaces oficiales de EUR-Lex/CELLAR (SOAP/XML, REST, SPARQL, RSS/Atom y Formex) y localizar avisos reales de monedas euro. La prueba de consulta filtrada queda pendiente.
+- [x] Documentar estructura HTML, enlaces y categorías históricas de BEAC/BCEAO, con propuesta de extracción controlada de metadatos. No se ha localizado API/feed específico.
+- [x] Confirmar que las páginas institucionales de BEAC/BCEAO/Cuba no aportan licencia abierta general para sus imágenes; mantener placeholders. La brochure oficial BEAC incluye prohibición expresa de reproducción.
 - [ ] Validar el modelo con Andorra, Cuba CUP/CUC, Ecuador, euro, CFA, peseta y estados históricos.
 - [ ] Definir tratamiento cartográfico de microestados, territorios y estados desaparecidos.
 - [ ] Resolver valoración de monedas sin cotización y equivalencias históricas.
@@ -50,3 +50,13 @@ Prioridad orientativa. No implica autorización para saltarse el cierre de Fase 
 - Identificación asistida por foto, solo si se mantiene gratuita y privacidad aceptable.
 - Catálogo ampliado, importadores y contribuciones moderadas.
 - Compartición voluntaria de solo lectura e intercambio asistido.
+
+
+## Investigación operativa — siguiente bloque técnico (sin código de producto)
+
+- [ ] Ejecutar una consulta SPARQL de CELLAR para filtrar publicaciones del DOUE con el título «New national side of euro coins intended for circulation» y recuperar ELI, fecha, emisor y enlace al Formex.
+- [ ] Comparar el resultado SPARQL con una alerta RSS personalizada de EUR-Lex y medir duplicados, latencia y correcciones.
+- [ ] Documentar el mapeo Formex/XML a campos de staging y guardar ejemplos de entrada/salida con procedencia.
+- [ ] Crear manifiesto versionado de URLs BEAC/BCEAO por familia, estado legal, país y fecha de consulta; validar cambios de HTML antes de automatizar extracción.
+- [ ] Comprobar individualmente las condiciones de reutilización de cada PDF o texto de BEAC/BCEAO antes de almacenar copias; no extraer imágenes.
+- [ ] Continuar Cuba solo con ejemplares oficiales de la Gaceta y catálogos institucionales accesibles; mantener las copias secundarias como pistas, no como autoridad de importación.
