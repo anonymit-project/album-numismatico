@@ -17,7 +17,10 @@ Prioridad orientativa. No implica autorización para saltarse el cierre de Fase 
 - [x] Identificar NumisLib como candidato auxiliar, pendiente de verificar licencia exacta y trazabilidad de la base.
 - [ ] Identificar dataset especializado de monedas y billetes modernos con licencia explícita compatible y mantenimiento suficiente.
 - [x] Buscar fuentes primarias y estructuradas para Cuba CUP/CUC: se localizaron normas de emisión y retirada, pero no catálogo abierto ni API. Se mantiene el bloqueo de ingesta automatizada.
-- [x] Verificar las interfaces oficiales de EUR-Lex/CELLAR (SOAP/XML, REST, SPARQL, RSS/Atom y Formex) y localizar avisos reales de monedas euro. La prueba de consulta filtrada queda pendiente.
+- [x] Verificar las interfaces oficiales de EUR-Lex/CELLAR (SOAP/XML, REST, SPARQL, RSS/Atom y Formex) y localizar avisos reales de monedas euro.
+- [x] Ejecutar manualmente consulta SPARQL para C/2026/406 y recuperar los recursos WEMI en español y lituano; se obtuvieron seis bindings.
+- [x] Recuperar y examinar XHTML español y Formex/XML en español y lituano para C/2026/406; validar manualmente la presencia de campos numismáticos.
+- [ ] Implementar y probar un parser/mapeo Formex/XML → staging con tests; no es código de producto.
 - [x] Documentar estructura HTML, enlaces y categorías históricas de BEAC/BCEAO, con propuesta de extracción controlada de metadatos. No se ha localizado API/feed específico.
 - [x] Confirmar que las páginas institucionales de BEAC/BCEAO/Cuba no aportan licencia abierta general para sus imágenes; mantener placeholders. La brochure oficial BEAC incluye prohibición expresa de reproducción.
 - [ ] Validar el modelo con Andorra, Cuba CUP/CUC, Ecuador, euro, CFA, peseta y estados históricos.
@@ -54,9 +57,13 @@ Prioridad orientativa. No implica autorización para saltarse el cierre de Fase 
 
 ## Investigación operativa — siguiente bloque técnico (sin código de producto)
 
-- [ ] Ejecutar en el editor oficial la consulta SPARQL preparada para C/2026/406; confirmar relación ELI/owl:sameAs, URI Item y formato Formex (la ejecución directa desde este entorno quedó bloqueada).
-- [ ] Recuperar el XML Formex por REST y validar el mapeo de campos a staging. Después comparar la detección por SPARQL con CELLAR ingestion RSS o una alerta EUR-Lex personalizada; medir duplicados y correcciones.
-- [ ] Documentar el mapeo Formex/XML a campos de staging y guardar ejemplos de entrada/salida con procedencia.
+- [x] Ejecutar en el editor oficial la consulta SPARQL preparada para C/2026/406; confirmar URIs de Expression, Manifestation e Item y formatos PDF/A, Formex y XHTML en español y lituano.
+- [x] Recuperar el XML Formex por navegador/descarga y validar manualmente el mapeo de campos en dos expresiones lingüísticas del mismo aviso. Evidencia en [`docs/CELLAR_POC.md`](CELLAR_POC.md).
+- [ ] Validar un segundo aviso de otra clase (preferiblemente una nueva cara nacional regular) para comprobar variación documental.
+- [ ] Implementar y probar un parser/mapeo pequeño Formex/XML → staging con tests; conservar procedencia por campo y revisión humana.
+- [ ] Comparar la detección de nuevos avisos por CELLAR RSS/Atom o alerta EUR-Lex; no se ha configurado ni medido ninguna alerta.
 - [ ] Crear manifiesto versionado de URLs BEAC/BCEAO por familia, estado legal, país y fecha de consulta; validar cambios de HTML antes de automatizar extracción.
 - [ ] Comprobar individualmente las condiciones de reutilización de cada PDF o texto de BEAC/BCEAO antes de almacenar copias; no extraer imágenes.
 - [ ] Continuar Cuba solo con ejemplares oficiales de la Gaceta y catálogos institucionales accesibles; mantener las copias secundarias como pistas, no como autoridad de importación.
+
+**Límite actual de la validación CELLAR:** prueba manual positiva de extremo a extremo para C/2026/406 en español y lituano. No acredita automatización desatendida, parser probado, cobertura general ni derechos de reutilización de imágenes.
