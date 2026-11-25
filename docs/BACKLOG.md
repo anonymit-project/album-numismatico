@@ -4,11 +4,13 @@ Prioridad orientativa. No implica autorización para saltarse el cierre de Fase 
 
 ## Fase 0 — Descubrimiento (actual)
 
+**Criterio obligatorio:** solo incorporar datos e imágenes con derechos de reutilización claros y compatibles. No contactar con proveedores para pedir permisos o aclaraciones. Ante ambigüedad, excluir el material o conservar únicamente un enlace de referencia.
+
 - [x] Comparar Numista, Wikidata/Wikimedia Commons, fuentes oficiales y datasets abiertos a nivel documental.
 - [x] Verificar licencias generales de Wikidata, Commons, Natural Earth e ISO; documentar restricciones de imágenes oficiales euro/peseta.
 - [x] Verificar cuota/precio y condiciones de Numista; documentar riesgo contractual para una PWA privada multiusuario.
 - [x] Documentar límites operativos actuales de Wikimedia API y Wikidata SPARQL.
-- [ ] Obtener confirmación escrita de Numista para el uso previsto (PWA autenticada, 2–3 usuarios, alojamiento en internet y almacenamiento persistente).
+- [x] Excluir Numista de la ingesta y de la aplicación: sus condiciones no garantizan el uso previsto y no se solicitarán excepciones.
 - [ ] Probar cobertura real con una muestra representativa: pesetas, euros regulares y conmemorativos, billetes españoles, Andorra, Cuba CUP/CUC, Ecuador, XOF/XAF y emisores históricos.
 - [ ] Identificar datasets especializados abiertos de monedas y billetes con licencia explícita compatible y mantenimiento suficiente.
 - [ ] Verificar APIs/feeds de la Comisión y Diario Oficial UE para automatizar altas de monedas euro y conmemorativas.
