@@ -2,7 +2,8 @@
 
 **Fase:** 0 — descubrimiento, sin código de producto.  
 **Actualizado:** 2026-11-25  
-**Rama de documentación:** `docs/phase-0-project-context`
+**Rama de documentación:** `docs/phase-0-project-context`  
+**Pull request:** [#1 — documentación inicial de Fase 0](https://github.com/anonymit-project/album-numismatico/pull/1) (abierto, borrador; no fusionado)
 
 ## Objetivo de la iteración
 
