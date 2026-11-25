@@ -6,12 +6,14 @@
 
 ## Conclusión ejecutiva
 
+**Política aprobada:** no se contactará con proveedores para pedir excepciones. Solo se reutilizarán datos o imágenes con una licencia pública explícita, dominio público verificable o permiso ya existente y aplicable. Si hay dudas, se excluye el recurso o se conserva únicamente el enlace de referencia.
+
 No existe una única fuente que resuelva el catálogo mundial con cobertura, fiabilidad, licencia y automatización adecuadas. La estrategia recomendada es un **catálogo propio, pequeño, curado y versionado**, construido mediante fuentes complementarias:
 
 1. **Fuentes oficiales de emisores y autoridades monetarias** para validar diseños, fechas y emisiones.
 2. **Wikidata (CC0)** para entidades, monedas, identificadores y relaciones históricas; nunca como autoridad numismática única.
 3. **Wikimedia Commons** como posible fuente de imágenes, siempre con revisión de licencia y derechos por archivo.
-4. **Numista** como herramienta auxiliar de consulta, no como base para reconstruir ni sustituir su catálogo.
+4. **Numista** queda excluida de la ingesta y de la aplicación: sus condiciones no garantizan el uso previsto.
 5. **ISO 4217 / ISO 3166** como sistemas de códigos; no como catálogo numismático.
 6. **Natural Earth** para geometrías cartográficas, no para definir emisores monetarios.
 
@@ -21,7 +23,7 @@ La automatización debe limitarse a importar cambios desde fuentes con derechos 
 
 | Fuente | Cobertura y utilidad | Derechos / licencia | Cuotas y automatización | Evaluación |
 |---|---|---|---|---|
-| [Numista API](https://en.numista.com/api/doc/) | Catálogo especializado de monedas y billetes; búsqueda, detalle e identificadores N#. Cobertura y calidad colaborativas, no garantizadas. | Licencia API no transfiere propiedad. Atribución Numista y N# obligatorios. Prohíbe distribución masiva, feeds y reconstrucción sistemática. Excepción de almacenamiento para proyecto personal privado, no público. Imágenes sujetas además a derechos/licencia indicados por recurso. | Plan gratuito: 2.000 peticiones/mes, sin búsqueda por imagen. Metadatos de endpoints concretos: caché hasta 7 días; otros datos no persistentes salvo excepción estricta de proyecto personal. Máximo 10 peticiones concurrentes. Plan de pago: 100 € de activación + mínimo 100 €/mes (sin IVA, con excepción del primer mes). | **No usar como semilla ni catálogo maestro.** Consultas puntuales solo tras aclarar por escrito si el uso previsto con 2–3 usuarios y alojamiento autenticado encaja en «Personal Project». |
+| [Numista API](https://en.numista.com/api/doc/) | Catálogo especializado de monedas y billetes; búsqueda, detalle e identificadores N#. Cobertura y calidad colaborativas, no garantizadas. | Licencia API no transfiere propiedad. Atribución Numista y N# obligatorios. Prohíbe distribución masiva, feeds y reconstrucción sistemática. Excepción de almacenamiento para proyecto personal privado, no público. Imágenes sujetas además a derechos/licencia indicados por recurso. | Plan gratuito: 2.000 peticiones/mes, sin búsqueda por imagen. Metadatos de endpoints concretos: caché hasta 7 días; otros datos no persistentes salvo excepción estricta de proyecto personal. Máximo 10 peticiones concurrentes. Plan de pago: 100 € de activación + mínimo 100 €/mes (sin IVA, con excepción del primer mes). | **Excluir.** No usar API, datos ni imágenes de Numista. No se solicitará aclaración ni excepción. |
 | [Wikidata](https://www.wikidata.org/wiki/Wikidata:Licensing) | Emisores, estados históricos, monedas, fechas, códigos, relaciones y enlaces externos. Calidad desigual y cobertura numismática incompleta; los statements pueden carecer de referencias. | Datos estructurados bajo CC0. Imágenes y otros medios enlazados no heredan CC0: revisar su licencia individual. | SPARQL público: límites publicados sujetos a cambios; documentación actual indica aproximadamente 4 consultas/s y 240/min para clientes anónimos, con concurrencia limitada. Dumps JSON semanales e incrementales diarios disponibles; demasiado grandes para el uso inicial. | **Muy recomendable como enriquecimiento**, importación selectiva y reconciliación de entidades; no como fuente única ni como verdad automática. |
 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia/en) | Fotografías de monedas y billetes, a veces con anverso/reverso y buena documentación. Cobertura irregular. | Licencia por archivo: dominio público, CC BY, CC BY-SA u otras. Comprobar autor, licencia, atribución, modificaciones y restricciones ajenas al copyright. Commons no garantiza que la información de derechos sea correcta. | MediaWiki API con límites de velocidad introducidos en 2026 y sujetos a cambios. Recomienda User-Agent identificable, concurrencia ≤3 y respetar Retry-After. Metadatos de licencia pueden consultarse mediante imageinfo/extmetadata. | **Candidato preferente para imágenes**, con validación individual y registro de atribución/licencia. No descargar en lote indiscriminadamente. |
 | [BCE — monedas euro](https://www.ecb.europa.eu/euro/coins/html/index.en.html) y [Diario Oficial UE](https://eur-lex.europa.eu/) | Denominaciones, caras comunes/nacionales y conmemorativas de 2 €. El Diario Oficial de la UE es la fuente multilingüe autoritativa de publicación de nuevos diseños; la web del BCE puede ir retrasada. | Copyright de cara común: UE/Comisión; caras nacionales: legislación del emisor. La reproducción de monedas euro tiene restricciones específicas; consultar Comisión y autoridad emisora. | Información pública y páginas descargables; no se ha verificado una API de catálogo ni una cuota automatizada estable. Automatizar consulta de publicaciones oficiales, no scraping agresivo. | **Fuente primaria de validación** para euro; imágenes sujetas a análisis jurídico aparte. |
@@ -36,9 +38,9 @@ La automatización debe limitarse a importar cambios desde fuentes con derechos 
 
 Los términos oficiales definen «Personal Project» como proyecto privado, no comercial, de una persona y no disponible al público general, clientes ni miembros de una organización. Permiten almacenar datos en ese supuesto, pero excluyen la publicación/redistribución, el acceso de terceros y el uso para operar un servicio comercial o públicamente disponible. También prohíben la recuperación sistemática para reproducir o sustituir el catálogo.
 
-El proyecto prevé dos o tres usuarios y una PWA con cuentas. **No está claro que una aplicación alojada en internet, aunque esté protegida por login y limitada a amigos, entre en la excepción.** Antes de usar datos persistentes de Numista hay que solicitar confirmación escrita. La cuota gratuita de 2.000 peticiones no elimina estas restricciones. La API no debe ser una dependencia estructural.
+El proyecto prevé dos o tres usuarios y una PWA con cuentas. **No está claro que una aplicación alojada en internet, aunque esté protegida por login y limitada a amigos, entre en la excepción.** No intentaremos obtener una excepción: la fuente queda fuera del proyecto. La cuota gratuita de 2.000 peticiones no elimina estas restricciones. La API no debe ser una dependencia estructural.
 
-La licencia API tampoco equivale a una licencia general de las fotografías. Para cada imagen devuelta debe respetarse la licencia/aviso del recurso y las condiciones aplicables a su reproducción.
+La licencia API tampoco equivale a una licencia general de las fotografías. Dado que no vamos a integrar Numista, no utilizaremos sus imágenes.
 
 ### Imágenes de billetes y monedas: no confundir acceso con permiso
 
@@ -47,7 +49,7 @@ La licencia API tampoco equivale a una licencia general de las fotografías. Par
 - Para billetes euro, una reproducción digital completa está sometida a reglas anti-falsificación (incluido «specimen» y 72 dpi); las imágenes oficiales disponibles ya llevan esa marca.
 - Para monedas euro, los derechos de las caras nacionales corresponden a los emisores; la cara común está protegida por la UE. La Comisión indica que la autorización de caras nacionales conmemorativas debe solicitarse a la autoridad competente.
 - En España, el Banco de España exige autorización para reproducir imágenes de billetes euro y de billetes o monedas en pesetas, conforme a los requisitos publicados.
-- Recomendación provisional: no mostrar reproducciones oficiales de billetes/monedas sin comprobar primero que el uso concreto cumple la normativa. Priorizar Commons con licencia compatible, imágenes propias aportadas por el usuario y placeholder neutro.
+- Recomendación provisional: no mostrar reproducciones oficiales de billetes/monedas sin comprobar primero que el uso concreto cumple la normativa. Priorizar imágenes propias del usuario y archivos de Commons con licencia individual inequívoca y compatible. En cualquier otro caso, placeholder neutro.
 
 ## Arquitectura de ingesta recomendada
 
@@ -69,7 +71,7 @@ La licencia API tampoco equivale a una licencia general de las fotografías. Par
 | BCE / Comisión / Diario Oficial | Revisar nuevas publicaciones de euro y cambios de páginas oficiales. | Sin precio de acceso identificado; automatización/API concreta pendiente de validar. |
 | Banco de España | Consulta documental/manual y bibliografía. | Sin API abierta localizada; derechos de reproducción requieren atención específica. |
 | ISO | Revisión periódica de códigos y cambios publicados. | Uso de códigos gratuito; servicio automatizado de listas puede ser de pago. |
-| Numista | Consulta individual opcional, con atribución y límites contractuales. | Plan gratuito limitado a 2.000 peticiones/mes; riesgo contractual alto para catálogo persistente o app públicamente disponible. |
+| Numista | No se utilizará. | Plan gratuito limitado a 2.000 peticiones/mes; riesgo contractual incompatible con el criterio conservador adoptado. |
 | Natural Earth | Descargar versión publicada y actualizar por lotes. | Dominio público. |
 
 ## Pendientes de verificación antes de aprobar fuentes
