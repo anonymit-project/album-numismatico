@@ -77,3 +77,10 @@ Prioridad orientativa. No implica autorización para saltarse el cierre de Fase 
 ### Actualización de prueba operativa CELLAR RSS/Atom — 25/11/2026
 
 La prueba manual desde PowerShell del usuario ha eliminado el bloqueo de acceso al endpoint y validado los filtros básicos. Se marca como completada únicamente la prueba de acceso/filtros; la paginación y la validación de campos/identificadores permanecen pendientes. Ver `docs/CELLAR_POC.md`, sección 9.
+
+
+### Actualización de paginación CELLAR RSS/Atom — 25/11/2026
+
+La página 1 se ha descargado desde PowerShell con HTTP 200 y 1.000 entradas. Una prueba previa comunicada de página 2 también obtuvo HTTP 200 y 1.000 entradas. Las tres primeras entradas de página 2 comparten timestamp con la última observada de página 1, pero no se ha probado que sean duplicados. Se mantiene abierta la tarea de paginación; no marcarla como completada hasta comparar registros y verificar continuidad, huecos y solapamientos. Detalle en la sección 10 de `docs/CELLAR_POC.md`.
+
+- [ ] Descargar páginas 1 y 2 en una sola ejecución y comparar elementos de frontera por identificadores/campos XML reales; determinar continuidad, huecos y duplicados sin usar timestamps como clave.
