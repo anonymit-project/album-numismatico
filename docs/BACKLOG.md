@@ -62,7 +62,8 @@ Prioridad orientativa. No implica autorización para saltarse el cierre de Fase 
 - [x] Validar un segundo aviso: C/2026/419 (Mónaco). SPARQL localizó Work/Expressions/Manifestations/Items; la Expression ENG ofrece `pdfa2a`, `fmx4` y `xhtml`; Formex descargado como ZIP con 3 XML y 8 TIFF. El XML principal `C_202600419EN.000101.fmx.xml` contiene ocho denominaciones y datos de emisor, fecha, diseños, ceca y canto de la moneda de 2 €. Prueba manual, sin demostrar automatización general ni derechos de imágenes; detalle en `docs/CELLAR_POC.md`.
 - [ ] Implementar y probar un parser/mapeo pequeño Formex/XML → staging con tests; conservar procedencia por campo y revisión humana.
 - [x] Investigar y documentar CELLAR RSS/Atom frente a alertas RSS de EUR-Lex; recomendación híbrida y limitaciones en docs/CELLAR_POC.md.
-- [ ] **Pendiente por bloqueo del entorno:** ejecutar la prueba operativa del feed CELLAR (estructura real de eventos, identificadores, filtros, paginación y recuperación de metadatos). El intento del 25/11/2026 no obtuvo respuesta HTTP por fallo DNS general del entorno; no es un fallo demostrado de CELLAR. Repetir desde un entorno con DNS/HTTPS funcional. Detalle en `docs/CELLAR_POC.md`.
+- [x] Ejecutar prueba manual del feed CELLAR desde PowerShell: acceso HTTP 200, respuesta Atom, filtros `type=create`, `type=update`, `wemiClasses=DOSSIER` y combinación create + ITEM; las primeras entradas inspeccionadas cumplen los filtros. Evidencia y límites en `docs/CELLAR_POC.md`.
+- [ ] Probar paginación del feed CELLAR (más de 1.000 entradas), continuidad, huecos y duplicados; investigar campos que aparecen como plantillas `$item.*`, valores múltiples de `wemiClasses`, eventos DELETE y seguimiento de un evento hasta sus metadatos WEMI.
 - [ ] Configurar y validar, con autorización y acceso del usuario a EUR-Lex, una búsqueda guardada RSS para las variantes de títulos numismáticos; no se ha creado ninguna alerta.
 - [ ] Crear manifiesto versionado de URLs BEAC/BCEAO por familia, estado legal, país y fecha de consulta; validar cambios de HTML antes de automatizar extracción.
 - [ ] Comprobar individualmente las condiciones de reutilización de cada PDF o texto de BEAC/BCEAO antes de almacenar copias; no extraer imágenes.
@@ -71,3 +72,8 @@ Prioridad orientativa. No implica autorización para saltarse el cierre de Fase 
 **Organización del trabajo:** [x] Registrar en `AGENTS.md` la preferencia del usuario por chats breves y tareas atómicas, con prompt de relevo obligatorio al cerrar cada tarea. Aplicar esta norma en las siguientes iteraciones.
 
 **Límite actual de la validación CELLAR:** pruebas manuales positivas para C/2026/406 (Lituania) y C/2026/419 (Mónaco). La investigación de RSS/Atom y alertas EUR-Lex es documental; no acredita ejecución del feed, alerta configurada, automatización desatendida, parser probado, cobertura general ni derechos de reutilización de imágenes.
+
+
+### Actualización de prueba operativa CELLAR RSS/Atom — 25/11/2026
+
+La prueba manual desde PowerShell del usuario ha eliminado el bloqueo de acceso al endpoint y validado los filtros básicos. Se marca como completada únicamente la prueba de acceso/filtros; la paginación y la validación de campos/identificadores permanecen pendientes. Ver `docs/CELLAR_POC.md`, sección 9.
