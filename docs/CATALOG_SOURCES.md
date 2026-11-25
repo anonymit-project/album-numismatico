@@ -1,6 +1,6 @@
 # Fuentes del catálogo y licencias
 
-**Estado:** investigación documental inicial completada; selección de fuentes aún provisional.  
+**Estado:** prueba documental de cobertura completada; selección de fuentes aún provisional.  
 **Verificación:** 2026-11-25.  
 **Regla:** no importar ni redistribuir datos o imágenes hasta validar las condiciones aplicables al recurso concreto y registrar su procedencia.
 
@@ -28,7 +28,7 @@ La automatización debe limitarse a importar cambios desde fuentes con derechos 
 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia/en) | Fotografías de monedas y billetes, a veces con anverso/reverso y buena documentación. Cobertura irregular. | Licencia por archivo: dominio público, CC BY, CC BY-SA u otras. Comprobar autor, licencia, atribución, modificaciones y restricciones ajenas al copyright. Commons no garantiza que la información de derechos sea correcta. | MediaWiki API con límites de velocidad introducidos en 2026 y sujetos a cambios. Recomienda User-Agent identificable, concurrencia ≤3 y respetar Retry-After. Metadatos de licencia pueden consultarse mediante imageinfo/extmetadata. | **Candidato preferente para imágenes**, con validación individual y registro de atribución/licencia. No descargar en lote indiscriminadamente. |
 | [BCE — monedas euro](https://www.ecb.europa.eu/euro/coins/html/index.en.html) y [Diario Oficial UE](https://eur-lex.europa.eu/) | Denominaciones, caras comunes/nacionales y conmemorativas de 2 €. El Diario Oficial de la UE es la fuente multilingüe autoritativa de publicación de nuevos diseños; la web del BCE puede ir retrasada. | Copyright de cara común: UE/Comisión; caras nacionales: legislación del emisor. La reproducción de monedas euro tiene restricciones específicas; consultar Comisión y autoridad emisora. | Información pública y páginas descargables; no se ha verificado una API de catálogo ni una cuota automatizada estable. Automatizar consulta de publicaciones oficiales, no scraping agresivo. | **Fuente primaria de validación** para euro; imágenes sujetas a análisis jurídico aparte. |
 | [BCE — billetes euro](https://www.ecb.europa.eu/euro/banknotes/images/html/index.en.html) | Series, denominaciones, elementos visuales y descargas oficiales de billetes euro. | Reproducciones digitales de billetes completos deben cumplir reglas ECB/2013/10: «specimen» diagonal, límites de tamaño de texto y máximo 72 dpi al 100 %. Las imágenes descargables de baja resolución ya incluyen «specimen». | Descarga manual disponible; imágenes HD solo para usos profesionales y bajo solicitud. No se ha identificado API de catálogo. | **Fuente oficial para metadatos e imágenes de referencia**, pero las imágenes con «specimen» pueden no ser adecuadas para la experiencia visual del álbum. |
-| [Banco de España — Gabinete Numismático](https://www.bde.es/wbe/es/punto-informacion/contenidos/servicios/archivo-historico/colecciones-numismaticas/) | Colección institucional de moneda y billete español; fondos de billetes desde Banco de San Carlos (1783) y colecciones históricas. Recurso de consulta y bibliografía, no catálogo exhaustivo descargable. | No se ha localizado una licencia abierta general de imágenes/datos. La reproducción de imágenes de billetes euro y de billetes o monedas en pesetas requiere autorización del Banco de España según su trámite oficial. | No se ha verificado API pública ni cuota de automatización. | **Fuente de contraste histórico**, no asumir reutilización de sus imágenes. |
+| [Banco de España — Gabinete Numismático](https://www.bde.es/wbe/es/punto-informacion/contenidos/servicios/archivo-historico/colecciones-numismaticas/) | Colección institucional de moneda y billete español; fondos de billetes desde Banco de San Carlos (1783) y colecciones históricas. Recurso de consulta y bibliografía, no catálogo exhaustivo descargable. | No se ha localizado una licencia abierta general de imágenes/datos. La reproducción de billetes euro y de billetes o monedas en pesetas se rige por las condiciones y criterios específicos publicados por el Banco de España; comprobar el uso concreto antes de reutilizar. | No se ha verificado API pública ni cuota de automatización. | **Fuente de contraste histórico**, no asumir reutilización de sus imágenes. |
 | [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) / [ISO 3166](https://www.iso.org/iso-3166-country-codes.html) | Códigos normalizados de monedas y países/subdivisiones, incluidos códigos históricos en las listas pertinentes. No describen diseños, emisiones ni todos los emisores numismáticos. | ISO permite uso gratuito de los códigos. La descarga de listas oficiales preparadas y actualizadas automáticamente puede depender de un servicio de pago. No copiar el texto íntegro de las normas ISO. | No se ha confirmado una API gratuita oficial para sincronización. Mantener un subconjunto versionado y revisar cambios publicados por ISO/maintenance agencies. | **Útiles como identificadores**, no como catálogo. Guardar código, fuente y fecha de revisión; permitir emisores sin código ISO. |
 | [Natural Earth](https://www.naturalearthdata.com/about/terms-of-use/) | Geometrías geográficas y límites para mapa. No modela soberanía monetaria, reconocimiento ni emisores históricos con precisión numismática. | Datos en dominio público; uso y modificación permitidos sin atribución obligatoria. | Descargas de ficheros; no requiere API. Automatización por versión publicada. | **Recomendado para cartografía**, separado del modelo de emisores. |
 
@@ -48,7 +48,7 @@ La licencia API tampoco equivale a una licencia general de las fotografías. Dad
 - En Commons, la licencia se decide por archivo. Registrar URL de la página del archivo, autor, licencia/version, atribución, fuente original, fecha de comprobación y modificaciones.
 - Para billetes euro, una reproducción digital completa está sometida a reglas anti-falsificación (incluido «specimen» y 72 dpi); las imágenes oficiales disponibles ya llevan esa marca.
 - Para monedas euro, los derechos de las caras nacionales corresponden a los emisores; la cara común está protegida por la UE. La Comisión indica que la autorización de caras nacionales conmemorativas debe solicitarse a la autoridad competente.
-- En España, el Banco de España exige autorización para reproducir imágenes de billetes euro y de billetes o monedas en pesetas, conforme a los requisitos publicados.
+- En España, la reproducción de billetes euro y de billetes o monedas en pesetas está sujeta a los criterios específicos publicados por el Banco de España; no tratar la licencia de una fotografía como autorización automática para reproducir el diseño monetario.
 - Recomendación provisional: no mostrar reproducciones oficiales de billetes/monedas sin comprobar primero que el uso concreto cumple la normativa. Priorizar imágenes propias del usuario y archivos de Commons con licencia individual inequívoca y compatible. En cualquier otro caso, placeholder neutro.
 
 ## Arquitectura de ingesta recomendada
@@ -76,7 +76,7 @@ La licencia API tampoco equivale a una licencia general de las fotografías. Dad
 
 ## Pendientes de verificación antes de aprobar fuentes
 
-- Probar cobertura real con una muestra representativa: pesetas, euros regulares y conmemorativos, billetes españoles, Andorra, Cuba CUP/CUC, Ecuador, XOF/XAF y emisores históricos.
+- Ampliar la prueba de cobertura a más denominaciones, años y emisiones históricas; la muestra documental actual no equivale a un censo exhaustivo ni a una importación.
 - Revisar individualmente los derechos de las imágenes concretas que se quieran incorporar, especialmente diseños protegidos de billetes y monedas.
 - Comprobar si hay feeds, APIs o ficheros oficiales de la Comisión/diarios oficiales que permitan automatización fiable para monedas euro.
 - Identificar datasets especializados abiertos y con licencia explícita para billetes/monedas históricas; no se ha confirmado todavía uno que cubra de forma suficientemente fiable el alcance del proyecto.
@@ -98,7 +98,7 @@ La licencia API tampoco equivale a una licencia general de las fotografías. Dad
 - [ECB — banknote images and reproduction rules](https://www.ecb.europa.eu/euro/banknotes/images/html/index.en.html)
 - [Banco de España — Gabinete Numismático](https://www.bde.es/wbe/es/punto-informacion/contenidos/servicios/archivo-historico/colecciones-numismaticas/)
 - [Banco de España — autorización de reproducción](https://sedeelectronica.bde.es/sede/es/tramites/autorizacion-reproduccion-billetes-p55.html)
-- [ISO 4217 currency codes](https://www.iso.org/iso-4217-currency-codes.html)
+- [Banknotes.com — catálogo secundario de billetes de Cuba (solo referencia, no reutilización)](https://www.banknotes.com/cu.htm)\n- [ISO 4217 currency codes](https://www.iso.org/iso-4217-currency-codes.html)
 - [ISO 3166 country codes](https://www.iso.org/iso-3166-country-codes.html)
 - [Natural Earth terms of use](https://www.naturalearthdata.com/about/terms-of-use/)
 - [ECB SDMX web services](https://data.ecb.europa.eu/help/getting-data-web-services-sdmx-0)
@@ -121,3 +121,95 @@ La API SDMX ofrece acceso programático a datos y metadatos; no se ha identifica
 ## Bancos centrales y autoridades emisoras nacionales
 
 No se ha localizado una API mundial común de bancos centrales. La estrategia realista es una lista de autoridades por emisor: banco central, tesoro, casa de moneda o imprenta oficial según quién publique la información. Sus webs y catálogos son fuentes primarias para emisiones y diseños, pero **no debe inferirse una licencia abierta por el mero hecho de que el contenido sea oficial**. Registrar condiciones de reutilización por país y por recurso; si no hay licencia clara, usar la fuente para verificar metadatos y conservar solo el enlace.
+
+
+## Prueba de cobertura con piezas y emisiones concretas (25/11/2026)
+
+### Método y criterio de lectura
+
+Se ha realizado una prueba documental de cobertura: localizar una fuente primaria o institucional que permita identificar ejemplos concretos, comprobar qué campos publica y separar el acceso a la información del permiso para reutilizar imágenes. No es un censo exhaustivo ni una importación de datos. No se han descargado ni incorporado imágenes al repositorio.
+
+**Leyenda:** «metadatos» significa que la fuente permite contrastar al menos denominación, periodo/diseño o emisor; no implica que exista un fichero estructurado reutilizable. «Imagen de referencia» significa que se ve o descarga en la web de origen, no que se haya acreditado permiso de redistribución.
+
+### Matriz de muestra
+
+| Ámbito | Ejemplo comprobado | Fuente y cobertura observada | Resultado de reutilización |
+|---|---|---|---|
+| España — pesetas, moneda | 100 pesetas, 1992 | Commons contiene un archivo identificado como 100 pesetas, fechado en 1992, con autoría fotográfica y declaración de dominio público. | No importar por ahora: la licencia declarada de la fotografía no resuelve por sí sola las condiciones españolas aplicables a la reproducción de la moneda. |
+| España — pesetas, billete | 1.000 pesetas, serie 1992; también hay categoría Commons con múltiples denominaciones y años | Commons permite localizar ejemplos y algunos ficheros muestran una licencia o declaración de dominio público. Banco de España publica reglas específicas para reproducir imágenes de billetes y monedas en pesetas. | Fuente de localización, no autorización suficiente. Placeholder hasta que la reproducción concreta encaje inequívocamente en las condiciones oficiales. |
+| España — euro regular | Ocho denominaciones y tres diseños nacionales españoles en distintas series | BCE describe las ocho denominaciones y los diseños nacionales españoles, incluidas las series y el cambio de 2010/2015. | Metadatos utilizables como referencia. No reutilizar automáticamente las imágenes del BCE ni las fotos de Commons: los derechos del diseño y de la fotografía son capas distintas. |
+| España — euro conmemorativo | Monedas de 2 € conmemorativas | El BCE mantiene un índice por países/años; identifica al Diario Oficial de la UE como publicación autoritativa de los nuevos diseños. | Buena fuente de metadatos y detección de novedades. Las imágenes de las caras nacionales no quedan abiertas por estar publicadas en el BCE/DOUE. |
+| España — billete euro | Series 1 y Europa; ocho denominaciones en la familia euro | BCE ofrece imágenes oficiales digitales marcadas «SPECIMEN» y explica las condiciones de reproducción. | Candidato condicionado: solo usar la reproducción oficial que cumpla íntegramente las reglas (marca diagonal, proporciones, contraste, resolución máxima de 72 dpi al 100 % y fondo no confundible). No quitar la marca ni reconstruir una imagen limpia. |
+| Andorra — euro | Ocho denominaciones; diseños nacionales descritos por el BCE y la AFA | AFA confirma el acuerdo monetario y la capacidad de Andorra para acuñar euros; BCE describe los motivos de las ocho denominaciones. | Cobertura de metadatos razonable para moneda euro. No se ha encontrado una licencia abierta general para las imágenes institucionales. |
+| Cuba — CUP | Billetes del peso cubano de distintas emisiones; ejemplo histórico de 1 peso y emisiones recientes | El catálogo comercial Banknotes.com enumera referencias y diseños; la legislación identifica al Banco Central como emisor. La búsqueda no localizó un dataset oficial descargable con licencia abierta. | Referencias secundarias solo para orientar la investigación. No reutilizar imágenes ni datos extraídos de catálogos cerrados o sin licencia explícita. |
+| Cuba — CUC | Billetes convertibles de 1, 3, 5, 10, 20, 50 y 100 CUC, con distintas fechas | Catálogos secundarios documentan la familia. La retirada oficial del CUC comenzó el 1/1/2021 y terminó el 30/6/2021; ISO 4217 registra CUC como código histórico retirado en junio de 2021. | El periodo histórico se puede modelar con fuentes oficiales/normalizadas; no hay base para importar imágenes o un catálogo completo con licencia abierta. |
+| Ecuador — sucre | Sucre de 1884 a 2000; el BCE describe la historia y emisiones. Ejemplo: moneda de 1 sucre de 2000, conmemorativa y no puesta en circulación. | Museo Numismático y BCE publican artículos con descripciones y datos técnicos de piezas concretas; no se localizó una licencia abierta general para sus imágenes. | Buena fuente primaria de contraste histórico, no de redistribución de imágenes. El 1 sucre de 2000 debe etiquetarse como pieza no circulante/conmemorativa, no como moneda corriente. |
+| Ecuador — dólar estadounidense | Monedas fraccionarias nacionales de 1, 5, 10, 25 y 50 centavos emitidas desde 2000; programa de acuñación 2023–2025 | BCE explica que Ecuador adoptó el dólar el 9/1/2000 y que el banco central continuó acuñando moneda fraccionaria nacional. | Metadatos oficiales verificables. No confundir moneda de curso legal USD con una emisión estadounidense: el emisor/diseño nacional debe quedar diferenciado. |
+| XAF — BEAC | Billetes 2020 de 500, 1.000, 2.000, 5.000 y 10.000 CFA; series 2002 y 1992; monedas 2006 y nueva gama tipo 2024 | BEAC publica páginas separadas para billetes vigentes, antiguos y desmonetizados, y para monedas. La página histórica enumera los seis estados de la zona de emisión. | Buena cobertura institucional de familias y denominaciones. No se ha localizado licencia abierta de reutilización de las imágenes institucionales. |
+| XOF — BCEAO | Billetes vigentes, billetes retirados y monedas en circulación; billetes anteriores a BCEAO por territorio | BCEAO separa las secciones de billetes vigentes, retirados, anteriores a BCEAO y monedas. La unión monetaria comprende ocho estados miembros. | Buena fuente primaria de familias y contexto histórico. No se ha localizado licencia abierta general para las imágenes. |
+
+### Lectura de cobertura
+
+- **Mejor cobertura institucional:** euro y CFA, porque BCE/Comisión, BEAC y BCEAO publican familias, denominaciones y diseños. La automatización debe ser específica por fuente; no se ha probado una API común.
+- **Cobertura histórica razonable pero dispersa:** peseta y sucre ecuatoriano. Los bancos centrales y museos permiten contrastar piezas, pero no ofrecen un catálogo integral abierto listo para importar.
+- **Principal laguna:** Cuba. Se pueden localizar referencias y ejemplos, pero no se ha identificado un catálogo público oficial con estructura y licencia reutilizable que cubra CUP y CUC.
+- **Billetes:** la documentación institucional ayuda a reconocer series y denominaciones, pero los derechos de imagen son una barrera más fuerte que la disponibilidad visual.
+- **No confundir país usuario con emisor:** XOF y XAF son dos monedas distintas y cada una corresponde a una autoridad monetaria supranacional; los países miembros usan la moneda común. El catálogo debe distinguir zona monetaria, autoridad emisora y países usuarios. Andorra y Ecuador también demuestran que el emisor de una moneda no siempre coincide con el país que la utiliza.
+
+### Comprobación individual de imágenes y derechos
+
+Se han localizado ejemplos concretos en Commons, entre ellos una fotografía de 100 pesetas de 1992 declarada de dominio público, un billete ecuatoriano de 100 sucres de 1992 bajo CC BY-SA 3.0 y una fotografía de una moneda española de 2 € bajo CC0. Estos ejemplos demuestran que Commons tiene material con licencias abiertas explícitas, pero **no bastan para aprobar su incorporación**: la licencia de la fotografía no necesariamente despeja los derechos o reglas de reproducción del diseño monetario representado, ni las condiciones de la jurisdicción correspondiente.
+
+- **Pesetas (España):** el trámite del Banco de España contempla la reproducción de billetes euro y de billetes o monedas en pesetas. Para pesetas describe condiciones específicas: tamaño superior al doble o inferior a la mitad del original, un solo lado por soporte y restricciones adicionales para reproducciones de monedas. No dar por válida una imagen Commons sin comprobar también estas reglas y el uso concreto en pantalla.
+- **Monedas euro:** la Comisión distingue cara común (derechos de la UE/Comisión, con reglas de reproducción específicas) y cara nacional (legislación del emisor). Para la cara nacional de monedas conmemorativas remite a la autoridad competente. La publicación en el BCE o en el Diario Oficial no equivale a una licencia abierta.
+- **Billetes euro:** el BCE permite reproducciones digitales que cumplan sus criterios; sus imágenes oficiales de baja resolución ya incluyen «SPECIMEN». La reproducción completa en línea debe conservar la marca diagonal y no superar 72 dpi al tamaño original, además de cumplir los demás criterios publicados.
+- **Cuba:** el Decreto-Ley 361/2018 establece autorización previa del Banco Central para usos publicitarios de imágenes o reproducciones de billetes y monedas que tengan o hayan tenido curso legal. No se ha encontrado una licencia abierta de las imágenes oficiales; quedan fuera de la ingesta.
+- **Ecuador, Andorra, BEAC y BCEAO:** que una autoridad publique fotografías no acredita licencia de redistribución. Al no localizarse una licencia abierta explícita para los archivos examinados, se conservan como referencia y no se copian.
+- **Commons:** validar siempre la página de archivo y su licencia, autor, procedencia y condiciones; registrar la fecha de revisión. Una etiqueta CC0/PD del fotógrafo no sustituye el análisis de derechos del objeto representado.
+
+**Decisión operativa conforme a D-008:** para esta prueba no se aprueba ninguna imagen monetaria de terceros para incorporar al catálogo. Las imágenes institucionales se usarán como referencia visual y documental, no como assets. Se mantienen los placeholders y las fotos propias de los usuarios como vía segura de visualización, con tratamiento de privacidad ya previsto en el modelo.
+
+### Datasets especializados: evaluación de encaje
+
+| Proyecto | Licencia / tamaño publicado | Encaje con el catálogo del álbum |
+|---|---|---|
+| [Nomisma.org](https://www.nomisma.org/datasets) | Nomisma declara CC BY para los conceptos publicados en su dominio; los datasets contribuidos mantienen licencias propias (por ejemplo ODbL, CC0, CC BY o condiciones sin licencia indicada). | Infraestructura valiosa de linked open data, pero predominan moneda antigua, hallazgos y colecciones arqueológicas. No cubre de forma suficiente pesetas, euro moderno, billetes, CUP/CUC ni CFA. Evaluar dataset por dataset, no asumir licencia global. |
+| [Syllogeum](https://syllogeum.org/data) | Release rights-clean v1.1: 118.883 sightings, 21.512 fichas de tipo, 237.699 imágenes y 9,7 GB. Los metadatos e imágenes conservan las licencias de sus colecciones de origen; el release incluye LICENSE-DATA.md. | Ejemplo positivo de auditoría de procedencia y exclusión de imágenes NC/ND/ambiguas. Es un archivo de moneda antigua, demasiado grande y fuera del alcance moderno prioritario. No incorporar. |
+| [CANOA](https://canoanumis.org/en/data/) | Agregador de corpus de moneda antigua; base agregada ODbL 1.0, textos CC BY 4.0, código Apache 2.0; las imágenes siguen siendo © de los museos y las fuentes NC/ND mantienen sus licencias. | No cubre el catálogo moderno. La ODbL requiere revisar obligaciones de atribución y share-alike antes de mezclar bases; las imágenes no son reutilizables por defecto. No incorporar al MVP. |
+| [NumisLib](https://numislib.com/) | El sitio anuncia una base abierta de 249 países y 170 monedas, pero en esta revisión no se pudo verificar un texto de licencia de la base descargable ni una versión/dataset con trazabilidad de piezas. | Posible apoyo para relaciones país-moneda, no catálogo numismático demostrado. Estado **VERIFICAR**; no importar hasta localizar licencia exacta, fuente de cada dato y cobertura de emisiones/piezas. |
+
+**Conclusión de datasets:** Nomisma, Syllogeum y CANOA son proyectos reales y útiles en sus ámbitos, pero no resuelven el catálogo moderno mundial. NumisLib no pasa todavía el umbral de verificación de licencia. No se ha confirmado un dataset especializado apto para incorporar ahora.
+
+### Fuentes consultadas en esta prueba
+
+- [BCE — monedas euro](https://www.ecb.europa.eu/euro/coins/html/index.en.html)
+- [BCE — monedas conmemorativas de 2 €](https://www.ecb.europa.eu/euro/coins/comm/html/index.es.html)
+- [BCE — caras nacionales de 2 €](https://www.ecb.europa.eu/euro/coins/2euro/html/index.es.html)
+- [Comisión Europea — derechos de autor y reproducción de monedas y billetes euro](https://economy-finance.ec.europa.eu/euro/euro-coins-and-notes/copyright-and-reproduction-rules-euro-coins-and-notes_en)
+- [BCE — imágenes y reglas de reproducción de billetes euro](https://www.ecb.europa.eu/euro/banknotes/images/html/index.en.html)
+- [Banco de España — autorización de reproducción](https://sedeelectronica.bde.es/sede/es/tramites/autorizacion-reproduccion-billetes-p55.html)
+- [BOE — Ley 10/1975, art. 9](https://www.boe.es/buscar/act.php?id=BOE-A-1975-5294)
+- [Commons — moneda española de 100 pesetas, 1992](https://commons.wikimedia.org/wiki/File:ESP-100ptas8.jpg)
+- [Commons — billete ecuatoriano de 100 sucres, 1992](https://commons.wikimedia.org/wiki/File:Ecu_100S_AnRvCb_1K240px.jpg)
+- [Commons — moneda española de 2 €, 1999](https://commons.wikimedia.org/wiki/File:Espagne_-_Pi%C3%A8ce_de_2_euros_1999.jpg)
+- [AFA — monedas euro de Andorra](https://www.afa.ad/en/eu/monedes-en-euros)
+- [BCE — Andorra](https://www.ecb.europa.eu/euro/coins/html/ad.en.html)
+- [Museo Numismático del BCE Ecuador — monedas y billetes](https://museodelamoneda.bce.fin.ec/index.php/colecciones/monedas-y-billetes.html)
+- [BCE Ecuador — seguridad en billetes y monedas](https://www.bce.fin.ec/seguridades-en-billetes-y-monedas/)
+- [BCE Ecuador — el último sucre](https://museodelamoneda.bce.fin.ec/index.php/museo/item/132-el-%C3%BAltimo-sucre.html)
+- [BEAC — historia de la emisión monetaria en África Central](https://www.beac.int/billets-pieces/histoire-franc-cfa/histoire-de-lemission-monetaire-afrique-centrale/)
+- [BEAC — billetes de la gama 2020](https://www.beac.int/billets-pieces/signes-monetaires/billets-de-gamme-2020/)
+- [BEAC — billetes demonetizados tipo 92](https://www.beac.int/billets-pieces/signes-monetaires/billets-demonetises/billets-de-gamme-1992/)
+- [BCEAO — historia del franco CFA](https://www.bceao.int/fr/content/histoire-du-franc-cfa)
+- [BCEAO — billetes retirados](https://www.bceao.int/album-photo/anciens-billets-de-la-bceao-retires-de-la-circulation)
+- [BCEAO — billetes anteriores a BCEAO](https://www.bceao.int/album-photo/billets-anterieurs-la-bceao)
+- [BCEAO — monedas en circulación](https://www.bceao.int/fr/content/pieces-en-circulation)
+- [ISO 4217 Amendment 178 — retirada del CUC](https://www.six-group.com/dam/download/financial-information/data-center/iso-currrency/amendments/dl-currency-iso-amendment-178.pdf)
+- [Bundesbank — metadatos de Cuba y fin del sistema CUP/CUC](https://www.bundesbank.de/resource/blob/710190/bdb65d76a0d2f93425fdb54224dc87ef/472B63F073F071307366337C94F8C870/metadaten-en-data.pdf)
+- [Decreto-Ley 361/2018 — Banco Central de Cuba](https://233773342789-lic.s3.eu-central-1.amazonaws.com/attachments/legislation/cuba/Decreto%20No.361%20-%20Banco%20central%20de%20Cuba_14.09.2018.pdf)
+- [Nomisma — datasets y licencias](https://www.nomisma.org/datasets)
+- [Syllogeum — datos y procedencia](https://syllogeum.org/data)
+- [CANOA — datos y licencias](https://canoanumis.org/en/data/)
+- [NumisLib](https://numislib.com/)
+
+**Alcance jurídico:** evaluación conservadora de fuentes públicas, no dictamen legal. No se han solicitado permisos ni aclaraciones a titulares, de acuerdo con D-008.
