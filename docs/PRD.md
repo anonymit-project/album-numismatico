@@ -366,3 +366,19 @@ Comparación de duplicados/buscadas entre usuarios, intercambios, gamificación 
 5. Crea la estructura inicial del repositorio y los documentos de la sección 13 (`README`, `STATE`, `DECISIONS`, `BACKLOG`, ...), con el contenido ya conocido.
 
 No empieces a programar el MVP hasta que yo apruebe el cierre de la Fase 0.
+
+
+---
+
+## Addendum · Decisiones de producto consolidadas (2026-11-25)
+
+Estas decisiones complementan los requisitos anteriores y prevalecen cuando concretan un comportamiento que antes estaba abierto:
+
+- **Identidad visual:** la pieza del álbum se identifica por su diseño de anverso y reverso. Diferencias de diámetro o composición, por sí solas, no crean otra ficha; se distinguen si el cambio es visualmente relevante o el usuario necesita inventariarlo por separado.
+- **Separación del catálogo:** distinguir diseño/pieza visual, emisión y ejemplar/posesión. El año es atributo de emisión o ejemplar y no crea automáticamente una ficha visual independiente.
+- **Álbum:** selector de país/emisor visible; orden predeterminado por denominación; filtro por tipo (monedas, billetes o ambos).
+- **Persistencia:** filtros y preferencias del álbum se guardan por usuario y se sincronizan entre dispositivos; no deben reaplicarse en cada visita.
+- **Compartición:** inventarios privados e independientes por defecto. Compartición voluntaria en modo solo lectura; ningún usuario modifica la colección ajena.
+- **Imágenes:** permitir fichas sin fotografía; usar placeholder/ilustración neutra hasta disponer de una imagen con derechos compatibles.
+
+El modelo conceptual y los criterios UX se desarrollan en `docs/DATA_MODEL.md` y `docs/MOCKUPS.md`.
