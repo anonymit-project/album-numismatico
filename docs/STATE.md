@@ -111,3 +111,22 @@ Ejecutar una prueba de concepto de CELLAR: consulta SPARQL de avisos de monedas 
 ## Estado de PR #4
 
 PR #4 permanece abierta, en borrador y sin fusionar. Los cambios de esta iteración se registran en la misma rama de investigación; no se modifica `main` ni se inicia el MVP.
+
+
+## Segunda prueba CELLAR — Mónaco C/2026/419 (25/11/2026)
+
+### Hecho
+- Ejecutada manualmente la consulta SPARQL y localizados Work, Expressions, Manifestations e Items.
+- La Expression inglesa (ENG) ofrece `pdfa2a`, `fmx4` y `xhtml`.
+- Descargado el Item Formex como ZIP con 3 XML y 8 TIFF.
+- Identificado el XML principal: `C_202600419EN.000101.fmx.xml`.
+- Confirmado que el XML contiene datos estructurados de ocho denominaciones, emisor, fecha de emisión y diseños; para la moneda de 2 € incluye además ceca e inscripción del canto.
+- Documentada la prueba y sus límites en `docs/CELLAR_POC.md`.
+
+### Resultado
+**Segunda prueba manual positiva** de recuperación y lectura de Formex para otro aviso y emisor. Junto con C/2026/406, refuerza la viabilidad de CELLAR como fuente de metadatos numismáticos. No acredita automatización general ni un parser probado.
+
+### Límites y pendientes
+- La prueba fue manual; no se ha implementado ni ejecutado automatización desatendida.
+- Los 8 TIFF no se incorporan. La disponibilidad/descarga de imágenes no resuelve sus derechos de reutilización; se mantiene D-008.
+- Siguiente paso técnico, cuando se autorice: diseñar una muestra de mapeo Formex → staging y sus tests. No desarrollar todavía el parser ni iniciar el MVP.
