@@ -295,3 +295,46 @@ La evidencia confirma operativamente el acceso y el comportamiento básico de lo
 En una tarea separada, comprobar la paginación con una ventana que devuelva más de 1.000 entradas: conservar la primera respuesta y seguir el mecanismo de continuación que indique el propio feed, verificando ausencia de huecos y duplicados. No abordar todavía automatización permanente ni parser. Después podrán probarse valores múltiples de `wemiClasses`, eventos DELETE y la resolución de metadatos de un evento concreto.
 
 **Conclusión:** CELLAR ingestion y los filtros básicos quedan validados manualmente en el entorno del usuario. La paginación y la detección numismática fiable siguen pendientes. Se mantienen Fase 0, D-008, staging y revisión humana; no se incorpora ningún dato ni imagen al catálogo.
+
+
+## 10. Paginación: primera comprobación manual — 25/11/2026
+
+**Estado:** página 1 descargada y validada desde PowerShell; la comparación efectiva entre páginas sigue pendiente.
+
+### Petición y resultado de página 1
+
+Endpoint:
+
+    https://publications.europa.eu/webapi/notification/ingestion
+
+Parámetros:
+
+    startDate=2026-11-19&endDate=2026-11-25&page=1
+
+Cabecera:
+
+    Accept: application/atom+xml
+
+El usuario ejecutó la petición con la URL literal completa y obtuvo **HTTP 200** y **1.000 entradas**. La descarga y el parseo XML de la respuesta funcionaron. En Windows PowerShell apareció una advertencia de seguridad de `Invoke-WebRequest`; se respondió afirmativamente para continuar. Para las siguientes ejecuciones se recomienda añadir `-UseBasicParsing` y evitar depender de variables de URL creadas en comandos anteriores.
+
+### Observación previa de página 2
+
+En una prueba anterior comunicada por el usuario, `page=2` también devolvió HTTP 200 y 1.000 entradas. Las tres primeras entradas de esa página mostraban la misma fecha de ingestión que la última entrada observada en la página 1:
+
+    2026-11-19T00:49:36.274+01:00
+
+La coincidencia de fecha **no demuestra duplicidad**: eventos distintos pueden compartir timestamp. Además, no se han comparado todavía los identificadores/eventos ni el contenido de ambas páginas.
+
+### Conclusión provisional
+
+- Página 1: descarga validada (HTTP 200, 1.000 entradas).
+- Página 2: respuesta HTTP 200 y 1.000 entradas comunicadas en una prueba previa.
+- La paginación parece devolver páginas adicionales, pero **no está validada la continuidad**.
+- No se puede afirmar todavía si hay registros repetidos, huecos o solapamiento entre páginas.
+- No se debe deduplicar por fecha.
+
+### Siguiente comprobación atómica
+
+En una misma ejecución de PowerShell, descargar página 1 y página 2 con `-UseBasicParsing`, conservar ambas respuestas y comparar los elementos de frontera usando los campos XML reales que existan (primero inspeccionarlos, sin asumir que `id`/ `title` son correctos). Registrar el primer y último elemento de cada página y comprobar si el final de página 1 reaparece al principio de página 2. Si los campos identificadores siguen apareciendo como plantillas `$item.*`, inspeccionar el XML Atom crudo y sus namespaces antes de concluir.
+
+No ampliar todavía a DELETE, valores múltiples de `wemiClasses` ni automatización permanente.
