@@ -417,3 +417,52 @@ El primer cálculo falló por incompatibilidad: la versión de .NET disponible n
 Continuar desde page=6 y seguir incrementando page mientras notifReq:moreEntries sea true. Registrar por página HTTP, número de entradas, moreEntries, primer/último updated y huella de claves. Detenerse al observar la condición terminal y comprobar si la última página está vacía o contiene menos de 1.000 entradas. Después probar la estabilidad de las páginas más recientes. No implementar todavía sincronizador ni aprobar una estrategia de cursor.
 
 **No se ha escrito código de producto, implementado parser ni incorporado datos o imágenes al catálogo.** Se mantienen Fase 0, D-008, staging y revisión humana.
+
+## 12. Localización del límite de paginación mediante búsqueda por saltos — 25/11/2026
+
+**Estado:** búsqueda exponencial/binaria comunicada por el usuario; límite localizado provisionalmente en la página 331. Falta caracterizar el contenido de la página terminal y verificar directamente la frontera 330→331.
+
+### Metadatos del feed
+
+Se inspeccionaron los elementos de primer nivel del XML Atom recibido para la página 9. Además de `title`, `id`, `link`, `updated` y `author`, la respuesta contiene:
+
+- `startDate`: `2026-11-19T00:00:00.000+01:00`
+- `endDate`: `2026-11-25T00:00:00.000+01:00`
+- `page`: número de página solicitado (9 en esa respuesta)
+- `moreEntries`: indicador booleano textual de continuación
+
+No se observó ningún metadato de total de resultados ni enlace a última página. Por tanto, el total no puede obtenerse directamente de los metadatos inspeccionados.
+
+### Búsqueda por saltos
+
+Para evitar descargar secuencialmente cientos de páginas, se ejecutó desde PowerShell una búsqueda exponencial seguida de búsqueda binaria, partiendo de la página 9. El resultado comunicado por el script fue:
+
+| Página | moreEntries informado por el resultado |
+|---|---|
+| 330 | true |
+| 331 | false |
+
+El script imprimió como resultado final:
+- Última página con `moreEntries=false`: **331**
+- Última página con `moreEntries=true`: **330**
+
+Esto localiza el límite reportado por el script y evita recorrer las páginas intermedias una a una. No se registraron en la salida comunicada las páginas intermedias consultadas ni los recuentos HTTP/entradas de esas consultas.
+
+### Alcance y cautelas
+
+- No se conoce todavía el número de entradas de P331, ni sus primeras/últimas fechas.
+- No se ha comprobado si P331 contiene menos de 1.000 entradas, exactamente 1.000 o ninguna.
+- No se ha consultado P332 para verificar si la respuesta es vacía o cómo responde después del final.
+- No se ha comparado la frontera P330→P331 para detectar huecos o duplicados.
+- La búsqueda binaria presupone que, para una misma instantánea del feed, `moreEntries` pasa de true a false una sola vez al aumentar la página. Esa monotonía no se ha demostrado independientemente.
+- La salida aportada por el usuario contiene el resultado final 330/331, pero no la traza de cada consulta; por ello, tratarlo como localización provisional y confirmar directamente P330 y P331 en la siguiente iteración.
+
+### Conclusión provisional
+
+El feed no expone un total explícito en los metadatos inspeccionados. La búsqueda por saltos localizó el cambio de `moreEntries=true` a `false` entre P330 y P331. No se debe afirmar aún que la paginación esté completamente validada: falta inspeccionar la página terminal y la frontera final.
+
+### Siguiente comprobación atómica
+
+Consultar directamente P330 y P331 desde PowerShell y registrar para ambas: HTTP, número de entradas, `page`, `moreEntries`, primer y último `updated`. Comparar las claves de frontera disponibles (conservar el identificador de evento si se extrae; `cellarId|updated` solo es una clave candidata). No descargar P1–P329 ni continuar con una exploración secuencial. Solo si P331 confirma `moreEntries=false`, comprobar P332 una vez para caracterizar la respuesta posterior al final, si sigue siendo útil para la decisión técnica.
+
+No implementar sincronizador, cursor incremental ni código de producto. Mantener Fase 0, D-008, staging y revisión humana.
