@@ -194,3 +194,46 @@ Para avisos numismáticos de monedas euro, los títulos observados incluyen al m
 ### Límites
 
 La investigación no acredita cobertura exhaustiva de publicaciones, cuotas, SLA, frecuencia de consulta permitida ni estabilidad operativa. Tampoco demuestra que una alerta personal EUR-Lex pueda integrarse como backend sin depender de la cuenta. Ambos mecanismos se refieren a publicaciones de la UE y no resuelven la cobertura mundial del catálogo. No se ha implementado código ni configurado ninguna alerta.
+
+
+## 8. Prueba operativa del feed CELLAR RSS/Atom — 25/11/2026
+
+**Rama:** `research/source-automation-2026-11`  
+**Fase:** 0 — investigación, sin código de producto.  
+**Estado:** bloqueada por conectividad DNS del entorno de ejecución; no se demuestra un fallo de CELLAR.
+
+### Alcance intentado
+
+Se intentó acceder al endpoint oficial de notificaciones de ingestión mediante HTTPS y realizar una petición filtrada para inspeccionar eventos. También se comprobó la resolución DNS de dominios externos de control y de EUR-Lex.
+
+### Resultado y diagnóstico
+
+Las peticiones desde el entorno de ejecución no pudieron llegar al servicio: la resolución DNS devolvió `Temporary failure in name resolution`, también para dominios de control ajenos a CELLAR. Por tanto, el fallo observado pertenece a la conectividad/DNS del entorno de esta sesión. **No es evidencia de indisponibilidad ni de un defecto del servicio CELLAR.**
+
+No se obtuvieron respuestas HTTP del endpoint. En consecuencia, esta sesión no ha verificado operativamente:
+- estructura real de una entrada RSS/Atom ni sus namespaces;
+- valores efectivos y formato de los identificadores `id`, `cellarId`, `rootCellarId`, tipo, clases, identificadores asociados y fecha;
+- semántica y límites de los filtros `startDate`, `endDate`, `type` y `wemiClasses`;
+- paginación, número de elementos por página ni estabilidad del recorrido;
+- recuperación de metadatos de un recurso notificado mediante CELLAR/SPARQL o negociación HTTP.
+
+La estructura y los parámetros descritos en la sección anterior siguen siendo **documentación esperada**, no observaciones de una respuesta real obtenida en esta prueba.
+
+### Identidad y deduplicación: hipótesis de trabajo
+
+Mantener separados tres niveles:
+1. **Evento:** identificador de evento `id`; permite distinguir CREATE/UPDATE/DELETE y conservar el historial.
+2. **Recurso WEMI:** `cellarId`; identifica el recurso concreto afectado, por ejemplo una expresión o manifestación.
+3. **Documento lógico:** `rootCellarId` y, cuando esté disponible, ELI/CELEX; sirven para agrupar recursos y versiones lingüísticas del mismo aviso.
+
+No deduplicar exclusivamente por `cellarId` ni descartar eventos UPDATE/DELETE. Agrupar idiomas bajo el documento lógico, conservando cada expresión y recurso como evidencia. Esta es una estrategia propuesta a partir del modelo documentado; debe contrastarse con eventos reales antes de implementarla.
+
+### Contraste de avisos conocidos
+
+Se confirma documentalmente que C/2026/406 (Lituania) y C/2026/419 (Mónaco) son avisos numismáticos y que sus títulos presentan variantes textuales. No se pudo comprobar que el feed devuelva eventos correspondientes a esos avisos, ni su distribución por idioma o clase WEMI. La consulta de publicaciones conocidas no equivale a verificar presencia en el feed.
+
+### Próxima prueba necesaria
+
+Repetir la prueba desde un entorno con salida DNS/HTTPS funcional, usando ventanas temporales pequeñas y filtros controlados. Guardar respuestas RSS y Atom originales, registrar cabeceras y URLs solicitadas, probar cada filtro por separado, comprobar paginación con un conjunto que supere el límite documentado y seguir al menos un evento hasta sus metadatos WEMI. Contrastar después los identificadores con C/2026/406 y C/2026/419. No configurar alertas personales ni desarrollar parser o automatización permanente.
+
+**Conclusión:** prueba operativa inconclusa por limitación del entorno. CELLAR no queda validado ni refutado en esta sesión. Se mantienen D-008, staging y revisión humana; no se incorpora ningún dato o imagen al catálogo.
