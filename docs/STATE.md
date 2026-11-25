@@ -1,56 +1,53 @@
 # Estado del proyecto
 
 **Fase:** 0 — descubrimiento, sin código de producto.
-**Criterio de reutilización:** solo fuentes con derechos de uso claros y compatibles; no se solicitarán permisos particulares.  
-**Actualizado:** 2026-11-25  
-**Rama de documentación:** `docs/phase-0-project-context`  
-**Pull request:** [#1 — documentación inicial de Fase 0](https://github.com/anonymit-project/album-numismatico/pull/1) (abierto, borrador; no fusionado)
+**Criterio de reutilización:** solo fuentes con derechos de uso claros y compatibles; no se solicitarán permisos particulares.
+**Actualizado:** 2026-11-25
+**Rama de trabajo:** `research/catalog-coverage-2026-11`
+**Rama base:** `docs/phase-0-project-context`
+**Pull request #1:** abierto y en borrador; no fusionado. Esta iteración aún no modifica el PR #1.
 
 ## Objetivo de la iteración
 
-Investigar fuentes de catálogo e imágenes, licencias, APIs, cuotas y automatización con documentación oficial; actualizar la documentación sin iniciar el MVP.
+Completar la prueba de cobertura numismática para España, Andorra, Cuba, Ecuador y monedas XOF/XAF; evaluar imágenes y datasets bajo D-008; documentar sin iniciar el MVP.
 
 ## Hecho
 
-- Revisados `AGENTS.md`, `STATE.md`, `PRD.md`, `DECISIONS.md`, `DATA_MODEL.md`, `BACKLOG.md`, `MOCKUPS.md` y `CATALOG_SOURCES.md`.
-- Verificado GitHub: PR #1 sigue abierto y en borrador; rama de trabajo 16 commits por delante de `main`, 0 por detrás. `main` no se ha modificado.
-- Comparadas Numista, Wikidata, Wikimedia Commons, BCE/Comisión Europea, Banco de España, ISO 4217/3166 y Natural Earth.
-- Actualizado `docs/CATALOG_SOURCES.md` con matriz comparativa, enlaces oficiales, derechos, cuotas, riesgos, estrategia de ingesta y pendientes.
-- Confirmado que Wikidata publica datos estructurados bajo CC0 y ofrece dumps semanales e incrementales; su SPARQL público tiene límites operativos sujetos a cambios.
-- Confirmado que Commons requiere revisar licencia y autoría archivo por archivo y que Wikimedia introdujo límites de API en 2026.
-- Confirmadas restricciones de reproducción de imágenes de billetes euro y pesetas en España; las caras nacionales de monedas euro tienen derechos del emisor y la cara común pertenece a la UE.
-- Confirmado que ISO permite uso gratuito de los códigos, pero el servicio de listas preparadas y actualizadas automáticamente puede ser de pago.
-- Identificado Natural Earth como fuente cartográfica en dominio público.
+- Leídos `AGENTS.md`, `docs/STATE.md`, `docs/PRD.md`, `docs/DECISIONS.md`, `docs/DATA_MODEL.md`, `docs/BACKLOG.md`, `docs/MOCKUPS.md` y `docs/CATALOG_SOURCES.md`.
+- Verificado el repositorio: `main` y `docs/phase-0-project-context` existen. La rama documental está 22 commits por delante de `main` y 0 por detrás (la cifra de 16 commits del STATE anterior estaba desactualizada). `main` no se ha modificado.
+- Localizada la PR #1 sobre la rama documental; permanece abierta y en borrador según el estado documentado y la búsqueda de PR.
+- Creada la rama `research/catalog-coverage-2026-11` desde `docs/phase-0-project-context`.
+- Probados ejemplos concretos de pesetas, euros regulares y conmemorativos, billetes españoles, Andorra, Cuba CUP/CUC, Ecuador sucre/USD y emisiones CFA XOF/XAF.
+- Identificadas como fuentes institucionales útiles BCE/Comisión/DOUE, AFA, Banco de España, Museo Numismático/BCE Ecuador, BCEAO y BEAC.
+- Verificados ejemplos de imágenes Commons con declaraciones CC0, CC BY-SA y dominio público, pero no aprobada ninguna incorporación: la licencia fotográfica no elimina las reglas de reproducción del diseño monetario.
+- Precisadas las restricciones de reproducción de billetes euro, pesetas, monedas euro y las disposiciones cubanas sobre usos publicitarios.
+- Identificados Nomisma, Syllogeum y CANOA como corpus reales de moneda principalmente antigua, sin cobertura suficiente del catálogo moderno. NumisLib anuncia una base de países/monedas, pero su licencia de base no quedó verificada.
+- Actualizado `docs/CATALOG_SOURCES.md` con matriz de cobertura, ejemplos, resultados de derechos, datasets y enlaces.
 
-## Hallazgo crítico: Numista
+## Resultado de la prueba
 
-La cuota gratuita actual es de 2.000 peticiones/mes y excluye búsqueda por imagen. Los términos oficiales prohíben la extracción sistemática para reproducir el catálogo, la redistribución masiva y el uso de datos almacenados para operar un servicio público. La excepción de almacenamiento para «Personal Project» se define como privado, no comercial y no disponible al público general; no está claro que cubra una PWA alojada en internet para 2–3 usuarios aunque requiera autenticación. Los metadatos de endpoints específicos pueden cachearse hasta 7 días; el resto de datos no se puede persistir salvo que aplique la excepción estricta. El plan de pago no encaja con el objetivo de 0 € (100 € de activación y mínimo 100 €/mes, sin IVA).
-
-**Resultado provisional:** no usar Numista como semilla ni catálogo maestro. No utilizar la API, sus datos ni sus imágenes en el proyecto. No se solicitará aclaración al proveedor.
-
-## Estado del producto
-
-No existe todavía una aplicación implementada. Los mockups son exploratorios y contienen datos ilustrativos, no un catálogo real. La investigación no autoriza a importar ni redistribuir imágenes.
+- **Cobertura de metadatos:** razonable para euro y CFA a través de autoridades emisoras; dispersa pero útil para peseta y sucre ecuatoriano; débil para Cuba CUP/CUC.
+- **Imágenes reutilizables:** no se ha aprobado ninguna imagen de terceros para el catálogo. Las páginas institucionales son referencias; Commons exige análisis doble de licencia de fotografía y derechos/reglas del diseño monetario.
+- **Dataset maestro:** no localizado. Los corpus abiertos encontrados se centran en moneda antigua. Numista continúa excluida.
+- **Modelo:** XOF y XAF deben seguir siendo monedas diferentes, asociadas a sus autoridades monetarias supranacionales y a sus respectivos estados usuarios. Ecuador requiere distinguir USD usado de la moneda fraccionaria nacional acuñada por el BCE.
 
 ## Decisiones consolidadas
 
-Se mantienen D-001 a D-007 y se añade D-008: política conservadora de fuentes y reutilización. No se contactará con proveedores para pedir excepciones. Las fuentes ambiguas se descartan para reutilización.
+No se ha añadido ninguna decisión de producto. D-001 a D-008 siguen vigentes. Se aplica D-008 sin excepciones: no contactar con titulares, no reutilizar imágenes con licencia o derechos ambiguos y usar placeholders cuando no haya un recurso claramente compatible.
 
-## Pendiente / bloqueos
+## Bloqueos y pendientes
 
-2. Probar cobertura y calidad con muestras reales de España (pesetas y euros, incluidas conmemorativas), Andorra, Cuba CUP/CUC, Ecuador, XOF/XAF y emisores históricos.
-3. Identificar datasets numismáticos especializados con licencia explícita compatible; aún no se ha confirmado uno que cubra el alcance.
-4. Comprobar opciones oficiales de automatización del Diario Oficial de la UE y autoridades emisoras.
-5. Verificar imágenes concretas y documentar derechos de reproducción, especialmente billetes euro y pesetas.
-6. Completar validación del modelo con casos históricos y supranacionales.
-7. Verificar cuotas y condiciones actuales de backend, hosting, almacenamiento, FX e identificación por foto.
-8. Resolver mapa de microestados, territorios y estados desaparecidos, valoración sin cotización, conservación y moderación.
-9. Validar mockups, stack y diseño con el usuario y su amigo.
-10. Obtener aprobación expresa para cerrar Fase 0.
+1. No hay dataset abierto verificado que cubra de forma suficiente monedas y billetes modernos del alcance.
+2. Cuba necesita una fuente primaria/estructurada mejor para el catálogo CUP/CUC; las referencias secundarias no son base de ingesta.
+3. Las imágenes oficiales de Andorra, Ecuador, BEAC y BCEAO no muestran una licencia abierta general en los recursos revisados.
+4. Las imágenes de pesetas y monedas euro encontradas en Commons no se aprueban automáticamente; la compatibilidad de la reproducción concreta debe quedar acreditada antes de incorporarlas.
+5. Las imágenes oficiales de billetes euro solo son candidatas si se usan tal como permite el BCE, con «SPECIMEN» y los límites técnicos.
+6. Sigue pendiente probar automatización concreta del DOUE/Comisión y autoridades emisoras, más allá de la localización de páginas y documentos.
+7. Continúan pendientes las validaciones de modelo, mapa, conservación, valoración histórica, backend/hosting, privacidad de identificación por foto, mockups y aprobación de cierre de Fase 0.
 
 ## Siguiente paso exacto
 
-Continuar la investigación con una prueba de cobertura basada en un conjunto de piezas reales y localizar datasets especializados abiertos con licencia compatible. Numista queda fuera; continuar con fuentes abiertas verificables. No iniciar implementación del MVP hasta la aprobación expresa del usuario.
+Completar una pasada acotada de fuentes estructuradas y automatización: comprobar los feeds/consultas del DOUE para monedas euro, documentar la estructura de las páginas BEAC/BCEAO y localizar una fuente primaria verificable para CUP/CUC. Mantener las imágenes en placeholder salvo licencia y reglas de reproducción inequívocas. No iniciar el MVP.
 
 ## Reglas para retomar
 
