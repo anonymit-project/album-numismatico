@@ -218,3 +218,15 @@ Descargar página 1 y página 2 en una sola ejecución de PowerShell, conservar 
 ### Siguiente paso exacto
 
 Continuar desde page=6 hasta la condición terminal notifReq:moreEntries. Registrar por página el número de entradas, moreEntries y límites temporales. No diseñar aún el cursor incremental ni implementar sincronizador. Después probar estabilidad de las páginas más recientes y cambios por inserciones tardías. Mantener Fase 0 y no iniciar el MVP.
+
+## Actualización CELLAR — límite de paginación localizado provisionalmente (25/11/2026)
+
+- El usuario inspeccionó los metadatos de la respuesta Atom de P9: el feed incluye `startDate`, `endDate`, `page` y `moreEntries`, pero no se observó un total de resultados ni enlace a última página.
+- Para evitar recorrer secuencialmente todas las páginas, ejecutó una búsqueda exponencial y binaria desde PowerShell.
+- El script comunicó P330 con `moreEntries=true` y P331 con `moreEntries=false`; resultado final: límite localizado provisionalmente en P331.
+- No se conoce todavía el recuento de entradas de P331 ni si está vacía/parcial/completa. Tampoco se ha comparado la frontera P330→P331 ni comprobado P332.
+- La búsqueda binaria presupone monotonía de `moreEntries` respecto al número de página; la salida aportada no incluye la traza de páginas intermedias. Confirmar directamente P330 y P331 antes de dar por validada la condición terminal.
+
+### Siguiente paso exacto
+
+En un chat nuevo, leer los documentos obligatorios y realizar una única comprobación PowerShell de P330 y P331, registrando HTTP, recuento, `page`, `moreEntries` y primer/último `updated`. Comparar la frontera si se dispone de las claves. No recorrer páginas intermedias ni implementar sincronizador/parser. Tras confirmar P331, decidir si una consulta única a P332 aporta valor para caracterizar el comportamiento posterior al final. Evidencia detallada en `docs/CELLAR_POC.md`, sección 12.
