@@ -76,7 +76,6 @@ La licencia API tampoco equivale a una licencia general de las fotografías. Dad
 
 ## Pendientes de verificación antes de aprobar fuentes
 
-- Obtener respuesta escrita de Numista sobre el caso de uso exacto (PWA autenticada para 2–3 personas, alojamiento en internet, almacenamiento persistente de fichas y visualización a esos usuarios).
 - Probar cobertura real con una muestra representativa: pesetas, euros regulares y conmemorativos, billetes españoles, Andorra, Cuba CUP/CUC, Ecuador, XOF/XAF y emisores históricos.
 - Revisar individualmente los derechos de las imágenes concretas que se quieran incorporar, especialmente diseños protegidos de billetes y monedas.
 - Comprobar si hay feeds, APIs o ficheros oficiales de la Comisión/diarios oficiales que permitan automatización fiable para monedas euro.
