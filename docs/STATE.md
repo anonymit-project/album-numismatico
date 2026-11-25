@@ -5,7 +5,7 @@
 **Actualizado:** 2026-11-25
 **Rama de trabajo:** `research/catalog-coverage-2026-11`
 **Rama base:** `docs/phase-0-project-context`
-**Pull request #1:** abierto y en borrador; no fusionado. Esta iteración aún no modifica el PR #1.
+**Pull request #1:** [abierto y en borrador](https://github.com/anonymit-project/album-numismatico/pull/1), sin fusionar ni modificar.\n**Pull request #2:** [abierto y en borrador](https://github.com/anonymit-project/album-numismatico/pull/2), dirigido a la rama de documentación de la PR #1.
 
 ## Objetivo de la iteración
 
