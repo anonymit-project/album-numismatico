@@ -166,3 +166,27 @@ Repetir la prueba operativa desde un entorno con DNS/HTTPS funcional, conservar 
 ## Preferencia de organización del trabajo (25/11/2026)
 
 El usuario prefiere trabajar mediante muchos chats breves, cada uno centrado en una tarea sencilla y acotada, en lugar de conversaciones largas con varias tareas acumuladas. Al cerrar cada tarea, preparar un prompt de relevo autosuficiente para un chat nuevo. Mantener además el aviso proactivo cuando el contexto se aproxime a su límite. Norma detallada en `AGENTS.md`.
+
+
+## Actualización de prueba operativa CELLAR RSS/Atom — 25/11/2026
+
+Esta actualización complementa el resultado anterior de bloqueo DNS: el intento desde el entorno del agente falló por DNS, pero el usuario pudo ejecutar las peticiones desde PowerShell y validar el endpoint.
+
+### Hecho
+- Endpoint `https://publications.europa.eu/webapi/notification/ingestion`, con `Accept: application/atom+xml`, accesible desde el entorno del usuario.
+- Consulta sin filtros para 19–25/11/2026: HTTP 200, XML Atom válido, página 1, 1.000 entradas y `moreEntries=true`.
+- Probados `type=create`, `type=update`, `wemiClasses=DOSSIER` y la combinación `type=create&wemiClasses=ITEM`. Las primeras entradas inspeccionadas en cada caso cumplen los filtros solicitados.
+- La combinación create + ITEM devolvió HTTP 200, 1.000 entradas y `moreEntries=true`.
+- Los detalles, muestras y límites están documentados en `docs/CELLAR_POC.md`, sección 9.
+
+### Conclusión
+**Acceso al feed y filtros básicos validados manualmente.** Esto corrige el estado anterior de “sin respuesta HTTP” para las pruebas realizadas por el agente: el servicio sí respondió desde el entorno del usuario. No se ha validado aún la paginación, la ventana completa, valores múltiples de clases WEMI, eventos DELETE ni la detección fiable de avisos numismáticos.
+
+### Pendiente
+1. Probar paginación y comprobar continuidad, huecos y duplicados al superar 1.000 entradas.
+2. Investigar la representación de `title`, `summary`, `id` y `link href`, que aparecieron como cadenas plantilla `$item.*` en la salida de PowerShell.
+3. Probar valores múltiples de `wemiClasses` y eventos DELETE.
+4. Seguir un evento real hasta sus metadatos WEMI y comprobar si puede relacionarse con un aviso numismático conocido.
+5. Solo después, valorar un cliente de investigación con persistencia y trazabilidad; no iniciar automatización de producto.
+
+Se mantiene Fase 0, D-008 y revisión humana. No se ha escrito código ni incorporado datos o imágenes al catálogo.
