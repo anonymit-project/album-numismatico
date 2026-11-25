@@ -7,7 +7,9 @@ Este repositorio corresponde al proyecto Álbum numismático. El usuario es un i
 1. Antes de trabajar, leer este archivo, `docs/STATE.md`, `docs/PRD.md`, `docs/DECISIONS.md` y los documentos relevantes de `docs/`.
 2. El repositorio es la fuente de verdad, no el historial del chat. No pedir de nuevo información ya documentada.
 3. Al cerrar cada iteración, actualizar como mínimo `docs/STATE.md`, `docs/DECISIONS.md` si hubo decisiones, y `docs/BACKLOG.md`.
-4. Dejar un resumen de lo realizado, errores, decisiones, bloqueos y siguiente paso exacto. Preparar un prompt de relevo autosuficiente cuando el usuario lo solicite o antes de cambiar de sesión/contexto.
+4. Dejar un resumen de lo realizado, errores, decisiones, bloqueos y siguiente paso exacto.
+5. **Cierre obligatorio de cada chat:** nunca terminar una respuesta que cierre el trabajo o la conversación de forma ambigua. El último mensaje del chat debe acabar siempre con una de estas dos opciones: (a) una pregunta concreta y útil dirigida al usuario, si hace falta una respuesta o decisión suya; o (b) un prompt de relevo autosuficiente, listo para copiar en un nuevo chat, si el siguiente paso es continuar el trabajo sin necesitar una decisión. No basta con enumerar tareas pendientes ni con decir «cuando quieras seguimos». Si el trabajo continúa en el mismo chat, no es necesario forzar un cierre intermedio.
+6. El prompt de relevo debe indicar objetivo, contexto imprescindible, documentos/rama/PR relevantes, restricciones vigentes, trabajo ya realizado y siguiente acción concreta. No debe pedir al usuario que repita información ya documentada.
 
 ## Reglas de producto
 
