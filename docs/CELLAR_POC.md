@@ -129,3 +129,33 @@ En el XML lituano se observaron además estas construcciones útiles para extrac
 ## 5. Próximo paso recomendado
 
 Hacer una segunda prueba con otro aviso de moneda euro, preferiblemente de otra clase (por ejemplo, una nueva cara nacional regular en vez de una conmemorativa de 2 €). Después, definir un pequeño mapeo Formex → staging con ejemplos y tests, sin conectarlo aún al catálogo de producto.
+
+
+## 6. Segunda prueba: Mónaco — C/2026/419
+
+**Fecha de validación:** 2026-11-25  
+**Aviso:** [EUR-Lex C/2026/419 — Mónaco](https://eur-lex.europa.eu/eli/C/2026/419/oj/eng)
+
+### Resultado observado
+
+- La consulta SPARQL permitió localizar el Work, sus Expressions, Manifestations e Items.
+- La Expression inglesa (ENG) ofrece tres formatos: `pdfa2a`, `fmx4` y `xhtml`.
+- El Item Formex se descargó manualmente como ZIP con **3 XML y 8 TIFF**.
+- XML principal: `C_202600419EN.000101.fmx.xml`.
+- El XML principal contiene información estructurada de las **ocho denominaciones**, el país emisor, la fecha de emisión y las descripciones de diseño. También recoge datos específicos de la moneda de 2 €, incluida la ceca y la inscripción del canto.
+
+### Interpretación y límites
+
+La segunda prueba confirma que CELLAR permite recuperar y leer un paquete Formex de otro aviso numismático y de otro emisor (Mónaco), y que el XML puede contener datos estructurados para varias denominaciones y detalles técnicos adicionales. Amplía la evidencia más allá del aviso lituano C/2026/406.
+
+La ejecución sigue siendo **manual**. No demuestra automatización general, robustez frente a otros formatos/avisos ni un parser probado. La descarga de TIFF tampoco concede derechos para reutilizar las imágenes; no se incorpora ningún TIFF al catálogo ni al repositorio y se mantiene D-008.
+
+### Conclusión actualizada
+
+Hay dos pruebas manuales positivas con avisos distintos: C/2026/406 (Lituania, dos expresiones lingüísticas) y C/2026/419 (Mónaco, ocho denominaciones). La evidencia respalda la viabilidad de CELLAR/Formex como fuente de investigación para metadatos numismáticos, pero no justifica todavía implementar una ingesta automática ni reutilizar imágenes.
+
+### Pendiente
+
+1. Probar la descarga y el tratamiento mediante un script controlado, incluyendo errores, reintentos y trazabilidad, antes de hablar de automatización.
+2. Diseñar un mapeo mínimo Formex/XML → staging con tests y revisión humana; todavía no desarrollar el parser.
+3. Verificar por separado cualquier derecho de reutilización antes de incorporar imágenes; por defecto, excluir los TIFF.
