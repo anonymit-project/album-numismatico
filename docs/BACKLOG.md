@@ -63,7 +63,8 @@ Prioridad orientativa. No implica autorización para saltarse el cierre de Fase 
 - [ ] Implementar y probar un parser/mapeo pequeño Formex/XML → staging con tests; conservar procedencia por campo y revisión humana.
 - [x] Investigar y documentar CELLAR RSS/Atom frente a alertas RSS de EUR-Lex; recomendación híbrida y limitaciones en docs/CELLAR_POC.md.
 - [x] Ejecutar prueba manual del feed CELLAR desde PowerShell: acceso HTTP 200, respuesta Atom, filtros `type=create`, `type=update`, `wemiClasses=DOSSIER` y combinación create + ITEM; las primeras entradas inspeccionadas cumplen los filtros. Evidencia y límites en `docs/CELLAR_POC.md`.
-- [ ] Probar paginación del feed CELLAR (más de 1.000 entradas), continuidad, huecos y duplicados; investigar campos que aparecen como plantillas `$item.*`, valores múltiples de `wemiClasses`, eventos DELETE y seguimiento de un evento hasta sus metadatos WEMI.
+- [ ] Completar el recorrido paginado CELLAR hasta moreEntries=false; P1–P5 (1.000 entradas cada una) y tres fronteras están validadas sin claves cellarId|updated repetidas. Investigar página final, huecos y estabilidad ante nuevas notificaciones/inserciones tardías.
+- [ ] Investigar campos que aparecen como plantillas `$item.*`, valores múltiples de `wemiClasses`, eventos DELETE y seguimiento de un evento hasta sus metadatos WEMI.
 - [ ] Configurar y validar, con autorización y acceso del usuario a EUR-Lex, una búsqueda guardada RSS para las variantes de títulos numismáticos; no se ha creado ninguna alerta.
 - [ ] Crear manifiesto versionado de URLs BEAC/BCEAO por familia, estado legal, país y fecha de consulta; validar cambios de HTML antes de automatizar extracción.
 - [ ] Comprobar individualmente las condiciones de reutilización de cada PDF o texto de BEAC/BCEAO antes de almacenar copias; no extraer imágenes.
@@ -84,3 +85,10 @@ La prueba manual desde PowerShell del usuario ha eliminado el bloqueo de acceso 
 La página 1 se ha descargado desde PowerShell con HTTP 200 y 1.000 entradas. Una prueba previa comunicada de página 2 también obtuvo HTTP 200 y 1.000 entradas. Las tres primeras entradas de página 2 comparten timestamp con la última observada de página 1, pero no se ha probado que sean duplicados. Se mantiene abierta la tarea de paginación; no marcarla como completada hasta comparar registros y verificar continuidad, huecos y solapamientos. Detalle en la sección 10 de `docs/CELLAR_POC.md`.
 
 - [ ] Descargar páginas 1 y 2 en una sola ejecución y comparar elementos de frontera por identificadores/campos XML reales; determinar continuidad, huecos y duplicados sin usar timestamps como clave.
+
+
+### Actualización de paginación CELLAR RSS/Atom — 25/11/2026
+
+La paginación queda **validada parcialmente**, no completada. P1–P5 devuelven HTTP 200 y 1.000 entradas cada una; moreEntries=true se observó en P3–P5. Se comprobaron tres fronteras: comparten timestamp, pero no se repiten claves cellarId|updated. P1–P3 mantuvieron los mismos hashes de claves ordenadas en consultas repetidas, incluida una tras unos 15 minutos. Esto no demuestra estabilidad ante inserciones tardías ni estabilidad de las páginas más recientes. Detalle en docs/CELLAR_POC.md, sección 11.
+
+**Siguiente acción atómica:** continuar desde page=6 hasta la condición terminal notifReq:moreEntries; registrar recuentos y límites. No implementar aún sincronización incremental ni asumir unicidad global de cellarId|updated.
