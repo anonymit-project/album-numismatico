@@ -59,7 +59,7 @@ Prioridad orientativa. No implica autorización para saltarse el cierre de Fase 
 
 - [x] Ejecutar en el editor oficial la consulta SPARQL preparada para C/2026/406; confirmar URIs de Expression, Manifestation e Item y formatos PDF/A, Formex y XHTML en español y lituano.
 - [x] Recuperar el XML Formex por navegador/descarga y validar manualmente el mapeo de campos en dos expresiones lingüísticas del mismo aviso. Evidencia en [`docs/CELLAR_POC.md`](CELLAR_POC.md).
-- [ ] Validar un segundo aviso de otra clase (preferiblemente una nueva cara nacional regular) para comprobar variación documental.
+- [x] Validar un segundo aviso: C/2026/419 (Mónaco). SPARQL localizó Work/Expressions/Manifestations/Items; la Expression ENG ofrece `pdfa2a`, `fmx4` y `xhtml`; Formex descargado como ZIP con 3 XML y 8 TIFF. El XML principal `C_202600419EN.000101.fmx.xml` contiene ocho denominaciones y datos de emisor, fecha, diseños, ceca y canto de la moneda de 2 €. Prueba manual, sin demostrar automatización general ni derechos de imágenes; detalle en `docs/CELLAR_POC.md`.
 - [ ] Implementar y probar un parser/mapeo pequeño Formex/XML → staging con tests; conservar procedencia por campo y revisión humana.
 - [ ] Comparar la detección de nuevos avisos por CELLAR RSS/Atom o alerta EUR-Lex; no se ha configurado ni medido ninguna alerta.
 - [ ] Crear manifiesto versionado de URLs BEAC/BCEAO por familia, estado legal, país y fecha de consulta; validar cambios de HTML antes de automatizar extracción.
