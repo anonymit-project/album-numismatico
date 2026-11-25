@@ -146,3 +146,18 @@ CELLAR RSS/Atom es el candidato principal para una futura detección técnica po
 
 ### No verificado
 No se ha ejecutado el endpoint RSS/Atom, comprobado su paginación en operación, creado una alerta EUR-Lex ni medido cobertura, frecuencia, cuotas o SLA. La investigación documental no equivale a una prueba operativa ni a una automatización implementada.
+
+
+## Prueba operativa CELLAR RSS/Atom — 25/11/2026
+
+- Confirmada la rama `research/source-automation-2026-11`; revisados AGENTS.md, STATE.md, DECISIONS.md, BACKLOG.md y CELLAR_POC.md.
+- Intentado el acceso HTTPS al endpoint oficial de ingestion y una petición filtrada. El entorno devolvió `Temporary failure in name resolution`; también falló la resolución DNS de dominios externos de control.
+- Diagnóstico: bloqueo de conectividad/DNS del entorno de ejecución, no fallo demostrado de CELLAR. No se recibieron respuestas HTTP.
+- No se han verificado en operación las entradas, identificadores, filtros, paginación ni recuperación de metadatos. La estructura descrita sigue siendo documental.
+- C/2026/406 (Lituania) y C/2026/419 (Mónaco) siguen confirmados como avisos numismáticos por la documentación y pruebas manuales previas; no se ha confirmado su presencia en el feed.
+- Añadida a `docs/CELLAR_POC.md` la hipótesis de deduplicación por evento (`id`), recurso (`cellarId`) y documento lógico (`rootCellarId` + ELI/CELEX cuando exista), pendiente de contraste con respuestas reales.
+- No se ha escrito código, configurado alertas ni incorporado datos o imágenes. D-008 y revisión humana permanecen vigentes.
+
+### Siguiente paso exacto
+
+Repetir la prueba operativa desde un entorno con DNS/HTTPS funcional, conservar respuestas RSS/Atom originales, validar filtros por separado, comprobar paginación y seguir eventos hasta sus metadatos WEMI. La tarea permanece abierta; no marcarla como completada.
