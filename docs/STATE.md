@@ -7,43 +7,50 @@
 
 ## Objetivo de la iteración
 
-Consolidar en el repositorio el contexto del proyecto y las decisiones confirmadas en conversaciones y feedback de mockups.
+Investigar fuentes de catálogo e imágenes, licencias, APIs, cuotas y automatización con documentación oficial; actualizar la documentación sin iniciar el MVP.
 
 ## Hecho
 
-- PRD existente revisado íntegramente.
-- Política de trabajo incorporada en `AGENTS.md`; no existía un `AGENTS.md` en la raíz de `main`.
-- README inicial redactado.
-- Decisiones, modelo conceptual, backlog y notas UX documentados.
-- Feedback del álbum incorporado: selector visible de emisor/país; orden por denominación; filtros de monedas/billetes; filtros persistentes por usuario y sincronizados entre dispositivos.
-- Confirmada la creación de rama de trabajo; `main` no se ha modificado.
+- Revisados `AGENTS.md`, `STATE.md`, `PRD.md`, `DECISIONS.md`, `DATA_MODEL.md`, `BACKLOG.md`, `MOCKUPS.md` y `CATALOG_SOURCES.md`.
+- Verificado GitHub: PR #1 sigue abierto y en borrador; rama de trabajo 12 commits por delante de `main`, 0 por detrás. `main` no se ha modificado.
+- Comparadas Numista, Wikidata, Wikimedia Commons, BCE/Comisión Europea, Banco de España, ISO 4217/3166 y Natural Earth.
+- Actualizado `docs/CATALOG_SOURCES.md` con matriz comparativa, enlaces oficiales, derechos, cuotas, riesgos, estrategia de ingesta y pendientes.
+- Confirmado que Wikidata publica datos estructurados bajo CC0 y ofrece dumps semanales e incrementales; su SPARQL público tiene límites operativos sujetos a cambios.
+- Confirmado que Commons requiere revisar licencia y autoría archivo por archivo y que Wikimedia introdujo límites de API en 2026.
+- Confirmadas restricciones de reproducción de imágenes de billetes euro y pesetas en España; las caras nacionales de monedas euro tienen derechos del emisor y la cara común pertenece a la UE.
+- Confirmado que ISO permite uso gratuito de los códigos, pero el servicio de listas preparadas y actualizadas automáticamente puede ser de pago.
+- Identificado Natural Earth como fuente cartográfica en dominio público.
+
+## Hallazgo crítico: Numista
+
+La cuota gratuita actual es de 2.000 peticiones/mes y excluye búsqueda por imagen. Los términos oficiales prohíben la extracción sistemática para reproducir el catálogo, la redistribución masiva y el uso de datos almacenados para operar un servicio público. La excepción de almacenamiento para «Personal Project» se define como privado, no comercial y no disponible al público general; no está claro que cubra una PWA alojada en internet para 2–3 usuarios aunque requiera autenticación. Los metadatos de endpoints específicos pueden cachearse hasta 7 días; el resto de datos no se puede persistir salvo que aplique la excepción estricta. El plan de pago no encaja con el objetivo de 0 € (100 € de activación y mínimo 100 €/mes, sin IVA).
+
+**Resultado provisional:** no usar Numista como semilla ni catálogo maestro. Solicitar confirmación escrita antes de integrar datos persistentes o mostrar resultados a los otros usuarios.
 
 ## Estado del producto
 
-No existe todavía una aplicación implementada. Los mockups son exploratorios y contienen datos ilustrativos, no un catálogo real. La vista de mapa demostrada con marcadores no define aún el diseño cartográfico final.
+No existe todavía una aplicación implementada. Los mockups son exploratorios y contienen datos ilustrativos, no un catálogo real. La investigación no autoriza a importar ni redistribuir imágenes.
 
 ## Decisiones consolidadas
 
-- Catálogo mundial progresivo; MVP acotado.
-- Piezas que se identifican visualmente por anverso y reverso. Diferencias de diámetro o composición no crean otra pieza automáticamente; sí puede distinguirse una variante cuando el cambio es visualmente relevante o el usuario lo necesita.
-- Separar diseño/pieza visual, emisión y ejemplar/posesión. El año es atributo de emisión/ejemplar, no una ficha visual distinta por defecto.
-- Colecciones independientes y privadas por defecto. Compartir será voluntario y de solo lectura; nadie modifica inventario ajeno.
-- Álbum tipo cromos: posesiones a color, faltantes atenuados; selector explícito «Lo tengo / Me falta».
-- Álbum: país/emisor seleccionable, orden por denominación y filtro por monedas/billetes. Preferencias guardadas por usuario para persistir entre sesiones y dispositivos.
-- Aceptar fichas sin imagen de catálogo; usar ilustración/silueta provisional cuando no haya imagen autorizada.
+Se mantienen D-001 a D-007. Esta iteración no introduce decisiones de producto nuevas: las fuentes recomendadas son propuestas sujetas a validación y a pruebas de cobertura.
 
 ## Pendiente / bloqueos
 
-1. Investigación comparativa de fuentes de catálogo, cobertura, licencias, límites y automatización.
-2. Verificar cuotas y condiciones actuales de backend, hosting, almacenamiento, FX e identificación por foto.
-3. Validar modelo con casos reales: Andorra, Cuba/CUP-CUC, Ecuador, euro, CFA, peseta y emisores históricos.
-4. Cerrar propuesta de mapa para microestados, territorios y estados desaparecidos.
-5. Resolver valoración de monedas sin cotización, escala de conservación, política de imágenes y moderación.
-6. Validar stack y diseño con el usuario y su amigo.
+1. Obtener respuesta escrita de Numista sobre el uso exacto previsto.
+2. Probar cobertura y calidad con muestras reales de España (pesetas y euros, incluidas conmemorativas), Andorra, Cuba CUP/CUC, Ecuador, XOF/XAF y emisores históricos.
+3. Identificar datasets numismáticos especializados con licencia explícita compatible; aún no se ha confirmado uno que cubra el alcance.
+4. Comprobar opciones oficiales de automatización del Diario Oficial de la UE y autoridades emisoras.
+5. Verificar imágenes concretas y documentar derechos de reproducción, especialmente billetes euro y pesetas.
+6. Completar validación del modelo con casos históricos y supranacionales.
+7. Verificar cuotas y condiciones actuales de backend, hosting, almacenamiento, FX e identificación por foto.
+8. Resolver mapa de microestados, territorios y estados desaparecidos, valoración sin cotización, conservación y moderación.
+9. Validar mockups, stack y diseño con el usuario y su amigo.
+10. Obtener aprobación expresa para cerrar Fase 0.
 
 ## Siguiente paso exacto
 
-Completar el informe de Fase 0 sobre fuentes y licencias del catálogo con documentación oficial y fecha de consulta. No iniciar implementación del MVP hasta la aprobación expresa del usuario.
+Continuar la investigación con una prueba de cobertura basada en un conjunto de piezas reales y localizar datasets especializados abiertos con licencia compatible. En paralelo, solicitar aclaración escrita a Numista. No iniciar implementación del MVP hasta la aprobación expresa del usuario.
 
 ## Reglas para retomar
 
