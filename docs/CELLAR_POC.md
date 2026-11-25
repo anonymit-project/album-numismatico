@@ -237,3 +237,61 @@ Se confirma documentalmente que C/2026/406 (Lituania) y C/2026/419 (Mónaco) son
 Repetir la prueba desde un entorno con salida DNS/HTTPS funcional, usando ventanas temporales pequeñas y filtros controlados. Guardar respuestas RSS y Atom originales, registrar cabeceras y URLs solicitadas, probar cada filtro por separado, comprobar paginación con un conjunto que supere el límite documentado y seguir al menos un evento hasta sus metadatos WEMI. Contrastar después los identificadores con C/2026/406 y C/2026/419. No configurar alertas personales ni desarrollar parser o automatización permanente.
 
 **Conclusión:** prueba operativa inconclusa por limitación del entorno. CELLAR no queda validado ni refutado en esta sesión. Se mantienen D-008, staging y revisión humana; no se incorpora ningún dato o imagen al catálogo.
+
+
+## 9. Prueba operativa de filtros CELLAR RSS/Atom — 25/11/2026
+
+**Estado:** prueba manual positiva de los filtros básicos desde PowerShell del usuario. Esta sección actualiza y complementa la sección 8: el bloqueo DNS correspondía al entorno de ejecución del agente, no al equipo/red desde el que el usuario ejecutó las peticiones.
+
+### Entorno y petición
+
+Endpoint:
+
+    https://publications.europa.eu/webapi/notification/ingestion
+
+Cabecera:
+
+    Accept: application/atom+xml
+
+Ventana temporal utilizada en las pruebas:
+
+    startDate=2026-11-19&endDate=2026-11-25
+
+El usuario ejecutó las peticiones desde PowerShell. Para la consulta sin filtros se obtuvo HTTP 200, Content-Type `text/xml;charset=UTF-8`, XML Atom válido, página 1, 1.000 entradas y `moreEntries=true`.
+
+### Resultados observados
+
+| Prueba | Resultado comunicado | Evaluación |
+|---|---|---|
+| Sin filtros | HTTP 200; 1.000 entradas; `moreEntries=true`. Las dos primeras entradas inspeccionadas eran eventos `update`, de clases `EVENT` y `DOSSIER`. | Feed accesible y respuesta Atom válida. La página no representa necesariamente toda la ventana temporal. |
+| `type=create` | Las primeras tres entradas inspeccionadas eran `create`, con clases `MANIFESTATION`, `ITEM` y `MANIFESTATION`. | Resultados observados coherentes con el filtro de tipo. |
+| `type=update` | Las primeras cinco entradas inspeccionadas eran `update`, de clases `EVENT`, `DOSSIER`, `WORK`, `MANIFESTATION` y `EXPRESSION`. | Resultados observados coherentes con el filtro de tipo. |
+| `wemiClasses=DOSSIER` | Las diez primeras entradas inspeccionadas eran `update DOSSIER`. | Resultados observados coherentes con el filtro de clase WEMI. |
+| `type=create&wemiClasses=ITEM` | HTTP 200; 1.000 entradas; `moreEntries=true`. Las diez primeras entradas inspeccionadas eran `create ITEM`. | Combinación de filtros aceptada; los resultados inspeccionados cumplen ambos criterios. |
+
+No se comunicaron los códigos HTTP ni los recuentos de las pruebas individuales `type=create`, `type=update` y `wemiClasses=DOSSIER`; no se atribuyen aquí valores no observados.
+
+### Conclusiones verificadas
+
+1. El endpoint de ingestion responde desde el entorno del usuario y entrega XML Atom.
+2. Los filtros `type` y `wemiClasses` aceptan los valores probados y devuelven primeras entradas coherentes con ellos.
+3. La combinación `type=create` + `wemiClasses=ITEM` también devuelve resultados coherentes con ambos filtros.
+4. La respuesta puede alcanzar 1.000 entradas y señalar que hay más resultados mediante `moreEntries=true`.
+
+La evidencia confirma operativamente el acceso y el comportamiento básico de los filtros en las entradas inspeccionadas. No demuestra que se haya inspeccionado exhaustivamente todo el conjunto devuelto ni que todos los registros de la ventana cumplan el filtro.
+
+### Límites que siguen abiertos
+
+- **Paginación:** no probada. No se ha recuperado la ventana completa ni determinado el total de eventos.
+- **Valores múltiples de `wemiClasses`:** no probados.
+- **Eventos DELETE:** no probados.
+- **Cobertura numismática:** no se ha demostrado que los avisos C/2026/406 o C/2026/419 aparezcan en el feed ni se ha validado un método exhaustivo para detectar avisos de monedas.
+- **Campos de las entradas:** en la salida de PowerShell de las dos primeras entradas sin filtros, `title`, `summary`, `id` y `link href` aparecieron como cadenas plantilla `$item.*`. No se ha determinado si se trata de un problema de representación/consulta o del contenido recibido; no deben tratarse todavía como campos utilizables sin una inspección específica.
+- **Automatización:** todas las pruebas fueron manuales. No existe un cliente, parser, sincronizador ni proceso programado.
+- **Identidad y deduplicación:** la hipótesis de la sección 8 basada en `id`, `cellarId` y `rootCellarId` sigue pendiente de validación con eventos inspeccionados en profundidad.
+
+### Próximo paso recomendado
+
+En una tarea separada, comprobar la paginación con una ventana que devuelva más de 1.000 entradas: conservar la primera respuesta y seguir el mecanismo de continuación que indique el propio feed, verificando ausencia de huecos y duplicados. No abordar todavía automatización permanente ni parser. Después podrán probarse valores múltiples de `wemiClasses`, eventos DELETE y la resolución de metadatos de un evento concreto.
+
+**Conclusión:** CELLAR ingestion y los filtros básicos quedan validados manualmente en el entorno del usuario. La paginación y la detección numismática fiable siguen pendientes. Se mantienen Fase 0, D-008, staging y revisión humana; no se incorpora ningún dato ni imagen al catálogo.
