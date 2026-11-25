@@ -159,3 +159,38 @@ Hay dos pruebas manuales positivas con avisos distintos: C/2026/406 (Lituania, d
 1. Probar la descarga y el tratamiento mediante un script controlado, incluyendo errores, reintentos y trazabilidad, antes de hablar de automatización.
 2. Diseñar un mapeo mínimo Formex/XML → staging con tests y revisión humana; todavía no desarrollar el parser.
 3. Verificar por separado cualquier derecho de reutilización antes de incorporar imágenes; por defecto, excluir los TIFF.
+
+
+## 7. Detección de nuevos avisos: CELLAR RSS/Atom y alertas EUR-Lex
+
+**Fecha de investigación:** 2026-11-25  
+**Estado:** documentación oficial revisada; no se ha ejecutado el feed ni creado una alerta en una cuenta.
+
+### CELLAR RSS/Atom
+
+La documentación oficial de CELLAR describe un feed de notificaciones de ingestión que cubre EUR-Lex y otras publicaciones de la Oficina de Publicaciones. El canal relevante es ingestion. Admite los tipos CREATE, UPDATE y DELETE, y filtros por fechas y clases WEMI (work, expression, manifestation, item, entre otras). La documentación indica que los resultados pueden paginarse cuando superan 1.000 entradas.
+
+Las entradas incluyen identificador del evento, cellarId, rootCellarId, tipo, clases, identificadores asociados (por ejemplo CELEX) y fecha de ingestión. No se documenta un filtro temático específico para monedas: el feed es general y los candidatos numismáticos tendrían que filtrarse después mediante metadatos/título y, cuando proceda, SPARQL.
+
+Ejemplo oficial de endpoint documentado:
+
+    http://publications.europa.eu/webapi/notification/ingestion?startDate=2016-07-01&endDate=2016-07-31&type=UPDATE&wemiClasses=work,event&page=3
+
+La documentación admite negociación de contenido RSS o Atom mediante Accept: application/rss+xml o Accept: application/atom+xml. No se ha probado aquí una consulta real al endpoint, su paginación ni su comportamiento operativo.
+
+### Alertas RSS de EUR-Lex
+
+EUR-Lex permite generar RSS a partir de búsquedas guardadas y recibir nuevos documentos que coincidan con los criterios. También ofrece alertas asociadas a documentos y procedimientos. La configuración de búsquedas guardadas requiere cuenta e inicio de sesión EU Login; el límite documentado es de 50 búsquedas guardadas, compartido con las alertas por correo.
+
+Para avisos numismáticos de monedas euro, los títulos observados incluyen al menos las variantes “New national side of euro coins intended for circulation” y “New national sides of euro circulation coins”. Una búsqueda temática debería contemplar ambas variantes y comprobarse con ejemplos históricos antes de considerarse suficientemente exhaustiva. No se ha creado ni probado una alerta en una cuenta del usuario.
+
+### Comparación y recomendación
+
+- **CELLAR RSS/Atom:** mejor candidato como mecanismo técnico principal de seguimiento, por ofrecer eventos de ingestión y cambios con identificadores CELLAR/WEMI trazables. Requiere recuperar y filtrar el flujo general; no es una alerta numismática ya configurada.
+- **EUR-Lex RSS:** útil como detector temático secundario y contraste, mediante una o varias búsquedas guardadas. Depende de la configuración de una cuenta EUR-Lex y no sustituye la trazabilidad de eventos de CELLAR.
+- **Estrategia recomendada para una futura prueba:** consultar periódicamente CELLAR ingestion, filtrar candidatos por metadatos/títulos y contrastarlos con una búsqueda guardada RSS de EUR-Lex. Deduplicar por identificador del documento lógico (rootCellarId y/o ELI/CELEX cuando estén disponibles), conservando cellarId e identificador de evento para rastrear versiones y modificaciones. Agrupar expresiones lingüísticas en una sola ficha lógica.
+- Todo candidato debe entrar en staging y pasar revisión humana; nunca incorporarse directamente al catálogo.
+
+### Límites
+
+La investigación no acredita cobertura exhaustiva de publicaciones, cuotas, SLA, frecuencia de consulta permitida ni estabilidad operativa. Tampoco demuestra que una alerta personal EUR-Lex pueda integrarse como backend sin depender de la cuenta. Ambos mecanismos se refieren a publicaciones de la UE y no resuelven la cobertura mundial del catálogo. No se ha implementado código ni configurado ninguna alerta.
