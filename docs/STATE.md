@@ -1,6 +1,7 @@
 # Estado del proyecto
 
-**Fase:** 0 — descubrimiento, sin código de producto.  
+**Fase:** 0 — descubrimiento, sin código de producto.
+**Criterio de reutilización:** solo fuentes con derechos de uso claros y compatibles; no se solicitarán permisos particulares.  
 **Actualizado:** 2026-11-25  
 **Rama de documentación:** `docs/phase-0-project-context`  
 **Pull request:** [#1 — documentación inicial de Fase 0](https://github.com/anonymit-project/album-numismatico/pull/1) (abierto, borrador; no fusionado)
@@ -12,7 +13,7 @@ Investigar fuentes de catálogo e imágenes, licencias, APIs, cuotas y automatiz
 ## Hecho
 
 - Revisados `AGENTS.md`, `STATE.md`, `PRD.md`, `DECISIONS.md`, `DATA_MODEL.md`, `BACKLOG.md`, `MOCKUPS.md` y `CATALOG_SOURCES.md`.
-- Verificado GitHub: PR #1 sigue abierto y en borrador; rama de trabajo 12 commits por delante de `main`, 0 por detrás. `main` no se ha modificado.
+- Verificado GitHub: PR #1 sigue abierto y en borrador; rama de trabajo 16 commits por delante de `main`, 0 por detrás. `main` no se ha modificado.
 - Comparadas Numista, Wikidata, Wikimedia Commons, BCE/Comisión Europea, Banco de España, ISO 4217/3166 y Natural Earth.
 - Actualizado `docs/CATALOG_SOURCES.md` con matriz comparativa, enlaces oficiales, derechos, cuotas, riesgos, estrategia de ingesta y pendientes.
 - Confirmado que Wikidata publica datos estructurados bajo CC0 y ofrece dumps semanales e incrementales; su SPARQL público tiene límites operativos sujetos a cambios.
@@ -25,7 +26,7 @@ Investigar fuentes de catálogo e imágenes, licencias, APIs, cuotas y automatiz
 
 La cuota gratuita actual es de 2.000 peticiones/mes y excluye búsqueda por imagen. Los términos oficiales prohíben la extracción sistemática para reproducir el catálogo, la redistribución masiva y el uso de datos almacenados para operar un servicio público. La excepción de almacenamiento para «Personal Project» se define como privado, no comercial y no disponible al público general; no está claro que cubra una PWA alojada en internet para 2–3 usuarios aunque requiera autenticación. Los metadatos de endpoints específicos pueden cachearse hasta 7 días; el resto de datos no se puede persistir salvo que aplique la excepción estricta. El plan de pago no encaja con el objetivo de 0 € (100 € de activación y mínimo 100 €/mes, sin IVA).
 
-**Resultado provisional:** no usar Numista como semilla ni catálogo maestro. Solicitar confirmación escrita antes de integrar datos persistentes o mostrar resultados a los otros usuarios.
+**Resultado provisional:** no usar Numista como semilla ni catálogo maestro. No utilizar la API, sus datos ni sus imágenes en el proyecto. No se solicitará aclaración al proveedor.
 
 ## Estado del producto
 
@@ -33,11 +34,10 @@ No existe todavía una aplicación implementada. Los mockups son exploratorios y
 
 ## Decisiones consolidadas
 
-Se mantienen D-001 a D-007. Esta iteración no introduce decisiones de producto nuevas: las fuentes recomendadas son propuestas sujetas a validación y a pruebas de cobertura.
+Se mantienen D-001 a D-007 y se añade D-008: política conservadora de fuentes y reutilización. No se contactará con proveedores para pedir excepciones. Las fuentes ambiguas se descartan para reutilización.
 
 ## Pendiente / bloqueos
 
-1. Obtener respuesta escrita de Numista sobre el uso exacto previsto.
 2. Probar cobertura y calidad con muestras reales de España (pesetas y euros, incluidas conmemorativas), Andorra, Cuba CUP/CUC, Ecuador, XOF/XAF y emisores históricos.
 3. Identificar datasets numismáticos especializados con licencia explícita compatible; aún no se ha confirmado uno que cubra el alcance.
 4. Comprobar opciones oficiales de automatización del Diario Oficial de la UE y autoridades emisoras.
@@ -50,7 +50,7 @@ Se mantienen D-001 a D-007. Esta iteración no introduce decisiones de producto 
 
 ## Siguiente paso exacto
 
-Continuar la investigación con una prueba de cobertura basada en un conjunto de piezas reales y localizar datasets especializados abiertos con licencia compatible. En paralelo, solicitar aclaración escrita a Numista. No iniciar implementación del MVP hasta la aprobación expresa del usuario.
+Continuar la investigación con una prueba de cobertura basada en un conjunto de piezas reales y localizar datasets especializados abiertos con licencia compatible. Numista queda fuera; continuar con fuentes abiertas verificables. No iniciar implementación del MVP hasta la aprobación expresa del usuario.
 
 ## Reglas para retomar
 
