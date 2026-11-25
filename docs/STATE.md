@@ -130,3 +130,19 @@ PR #4 permanece abierta, en borrador y sin fusionar. Los cambios de esta iteraci
 - La prueba fue manual; no se ha implementado ni ejecutado automatización desatendida.
 - Los 8 TIFF no se incorporan. La disponibilidad/descarga de imágenes no resuelve sus derechos de reutilización; se mantiene D-008.
 - Siguiente paso técnico, cuando se autorice: diseñar una muestra de mapeo Formex → staging y sus tests. No desarrollar todavía el parser ni iniciar el MVP.
+
+
+## Investigación de detección de avisos oficiales (25/11/2026)
+
+### Hecho
+- Revisada la documentación oficial de CELLAR RSS/Atom. El canal ingestion notifica eventos CREATE, UPDATE y DELETE, con filtros por fechas y clases WEMI. Las entradas aportan identificadores de evento, recurso (cellarId), raíz lógica (rootCellarId), clases, identificadores asociados y fecha.
+- Confirmado que CELLAR no documenta un filtro temático numismático en ese feed; la detección requiere filtrar posteriormente los eventos mediante metadatos/títulos y, cuando proceda, SPARQL.
+- Revisada la documentación oficial de RSS de EUR-Lex: permite generar feeds a partir de búsquedas guardadas. Requiere cuenta/EU Login y el límite documentado es de 50 búsquedas guardadas compartidas con alertas por correo.
+- Identificadas dos variantes recurrentes de títulos de avisos de caras nacionales de monedas euro; una búsqueda temática tendría que contemplar ambas y validarse con ejemplos anteriores.
+- Comparativa y recomendación documentadas en docs/CELLAR_POC.md.
+
+### Resultado y recomendación
+CELLAR RSS/Atom es el candidato principal para una futura detección técnica por su trazabilidad de eventos y recursos WEMI. EUR-Lex RSS es un contraste temático complementario, pero depende de búsquedas guardadas en una cuenta. Se recomienda un flujo híbrido, deduplicación por identificador lógico y staging con revisión humana.
+
+### No verificado
+No se ha ejecutado el endpoint RSS/Atom, comprobado su paginación en operación, creado una alerta EUR-Lex ni medido cobertura, frecuencia, cuotas o SLA. La investigación documental no equivale a una prueba operativa ni a una automatización implementada.
