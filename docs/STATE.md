@@ -260,3 +260,21 @@ La paginación y la condición terminal quedan **validadas manualmente para esta
 
 ### Siguiente paso exacto
 Inspeccionar una entrada Atom real en bruto para identificar los campos de evento/recurso (`id`, `cellarId`, `rootCellarId`) y determinar qué representa cada uno. Mantenerlo como una prueba de observación, sin diseñar cursor incremental ni implementar código de sincronización. Antes de actuar en una nueva sesión, releer `AGENTS.md`, `docs/STATE.md`, `docs/DECISIONS.md`, `docs/BACKLOG.md`, `docs/CELLAR_POC.md` y `docs/PRD.md`.
+
+
+## Inspección de identidad Atom CELLAR — 26/11/2026
+
+### Hecho
+- Desde PowerShell, el usuario recuperó la primera entrada de P331 para la ventana 19–25/11/2026 y mostró el XML Atom original (`OuterXml`). HTTP 200; `Content-Type: text/xml;charset=UTF-8`.
+- La entrada es `update` y `wemiClass=EXPRESSION`; `classes/class` apunta a `cdm#expression`.
+- `cellarId=cellar:36f412cf-e80d-11f1-b745-01aa75ed71a1.0004`; `rootCellarId=cellar:36f412cf-e80d-11f1-b745-01aa75ed71a1`.
+- `identifiers` contiene CELEX y consolidation con sufijo `.CES`; `rootIdentifiers` contiene CELEX, consolidation y ELI sin ese sufijo.
+- `atom:id` contiene literalmente `${item.cellarUri}_2026-11-24T23:43:56.595+01:00`; `title`, `summary` y `link href` también contienen plantillas `$item.*` sin resolver.
+
+### Interpretación y límites
+La muestra apoya que `cellarId` es el recurso concreto (Expression) y `rootCellarId` su raíz documental, y que `identifiers`/`rootIdentifiers` relacionan expresión y documento lógico con CELEX/consolidation/ELI. No valida la semántica completa ni la unicidad de estos campos. El identificador Atom de evento no es utilizable en esta respuesta porque conserva una plantilla literal; no adoptar `cellarId|updated` como sustituto probado. Tampoco se ha seguido aún el recurso hasta metadatos WEMI independientes.
+
+### Siguiente paso exacto
+Inspeccionar una segunda entrada de otra clase WEMI (preferiblemente ITEM o WORK) para comprobar si las plantillas sin resolver afectan también a sus campos `id`, `title`, `summary` y `link`. Mantener la prueba manual, sin parser, cliente, sincronizador ni código de producto.
+
+La evidencia detallada queda en `docs/CELLAR_POC.md`, sección 14. Fase 0 y D-008 continúan vigentes; no se incorporan datos ni imágenes al catálogo.
