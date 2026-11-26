@@ -106,3 +106,13 @@ La paginación queda **validada parcialmente**, no completada. P1–P5 devuelven
 ### Cierre de validación terminal CELLAR — 26/11/2026
 
 La prueba manual de paginación para la consulta 19–25/11/2026 queda completada: P330 y P331 confirmadas directamente, frontera comparada en ventanas de 10 claves y P332 consultada una vez. No se recorrieron P1–P329 secuencialmente y no se conoce un total exacto de toda la ventana. El cierre **no** cubre estabilidad ante inserciones tardías, unicidad global de `cellarId|updated`, identificación del evento ni cobertura numismática. Esos asuntos siguen separados en el backlog; no implementar cursor/sincronizador ni parser como consecuencia automática de esta prueba. Ver sección 13 de `docs/CELLAR_POC.md`.
+
+
+### Actualización de identidad de eventos CELLAR — 26/11/2026
+
+- [x] Inspeccionar en bruto una entrada Atom real y registrar namespaces, `cellarId`, `rootCellarId`, `wemiClass`, `classes`, `identifiers` y `rootIdentifiers` (evidencia en `docs/CELLAR_POC.md`, sección 14).
+- [ ] Comprobar otra entrada de distinta clase WEMI para determinar si las plantillas sin resolver de `id`, `title`, `summary` y `link href` se repiten.
+- [ ] Seguir un `cellarId` real hasta sus metadatos WEMI mediante CELLAR/SPARQL.
+- [ ] Probar eventos DELETE y valores múltiples de `wemiClasses`.
+
+**Conclusión parcial:** la muestra identifica un recurso `EXPRESSION` y su raíz, y aporta CELEX/consolidation/ELI para relacionarlos. Sin embargo, `atom:id`, `title`, `summary` y `link href` llegaron como plantillas literales; el identificador de evento no queda validado. No usar `cellarId|updated` como clave global demostrada ni diseñar aún cursor/sincronizador. Mantener Fase 0 y D-008.
