@@ -347,7 +347,7 @@ Continuar Fase 0 por la tarea de mayor desbloqueo: cerrar el modelo de datos con
 No construir flujos de alta/edición, importación/carga simulada, formularios administrativos completos, validación de ficheros, lógica de negocio exhaustiva, backend ni arquitectura de producción. Esos elementos solo se añadirán si una necesidad concreta de validación UX lo justifica.
 
 ### Enfoque y estimación revisados
-Se prioriza el camino más rápido para obtener una demo navegable, sin imponer framework ni estructura de producción. Estimación preliminar revisada: **8–16 horas de construcción** y **3–5 horas de revisión/correcciones**, pendiente de confirmar al implementar el primer corte visual. La estimación anterior de 29–45 h queda sustituida para este alcance reducido; no se ha cambiado la estimación de un MVP futuro.
+Se prioriza el camino más rápido para obtener una demo navegable, sin imponer framework ni estructura de producción. Estimación preliminar revisada: **4–8 horas de construcción** y **2–3 horas de revisión/correcciones**, pendiente de confirmar al implementar el primer corte visual. La estimación anterior de 29–45 h queda sustituida para este alcance reducido; no se ha cambiado la estimación de un MVP futuro.
 
 ### Siguiente paso exacto
 Crear el primer corte navegable con diseño responsive y datos ficticios, limitado al recorrido principal y las interacciones descritas. Probarlo realmente en navegador Android y escritorio; si el entorno no permite alguna prueba, documentar la limitación y solicitar la comprobación al usuario. No continuar CELLAR ni ampliar funcionalidades sin autorización.
