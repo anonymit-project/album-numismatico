@@ -230,3 +230,33 @@ Continuar desde page=6 hasta la condición terminal notifReq:moreEntries. Regist
 ### Siguiente paso exacto
 
 En un chat nuevo, leer los documentos obligatorios y realizar una única comprobación PowerShell de P330 y P331, registrando HTTP, recuento, `page`, `moreEntries` y primer/último `updated`. Comparar la frontera si se dispone de las claves. No recorrer páginas intermedias ni implementar sincronizador/parser. Tras confirmar P331, decidir si una consulta única a P332 aporta valor para caracterizar el comportamiento posterior al final. Evidencia detallada en `docs/CELLAR_POC.md`, sección 12.
+
+
+## Cierre de validación de paginación CELLAR — 26/11/2026
+
+**Rama:** `research/source-automation-2026-11`  
+**Fase:** 0 — investigación; sin código de producto.
+
+### Objetivo de la iteración
+Cerrar la comprobación directa del límite de paginación del feed CELLAR ingestion para `startDate=2026-11-19&endDate=2026-11-25`.
+
+### Resultado confirmado por el usuario desde PowerShell
+
+- P330: HTTP 200, página XML 330, 1.000 entradas, `moreEntries=true`; primer/último `updated`: 2026-11-24T23:28:33.843+01:00 / 2026-11-24T23:43:56.595+01:00.
+- P331: HTTP 200, página XML 331, 959 entradas, `moreEntries=false`; primer/último `updated`: 2026-11-24T23:43:56.595+01:00 / 2026-11-24T23:58:29.346+01:00.
+- P330→P331: cero claves repetidas en la comparación de las últimas 10 y primeras 10 claves `cellarId|updated`. El timestamp de frontera coincide, pero no las claves de esas ventanas.
+- P332: HTTP 200, página XML 332, cero entradas, `moreEntries=false`.
+
+### Conclusión
+La paginación y la condición terminal quedan **validadas manualmente para esta consulta/captura**. P331 es la última página no vacía observada; P332 confirma el comportamiento posterior al final. No se afirma el total exacto de entradas porque no se registraron recuentos de todas las páginas P1–P329. La comparación de frontera es limitada a ventanas de 10; no demuestra unicidad global ni ausencia de huecos en todo el conjunto.
+
+### No demostrado / no realizado
+- Estabilidad entre capturas e inserciones tardías; comportamiento de las páginas recientes bajo nuevas notificaciones.
+- Unicidad global de `cellarId|updated` o idoneidad como clave de deduplicación/cursor.
+- Extracción y semántica del identificador de evento `id`, `rootCellarId`, eventos DELETE y valores múltiples de `wemiClasses`.
+- Cobertura exhaustiva de avisos numismáticos.
+- Cliente automatizado, parser, sincronizador o código de producto.
+- No se han incorporado datos ni imágenes. D-008 permanece vigente.
+
+### Siguiente paso exacto
+Inspeccionar una entrada Atom real en bruto para identificar los campos de evento/recurso (`id`, `cellarId`, `rootCellarId`) y determinar qué representa cada uno. Mantenerlo como una prueba de observación, sin diseñar cursor incremental ni implementar código de sincronización. Antes de actuar en una nueva sesión, releer `AGENTS.md`, `docs/STATE.md`, `docs/DECISIONS.md`, `docs/BACKLOG.md`, `docs/CELLAR_POC.md` y `docs/PRD.md`.
