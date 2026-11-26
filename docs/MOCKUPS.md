@@ -60,3 +60,11 @@ Alta y edición completas, importación/carga de ficheros, validaciones, proceso
 - La posesión se distingue visualmente; las piezas faltantes aparecen atenuadas.
 - No usar imágenes monetarias de terceros sin derechos verificados (D-008).
 - Sin persistencia: los cambios viven solo mientras la demo está abierta.
+
+
+## Ampliación solicitada — mapamundi y billetes (26/11/2026)
+
+- La navegación incluye una pestaña «Mapamundi» accesible en móvil y escritorio.
+- El mapa de la demo destaca los emisores incluidos en los datos de muestra. Se usa Madagascar como ejemplo distante para que el usuario pueda valorar marcadores separados; no implica prioridad de catálogo ni una decisión sobre el alcance geográfico.
+- Los billetes aparecen como una serie diferenciada dentro del flujo emisor → moneda → serie → álbum → ficha. Se emplean rectángulos neutros, no reproducciones monetarias.
+- En esta iteración el mapa es esquemático, plano y no interactivo por país; el usuario debe validar si la representación es suficiente para la revisión UX.
