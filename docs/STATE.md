@@ -278,3 +278,19 @@ La muestra apoya que `cellarId` es el recurso concreto (Expression) y `rootCella
 Inspeccionar una segunda entrada de otra clase WEMI (preferiblemente ITEM o WORK) para comprobar si las plantillas sin resolver afectan también a sus campos `id`, `title`, `summary` y `link`. Mantener la prueba manual, sin parser, cliente, sincronizador ni código de producto.
 
 La evidencia detallada queda en `docs/CELLAR_POC.md`, sección 14. Fase 0 y D-008 continúan vigentes; no se incorporan datos ni imágenes al catálogo.
+
+
+## Segunda inspección de identidad Atom CELLAR — 26/11/2026
+
+### Hecho
+- Reutilizada la respuesta P331 ya descargada (ventana 19–25/11/2026; HTTP 200; 959 entradas), sin repetir la petición.
+- Inspeccionada la primera entrada `ITEM` encontrada, índice 7 del array XML (base cero).
+- La entrada es `type=create`, `wemiClass=ITEM`; `cellarId=cellar:ed772589-e81d-11f1-b745-01aa75ed71a1.0024.02/DOC_1` y `rootCellarId=cellar:ed772589-e81d-11f1-b745-01aa75ed71a1`.
+- `atom:id`, `title`, `summary` y `link href` vuelven a contener las plantillas literales `${item.cellarUri}`, `$item.title`, `$item.entrySummary` y `$item.cellarUri`.
+- La comparación con la entrada EXPRESSION de la sección 14 muestra las mismas cuatro plantillas en dos clases WEMI y dos tipos de evento distintos. Evidencia completa en la sección 15 de `docs/CELLAR_POC.md`.
+
+### Conclusión y límites
+La repetición en dos muestras refuerza que las plantillas no resueltas no son exclusivas de la entrada EXPRESSION observada. No permite generalizar a todo el feed ni establece la semántica/unicidad de los identificadores. `cellarId` y `rootCellarId` sí aparecen materializados en ambas entradas. No usar `atom:id` como ID de evento válido ni adoptar `cellarId|updated` como sustituto global probado.
+
+### Siguiente paso exacto
+Seguir uno de los `cellarId` observados hasta sus metadatos WEMI mediante CELLAR/SPARQL, en una tarea separada. No investigar todavía DELETE ni múltiples `wemiClasses`; no implementar parser, cliente, cursor ni sincronizador. Fase 0 y D-008 continúan vigentes; sin datos ni imágenes incorporados al catálogo.
