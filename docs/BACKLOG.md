@@ -277,7 +277,7 @@ Esta reordenación no cierra Fase 0 ni autoriza el MVP.
 - [x] Preparar matriz de entidades/relaciones, cobertura conceptual y huecos por caso.
 - [x] Contrastar requisitos del modelo con `docs/CATALOG_SOURCES.md`, separando requisitos estructurales de disponibilidad, automatización y derechos de las fuentes.
 - [x] Presentar propuestas estructurales sin consolidarlas como decisiones aprobadas.
-- [ ] Revisar y aprobar/rechazar individualmente las propuestas P1–P6 antes de modificar `docs/DATA_MODEL.md` o `docs/DECISIONS.md`.
+- [x] Revisar y aprobar individualmente P1–P6; quedaron consolidadas en D-012–D-017 y `docs/DATA_MODEL.md`.
 
 ### Propuestas pendientes de decisión
 
@@ -290,7 +290,7 @@ Esta reordenación no cierra Fase 0 ni autoriza el MVP.
 | P5 | Formalizar transiciones entre monedas: coexistencia, sustitución, redenominación y factor de conversión. | Representar peseta/euro, sucre/USD y coexistencia CUP/CUC. |
 | P6 | Estructurar valor facial, unidad/subunidad y denominación original. | Representar centavos nacionales de USD sin crear una moneda ecuatoriana distinta del USD. |
 
-**Importante:** P1–P6 son propuestas, no decisiones. No hay cambios aprobados en el modelo conceptual ni en el registro de decisiones.
+**Nota histórica:** en esta fase P1–P6 eran propuestas. Posteriormente el usuario las aprobó y quedaron consolidadas en D-012–D-017.
 
 ### Contraste de fuentes
 - BCE/Comisión/DOUE/CELLAR: mejor soporte para metadatos euro, sin autorización automática de imágenes monetarias.
@@ -301,7 +301,7 @@ Esta reordenación no cierra Fase 0 ni autoriza el MVP.
 - Banco de España/Commons: localización y contraste de pesetas, sin que la licencia fotográfica resuelva los derechos de reproducción monetaria.
 - Wikidata CC0, ISO y Natural Earth son fuentes auxiliares para entidades/códigos/cartografía, no sustitutos de catálogos numismáticos ni autoridades de emisión.
 
-**Siguiente tarea:** obtener decisión del usuario sobre P1–P6. Fase 0 continúa abierta; D-008 y D-011 siguen vigentes; CELLAR aparcado; no iniciar MVP.
+**Estado actualizado:** P1–P6 aprobadas y consolidadas. La validación posterior del modelo consolidado está documentada en `docs/MODEL_VALIDATION.md`; P7–P9 quedan pendientes de decisión. Fase 0 continúa abierta; D-008 y D-011 siguen vigentes; CELLAR aparcado; no iniciar MVP.
 
 
 ### Revisión conceptual P1–P6 — 26/11/2026
@@ -322,7 +322,20 @@ Esta reordenación no cierra Fase 0 ni autoriza el MVP.
 - [x] Incorporar las seis propuestas aprobadas en `docs/DATA_MODEL.md`.
 - [x] Registrar D-012 a D-017 en `docs/DECISIONS.md`.
 - [x] Actualizar `docs/STATE.md` con el alcance y límites de la aprobación.
-- [ ] Validar el modelo consolidado con Andorra, Cuba CUP/CUC, Ecuador, euro, XOF/XAF y peseta; comprobar cronologías, roles, transiciones y valores faciales.
+- [x] Validar el modelo consolidado con Andorra, Cuba CUP/CUC, Ecuador, euro, XOF/XAF y peseta; comprobar cronologías, roles, transiciones y valores faciales (resultado en `docs/MODEL_VALIDATION.md`).
 - [ ] Definir vocabularios controlados y reglas conceptuales de validación sin iniciar esquema SQL ni código de producto.
 
 **Límites vigentes:** D-008 permanece intacta; D-002 mantiene la identidad por pareja de caras; Fase 0 abierta; CELLAR aparcado; MVP bloqueado.
+
+
+### Validación consolidada — resultado y siguiente bloque
+
+- [x] Validar los seis casos representativos y documentar la matriz y conclusiones en `docs/MODEL_VALIDATION.md`.
+- [x] Separar problemas reales de modelado de particularidades históricas y límites de las fuentes.
+- [ ] Decidir P7: relación opcional entre emisión y autoridad monetaria, con roles diferenciados.
+- [ ] Decidir P8: atributo de intención de circulación y tratamiento de unidades nominales de colección no oficiales.
+- [ ] Decidir P9: calificador opcional para distinguir uso oficial/adoptado de uso de facto.
+- [ ] Tras la decisión sobre P7–P9, ajustar el modelo conceptual solo en los puntos aprobados y definir vocabularios/reglas de validación.
+- [ ] Continuar el resto de tareas de Fase 0; no iniciar SQL ni MVP.
+
+**Resultado:** no se detectaron contradicciones que obliguen a reabrir D-012–D-017. Fase 0 permanece abierta; D-008 intacta; CELLAR aparcado.
