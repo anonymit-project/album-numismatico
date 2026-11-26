@@ -454,3 +454,13 @@ Realizar una revisión estructural de `docs/DATA_MODEL.md` contra los casos enum
 
 ### Siguiente paso exacto
 Revisar y decidir P1–P6. Antes de rediseñar el modelo completo, acordar si se acepta la separación de autoridad monetaria y los roles explícitos de las relaciones. Después concretar el mínimo esquema conceptual revisado y volver a probarlo con los mismos casos. No iniciar implementación.
+
+
+## Revisión de propuestas del modelo P1–P6 — 26/11/2026
+
+- Revisadas individualmente las seis propuestas frente a Andorra, Cuba CUP/CUC, Ecuador, euro, XOF/XAF y peseta.
+- Elaborado `docs/MODEL_REVIEW.md` con problema, alternativas, recomendación mínima, complejidad, consecuencias y matriz de cobertura.
+- Recomendaciones técnicas: P1 autoridad monetaria separada (acotada); P2 roles temporales tipados; P3 cronología legal basada en hechos/fechas; P4 caras reutilizables manteniendo identidad por pareja; P5 transiciones tipadas sin confundir coexistencia; P6 valor facial racional exacto más etiqueta original.
+- **Estado de aprobación:** ninguna propuesta aprobada. No se modifican `DATA_MODEL.md` ni `DECISIONS.md`; D-008 y D-011 siguen vigentes.
+- **Fase 0:** abierta. CELLAR sigue aparcado. No se inicia MVP ni código de producto.
+- **Siguiente paso:** el usuario debe aprobar o rechazar P1–P6 individualmente; solo entonces se consolidarán los cambios autorizados.
