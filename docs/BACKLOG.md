@@ -97,10 +97,10 @@ La paginación queda **validada parcialmente**, no completada. P1–P5 devuelven
 
 - [x] Inspeccionar metadatos de la respuesta Atom: se observan `startDate`, `endDate`, `page` y `moreEntries`; no se observó total de resultados ni enlace a última página.
 - [x] Aplicar búsqueda exponencial/binaria para localizar el cambio comunicado entre P330 (`moreEntries=true`) y P331 (`moreEntries=false`), evitando recorrer secuencialmente las páginas intermedias.
-- [ ] Confirmar directamente P330 y P331: HTTP, recuento de entradas, número de página, `moreEntries`, primer/último `updated` y continuidad de frontera.
+- [x] Confirmar directamente P330 y P331: HTTP, recuento de entradas, número de página, `moreEntries`, primer/último `updated` y comparar las ventanas de 10 claves en la frontera.
 - [x] Caracterizar P332 una vez después de confirmar P331: HTTP 200, página 332, cero entradas y moreEntries=false.
 
-**Límite:** no dar por cerrada la validación de paginación hasta caracterizar P331 y comprobar la frontera P330→P331. No diseñar aún cursor incremental ni implementar sincronizador/parser. Detalle en `docs/CELLAR_POC.md`, sección 12.
+**Límite de aquella comprobación:** la sección 12 reflejaba el estado previo a la confirmación directa. La paginación queda cerrada para esta consulta según la sección 13; estabilidad, inserciones tardías y cursor siguen sin validar. No implementar sincronizador/parser.
 
 
 ### Cierre de validación terminal CELLAR — 26/11/2026
