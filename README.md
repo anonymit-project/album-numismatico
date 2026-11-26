@@ -22,10 +22,10 @@ MVP previsto para 2 usuarios: España (pesetas y euros, incluidas conmemorativas
 ## Estado actual
 
 - Fase 0; no hay implementación funcional del producto.
-- Prototipo visual responsive en `index.html`, publicado mediante GitHub Pages según confirmación del usuario y compartido para recibir feedback; sin backend ni persistencia. Pendientes la revisión propia en Android/escritorio y el análisis del feedback.
+- Prototipo visual responsive en `index.html`, publicado mediante GitHub Pages según confirmación del usuario y compartido para recibir feedback; sin backend ni persistencia. La revisión UX queda diferida y no bloquea la Fase 0; siguen pendientes la prueba propia en Android/escritorio y el análisis del feedback cuando llegue.
 - Mockups conceptuales revisados: Álbum, Mapa y Resumen.
 - Requisitos y decisiones de producto se documentan en `docs/`.
-- Fuentes, licencias, servicios gratuitos y modelo de datos siguen en investigación/validación.
+- Fuentes, licencias, servicios gratuitos y modelo de datos siguen en investigación/validación. La prioridad activa es validar la estructura del modelo con casos representativos; ver `docs/STATE.md` y `docs/BACKLOG.md`.
 
 ## Cómo trabajar
 
