@@ -339,3 +339,15 @@ Esta reordenación no cierra Fase 0 ni autoriza el MVP.
 - [ ] Continuar el resto de tareas de Fase 0; no iniciar SQL ni MVP.
 
 **Resultado:** no se detectaron contradicciones que obliguen a reabrir D-012–D-017. Fase 0 permanece abierta; D-008 intacta; CELLAR aparcado.
+
+
+### Aprobación de P7–P9 — 26/11/2026
+
+- [x] Analizar individualmente P7 (atribución autoridad-emisión), P8 (intención de circulación y unidades nominales de colección) y P9 (uso oficial/de facto), incluyendo alternativas, consecuencias y complejidad.
+- [x] Obtener aprobación expresa del usuario para P7, P8 y P9.
+- [x] Incorporar P7–P9 en `docs/DATA_MODEL.md` y registrar D-018–D-020 en `docs/DECISIONS.md`.
+- [x] Actualizar `docs/MODEL_VALIDATION.md` y la continuidad en `docs/STATE.md`.
+- [ ] Definir vocabularios controlados, precisión temporal, procedencia y reglas conceptuales de validación para las nuevas relaciones/atributos.
+- [ ] Revalidar los seis casos con el modelo ampliado, especialmente Andorra (de facto/diners), Ecuador (emisión no circulante), euro y XOF/XAF (atribución por emisión).
+
+**Límites:** D-008 y D-012–D-017 permanecen intactas; Fase 0 sigue abierta; CELLAR aparcado; no SQL, código de producto, MVP, cambios en `main` ni merge.
