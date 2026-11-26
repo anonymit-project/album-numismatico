@@ -206,15 +206,15 @@ La tabla anterior de 29–45 h corresponde al alcance inicial más amplio y qued
 
 | Tarea | Trabajo incluido | Esfuerzo |
 |---|---|---:|
-| 1. Definir recorrido y jerarquía visual | Priorizar pantallas/estados para la revisión | 0,5–1 h |
-| 2. Maqueta responsive | Navegación, estilo visual, componentes mínimos y datos ficticios | 2–4 h |
-| 3. Recorrido principal | Inicio, emisor, moneda, serie, álbum y ficha | 2–4 h |
-| 4. Interacciones UX esenciales | Tengo/me falta, cantidad, progreso, búsqueda/filtros/orden básicos | 1,5–3 h |
-| 5. Pruebas y correcciones | Navegación táctil, legibilidad y tamaños Android/escritorio | 1,5–3 h |
-| 6. Entrega para revisión | Instrucciones y lista breve de aspectos a evaluar | 0,5–1 h |
-| **Total de construcción** | | **8–16 h** |
+| 1. Definir recorrido y jerarquía visual | Priorizar pantallas/estados para la revisión | 0,25–0,5 h |
+| 2. Maqueta responsive | Navegación, estilo visual y datos ficticios | 1–2 h |
+| 3. Recorrido principal | Inicio, emisor, moneda, serie, álbum y ficha | 1–2 h |
+| 4. Interacciones UX esenciales | Tengo/me falta, cantidad, progreso, búsqueda/filtros/orden básicos | 0,5–1 h |
+| 5. Pruebas y correcciones | Navegación táctil, legibilidad y tamaños Android/escritorio | 1–1,5 h |
+| 6. Entrega para revisión | Instrucciones y lista breve de aspectos a evaluar | 0,25–0,5 h |
+| **Total de construcción** | | **4–8 h** |
 
-**Revisión posterior estimada:** 3–5 h, según el feedback y el número de ajustes.
+**Revisión posterior estimada:** 2–3 h, según el feedback y el número de ajustes.
 
 No se implementan formularios completos de alta/edición, carga o importación simulada, validaciones, procesos administrativos ni simulación detallada de operaciones. Pueden omitirse o mostrarse como elementos visuales sin comportamiento. El criterio de éxito es que el usuario y su amigo puedan evaluar el diseño y recorrer las funciones principales en navegador Android y escritorio.
 
