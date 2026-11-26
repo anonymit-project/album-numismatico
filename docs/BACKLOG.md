@@ -247,3 +247,8 @@ No se implementan formularios completos de alta/edición, carga o importación s
 - [ ] Valorar en la revisión si el mapa plano basta para el prototipo o si merece la pena un globo 3D; no incorporar librerías/cartografía real sin decisión y verificación de coste/licencia.
 
 La estimación inicial (4–8 h) queda complementada por esta ampliación acotada. No se reabre el alcance general ni se considera validada la UX hasta la prueba manual.
+
+
+### Estado de revisión tras publicación — 26/11/2026
+
+El usuario confirma que GitHub Pages está publicado y que ha compartido el prototipo con un amigo. El feedback está pendiente. La publicación se considera completada según confirmación del usuario, no verificada independientemente por el agente. Continúan pendientes la revisión propia en Android y escritorio y la clasificación/priorización del feedback recibido. No considerar validado el prototipo ni cerrar Fase 0.
