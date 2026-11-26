@@ -626,3 +626,29 @@ Esto refuerza la hipótesis de que el problema de materialización afecta a más
 - No se implementó parser, cliente, sincronizador ni código de producto; no se incorporaron datos ni imágenes al catálogo.
 
 **Siguiente tarea atómica:** seguir un `cellarId` real hasta sus metadatos WEMI mediante CELLAR/SPARQL. Mantener Fase 0 y D-008; no diseñar cursor incremental ni implementar automatización.
+
+
+## 16. Seguimiento de un ITEM del feed hasta metadatos WEMI — 26/11/2026
+
+**Estado: prueba manual inconclusa.** Se intentó resolver mediante el editor SPARQL oficial el recurso ITEM observado en la sección 15.
+
+### Recurso consultado
+
+- `cellarId`: `cellar:ed772589-e81d-11f1-b745-01aa75ed71a1.0024.02/DOC_1`
+- URI consultada: `http://publications.europa.eu/resource/cellar/ed772589-e81d-11f1-b745-01aa75ed71a1.0024.02/DOC_1`
+- Consulta: propiedades salientes del URI, seleccionando `?predicate` y `?object`, con límite 100.
+
+### Resultado comunicado
+
+El editor devolvió una respuesta válida con `vars: ["predicate", "object"]` y `bindings: []`: no se obtuvieron triples para esa URI en esa consulta.
+
+Antes se probó una consulta con `UNION`/ `BIND` que produjo un error de compilación Virtuoso SP031 por la variable `resource`; ese error no aporta evidencia sobre la existencia del recurso. La consulta simplificada posterior compiló, pero devolvió cero bindings.
+
+### Conclusión y límites
+
+- No se ha podido seguir este ITEM hasta metadatos WEMI mediante la prueba realizada.
+- El resultado vacío **no demuestra** que el `cellarId` sea inválido, que el recurso no exista o que CELLAR carezca de sus metadatos. Solo acredita que el editor/endpoint y la consulta ejecutada no devolvieron triples para esa URI exacta.
+- No se ha identificado aquí la causa: no se debe inferir un problema del feed, del recurso o del servicio sin otra evidencia.
+- Esta tarea queda cerrada como **inconclusa**, no como validación positiva ni como refutación de CELLAR.
+
+No se ejecutan más consultas en esta iteración. No se implementa parser, cliente, cursor ni sincronizador. Se mantienen Fase 0 y D-008; no se incorporan datos ni imágenes al catálogo.
