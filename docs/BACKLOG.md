@@ -123,3 +123,54 @@ La prueba manual de paginación para la consulta 19–25/11/2026 queda completad
 La segunda muestra fue una entrada `ITEM`, `type=create`, seleccionada en el índice 7 de P331. Repite exactamente los campos plantilla observados en la entrada `EXPRESSION`: `atom:id` con `${item.cellarUri}`, `title=$item.title`, `summary=$item.entrySummary` y `link href=$item.cellarUri`. Los campos `cellarId` y `rootCellarId` sí están materializados. Se marca completada la comparación de dos muestras, no una caracterización general del feed.
 
 **Siguiente acción atómica:** seguir un `cellarId` observado hasta sus metadatos WEMI mediante CELLAR/SPARQL. Mantener pendientes la prueba de DELETE y los valores múltiples de `wemiClasses`. No implementar parser, cliente, cursor ni sincronizador.
+
+
+## Planificación de entregables y estimación — 26/11/2026
+
+Estimación de calendario **orientativa**, suponiendo una persona desarrollando con apoyo de herramientas y 8–10 horas efectivas por semana, feedback del usuario en pocos días y sin bloqueos relevantes de proveedores. Reestimar al cerrar Fase 0. No es una fecha comprometida.
+
+| Entregable | Previsión desde 26/11/2026 | Criterio de aceptación |
+|---|---:|---|
+| Mock-up navegable | 2–4 semanas | Flujos principales enlazados y pantallas de álbum, ficha, colección, importación y ajustes revisables por usuario y amigo; sin backend real. |
+| V1 mínimamente funcional | 3–5 meses | PWA desplegada e instalable; dos usuarios pueden registrarse, mantener colecciones privadas, cargar piezas, ver tengo/falta, importar CSV y consultar KPIs básicos desde móvil. |
+
+La V1 depende del cierre y aprobación expresa de Fase 0. Menos dedicación semanal, retrasos de feedback, decisiones de arquitectura o ampliaciones de alcance desplazan las fechas. No incluir en estas previsiones el mapa/globo, escáner por foto, catálogo mundial exhaustivo, contribuciones públicas ni funciones sociales.
+
+### Inventario priorizado hasta V1
+
+**A. Cerrar Fase 0 y preparar el mock-up (bloqueante)**
+- [ ] Cerrar el modelo de datos con pruebas conceptuales para Andorra, Cuba CUP/CUC, Ecuador, euro, XOF/XAF, peseta y emisores/estados históricos.
+- [ ] Confirmar alcance exacto de V1 y reglas de identidad pieza visual / emisión / ejemplar.
+- [ ] Resolver decisiones mínimas que afectan a las pantallas: escala de conservación, valoración inicial, offline (recomendación: lectura offline; escritura sincronizada se pospone), moderación y privacidad.
+- [ ] Terminar verificación comparativa de backend, hosting, autenticación, almacenamiento, backups y FX; documentar cuotas y límites actuales.
+- [ ] Definir un conjunto semilla pequeño, con procedencia por campo y derechos claros; usar placeholders para imágenes no autorizadas.
+- [ ] Crear mock-up navegable de inicio, álbum, detalle de pieza, alta/edición, importación CSV, perfil/ajustes y estados vacíos; revisión del usuario y su amigo.
+- [ ] Obtener aprobación expresa del cierre de Fase 0 y congelar el alcance de V1.
+
+**B. Construcción V1 (solo tras aprobar Fase 0)**
+- [ ] Crear estructura de aplicación TypeScript/React/Vite y PWA, lint, tipos, tests y CI.
+- [ ] Configurar backend/BD, migraciones versionadas, autenticación y políticas de acceso por fila; probar aislamiento entre dos usuarios.
+- [ ] Implementar modelo de catálogo y colección con integridad referencial, alias/versionado básico y procedencia.
+- [ ] Cargar catálogo semilla acotado y validado; no intentar cubrir el mundo en V1.
+- [ ] Implementar álbum móvil: selector de emisor, moneda/tipo, orden, filtros, tengo/falta, cantidades y detalle.
+- [ ] Implementar alta/edición manual y búsqueda dentro del catálogo semilla.
+- [ ] Implementar importación CSV con plantilla, vista previa, validación, errores por fila y confirmación; XLSX y asistente por lotes se posponen.
+- [ ] Implementar KPIs básicos y exportación CSV/JSON como respaldo del usuario.
+- [ ] Añadir modo oscuro, accesibilidad básica, estados de carga/error/vacío y comportamiento adaptable.
+- [ ] Añadir tests unitarios/integración y un flujo E2E: registro → añadir piezas → ver álbum → importar → exportar.
+- [ ] Desplegar entorno de producción gratuito, configurar variables/secretos y documentar restauración/exportación.
+- [ ] Prueba de aceptación con el usuario y su amigo en Android/móvil; corregir bloqueantes antes de declarar V1.
+
+**C. Posponer expresamente hasta después de V1**
+- [ ] Mapa plano y globo 3D.
+- [ ] Escáner/identificación por foto.
+- [ ] Importadores automáticos CELLAR, BEAC/BCEAO y catálogo global; la investigación no equivale a autorización ni a implementación.
+- [ ] Importación XLSX avanzada y asistente por lotes.
+- [ ] FX histórico/amplio, valoración avanzada y KPIs avanzados.
+- [ ] Contribuciones moderadas, compartición social, intercambio y gamificación.
+
+### Actualización de la prueba CELLAR
+
+- [x] Intentar seguir un ITEM real observado en Atom hasta triples/metadatos WEMI mediante una consulta SPARQL de propiedades salientes.
+- Resultado: `bindings: []` para la URI consultada; una consulta previa con UNION/BIND dio error de compilación Virtuoso SP031. Prueba cerrada como **inconclusa**: no acredita inexistencia o invalidez del recurso. Evidencia en `docs/CELLAR_POC.md`, sección 16.
+- [ ] Resolver en una iteración futura, si se prioriza expresamente, por qué esa URI no devuelve triples. No convertir esta prueba fallida en una tarea de automatización ni en un bloqueo para el mock-up.
