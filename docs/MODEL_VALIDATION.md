@@ -102,3 +102,19 @@ Fase 0 permanece abierta. CELLAR sigue aparcado. El MVP continúa bloqueado hast
 - XOF: [BCEAO — Presentación](https://www.bceao.int/content/presentation-de-la-bceao); [BCEAO — Emisión de signos monetarios](https://www.bceao.int/fr/publications/ndeg1-emission-des-signes-monetaires-et-entretien-de-la-circulation-fiduciaire).
 - XAF: [BEAC — Preguntas frecuentes](https://www.beac.int/en/faqs/); [BEAC — Historia de la emisión monetaria en África Central](https://www.beac.int/billets-pieces/histoire-franc-cfa/histoire-de-lemission-monetaire-afrique-centrale/).
 - Peseta: [Banco de España — Tipos irrevocables](https://www.bde.es/wbe/es/sobre-banco/actividad-europea/eurosistema-sebc/historia-eurosistema/euro/tipos-irrevocables/); [Comisión Europea — España y el euro](https://economy-finance.ec.europa.eu/euro/eu-countries-and-euro/spain-and-euro_en).
+
+
+## 8. Revalidación con vocabularios y reglas conceptuales — 26/11/2026
+
+La especificación complementaria está en [VALIDATION_RULES.md](VALIDATION_RULES.md). Se contrastaron expresamente los seis casos con los vocabularios y reglas:
+
+- **Andorra:** uso de peseta/franco como `uses` + `de_facto`; euro como uso oficial; autorización de acuñación separada; diners conservados como unidad nominal no monetaria.
+- **Cuba:** CUP/CUC diferenciadas; coexistencia y retirada mediante hechos temporales; no imponer factor universal ni confundir retirada, curso legal y canje.
+- **Ecuador:** sustitución sucre→USD con factor destino/origen 1/25.000; centavos como subunidad de USD; pieza de 1 sucre con intención no circulante sin inferir hechos jurídicos.
+- **Euro:** responsabilidades legales y operativas por emisión; Estados usuarios y autoridades diferenciados; adopción contable, efectivo y estados de monedas anteriores separados.
+- **XOF/XAF:** monedas y autoridades BCEAO/BEAC separadas; Estados miembros como usuarios/jurisdicciones; ninguna transición entre XOF y XAF.
+- **Peseta:** sustitución ESP→EUR con factor 500/83193; adopción, efectivo, fin de curso legal y fin de canje como hitos distintos.
+
+**Resultado:** no se identifica contradicción que requiera reabrir D-001–D-020 ni modificar la estructura aprobada. Las advertencias más relevantes son de evidencia y completitud, especialmente para Cuba, y de no inferir relaciones o hitos a partir de otros conceptos.
+
+La validación es conceptual y documental. No se ha ejecutado un validador automatizado, ni se han auditado registros de catálogo individuales. No constituye cierre de Fase 0.
