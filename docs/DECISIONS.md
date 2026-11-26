@@ -52,3 +52,14 @@ Registro vivo de decisiones de producto. Las propuestas no aprobadas se etiqueta
 - **Aplicación:** Wikidata para datos estructurados CC0; Wikimedia Commons solo para archivos cuya licencia individual permita el uso previsto y tras registrar atribución y condiciones; Natural Earth para cartografía en dominio público; fuentes oficiales para verificar hechos, sin reutilizar automáticamente sus imágenes o textos protegidos. Numista queda excluida como fuente de importación o integración mientras no exista una licencia pública inequívoca compatible con el uso previsto.
 - **Motivo:** evitar riesgos contractuales y de propiedad intelectual, mantener el presupuesto objetivo de 0 € y no añadir decisiones legales innecesarias al usuario.
 - **Consecuencia:** primar catálogo pequeño y fiable, aunque haya menos imágenes o cobertura; las fichas sin imagen usarán placeholder.
+
+
+## D-009 — Prototipo interactivo previo al cierre de Fase 0
+
+- **Estado:** Aprobada.
+- **Decisión:** se autoriza construir un prototipo desechable de validación UX antes de aprobar el cierre de Fase 0. Debe ser web responsive, móvil primero y usable también en ordenador. Se probará en navegador móvil Android y escritorio.
+- **Alcance:** navegación y flujos simulados con datos ficticios claramente identificados; álbum, emisores/monedas/series, ficha, marcar posesión y faltantes, cantidades, búsqueda, filtros, orden, indicadores básicos, simulación de alta/edición e importación y ajustes cuando aporten valor a la validación.
+- **Límites:** sin backend, autenticación real, sincronización, persistencia de servidor, catálogo real, importación efectiva, servicios externos ni imágenes de terceros. Los cambios solo se conservan durante la sesión del prototipo. No crear arquitectura de producción ni reutilizar el prototipo como base automática del MVP.
+- **Separación de Fase 0:** esta autorización es una excepción limitada para validar experiencia de uso y viabilidad de interfaz; **no** supone cierre de Fase 0, aprobación del modelo de datos, autorización para iniciar el MVP ni permiso para incorporar código de producto.
+- **Criterio de salida:** el usuario y su amigo pueden recorrer los flujos principales en móvil y escritorio, registrar problemas y decidir qué ajustar antes de cerrar Fase 0.
+- **Motivo:** reducir incertidumbre de diseño y usabilidad antes de comprometer arquitectura y desarrollo de producto.
