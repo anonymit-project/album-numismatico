@@ -85,3 +85,45 @@ Registro vivo de decisiones de producto. Las propuestas no aprobadas se etiqueta
 - **Prioridad inmediata:** validar estructuralmente `docs/DATA_MODEL.md` con Andorra, Cuba CUP/CUC, Ecuador, euro, XOF/XAF y peseta, contrastando los requisitos con `docs/CATALOG_SOURCES.md`.
 - **Límites:** Fase 0 permanece abierta; esta decisión no aprueba su cierre ni autoriza código de producto/MVP. D-008 sigue vigente. La investigación CELLAR queda aparcada salvo petición expresa.
 - **Motivo:** el feedback visual puede recogerse sobre una versión funcional más adelante y no justifica detener la reducción de riesgos de catálogo y modelo.
+
+## D-012 — Autoridad monetaria independiente
+
+- **Estado:** Aprobada (2026-11-26).
+- **Decisión:** modelar `monetary_authority` como entidad institucional independiente de `issuer`, relacionada con monedas mediante relaciones temporales y tipadas que identifiquen sus funciones (política monetaria, autoridad monetaria o emisión de billetes).
+- **Límites:** no sustituye al emisor político/legal de una pieza. Cecas e imprentas son productores físicos, no autoridades por fabricar. No exigir poblar autoridades históricas sin fuentes suficientes.
+- **Motivo:** representar BCEAO/BEAC, BCE/Eurosistema, bancos centrales nacionales y autoridades históricas sin confundir institución, territorio y emisor.
+
+## D-013 — Roles temporales de la relación emisor-moneda
+
+- **Estado:** Aprobada (2026-11-26).
+- **Decisión:** sustituir `issuer_currency.issues_own` por roles tipados y temporalmente delimitados. Roles iniciales: `uses`, `legally_issues` y `has_authorized_coinage`; un emisor puede tener varios roles documentados.
+- **Límites:** uso no implica competencia legal de emisión. Acuñación/impresión física y membresía en una unión monetaria se modelan por separado. Cada rol requiere procedencia.
+- **Motivo:** distinguir estados usuarios, emisores legales y estados autorizados a emitir moneda propia dentro de una moneda compartida.
+
+## D-014 — Cronología de estados monetarios
+
+- **Estado:** Aprobada (2026-11-26).
+- **Decisión:** representar cambios legales/económicos mediante eventos tipados, fechados y asociados al ámbito afectado (moneda, relación emisor-moneda o emisión y, cuando proceda, jurisdicción). Tipos iniciales: introducción, inicio de circulación/curso legal, fin de curso legal, retirada de circulación, fin de canje y desmonetización.
+- **Límites:** no usar un único estado global como verdad primaria. Una etiqueta podrá derivarse o ser descriptiva. No inventar fechas ausentes. «Conmemorativa» o «no destinada a circulación» es característica de emisión, no estado legal de moneda.
+- **Motivo:** distinguir coexistencia, retirada, canje y desmonetización, que pueden ocurrir en fechas diferentes y afectar a ámbitos distintos.
+
+## D-015 — Reutilización de caras en diseños
+
+- **Estado:** Aprobada (2026-11-26).
+- **Decisión:** permitir caras/anversos/reversos reutilizables mediante `design_side`; `catalog_design` referencia la pareja concreta de caras.
+- **Límites:** identidad visual sigue siendo la combinación de anverso y reverso conforme a D-002. Compartir una cara no fusiona diseños ni crea fichas por cara. La reutilización de imágenes sigue sujeta a D-008.
+- **Motivo:** evitar duplicación de caras comunes, especialmente en monedas euro, sin alterar la identidad del álbum.
+
+## D-016 — Transiciones monetarias tipadas
+
+- **Estado:** Aprobada (2026-11-26).
+- **Decisión:** representar relaciones dirigidas entre monedas mediante `currency_transition`, con tipo inicial `replacement` o `redenomination`, periodo y factor exacto opcional (unidades destino por unidad origen).
+- **Límites:** no asumir que sustitución implica conversión fija. La coexistencia ordinaria se representa con periodos/eventos de uso y estado, no como transición. Registrar circulación paralela solo si existe régimen transitorio específico documentado. XOF y XAF siguen siendo monedas distintas.
+- **Motivo:** distinguir sustitución, redenominación y coexistencia sin relaciones ambiguas.
+
+## D-017 — Denominaciones y valores faciales exactos
+
+- **Estado:** Aprobada (2026-11-26).
+- **Decisión:** conservar denominación original y añadir, cuando esté documentado, valor facial normalizado como racional exacto (numerador/denominador enteros) respecto de la unidad principal. Se podrá conservar etiqueta de unidad/subunidad.
+- **Límites:** no usar coma flotante ni crear monedas independientes para subunidades sin existencia monetaria/legal propia. Para sistemas históricos no decimales o datos incompletos, conservar texto y normalizar solo con equivalencia acreditada.
+- **Motivo:** permitir ordenación/comparación fiables sin confundir subunidades —como el centavo ecuatoriano— con monedas independientes.
