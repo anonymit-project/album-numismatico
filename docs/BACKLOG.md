@@ -308,8 +308,21 @@ Esta reordenación no cierra Fase 0 ni autoriza el MVP.
 
 - [x] Analizar individualmente las seis propuestas y sus alternativas, consecuencias, complejidad y cobertura de casos representativos.
 - [x] Documentar recomendaciones y dependencias en `docs/MODEL_REVIEW.md`.
-- [ ] Obtener aprobación/rechazo expreso del usuario para cada propuesta P1–P6.
-- [ ] Tras la aprobación, actualizar únicamente las partes autorizadas de `docs/DATA_MODEL.md` y registrar las decisiones aprobadas en `docs/DECISIONS.md`; actualizar después `STATE.md` y este backlog.
-- [ ] Revalidar la matriz de casos tras consolidar las decisiones aprobadas.
+- [x] Obtener aprobación expresa del usuario para las seis propuestas P1–P6.
+- [x] Consolidar las seis propuestas aprobadas en `docs/DATA_MODEL.md`.
+- [x] Registrar D-012 a D-017 en `docs/DECISIONS.md` y actualizar `STATE.md`.
+- [ ] Revalidar la matriz de casos con el modelo consolidado y concretar vocabularios/reglas conceptuales.
 
-**Nota:** las recomendaciones de `MODEL_REVIEW.md` no son decisiones aprobadas. D-008 se mantiene; Fase 0 continúa abierta; CELLAR aparcado; MVP bloqueado.
+**Nota:** P1–P6 están aprobadas y consolidadas en D-012–D-017. D-008 se mantiene; Fase 0 continúa abierta; CELLAR aparcado; MVP bloqueado.
+
+
+### Consolidación aprobada P1–P6 — 26/11/2026
+
+- [x] Obtener aprobación expresa del usuario para P1–P6.
+- [x] Incorporar las seis propuestas aprobadas en `docs/DATA_MODEL.md`.
+- [x] Registrar D-012 a D-017 en `docs/DECISIONS.md`.
+- [x] Actualizar `docs/STATE.md` con el alcance y límites de la aprobación.
+- [ ] Validar el modelo consolidado con Andorra, Cuba CUP/CUC, Ecuador, euro, XOF/XAF y peseta; comprobar cronologías, roles, transiciones y valores faciales.
+- [ ] Definir vocabularios controlados y reglas conceptuales de validación sin iniciar esquema SQL ni código de producto.
+
+**Límites vigentes:** D-008 permanece intacta; D-002 mantiene la identidad por pareja de caras; Fase 0 abierta; CELLAR aparcado; MVP bloqueado.
