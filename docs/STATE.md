@@ -319,3 +319,14 @@ PWA móvil instalable; autenticación; colección privada; catálogo semilla lim
 ### Siguiente paso exacto
 
 Continuar Fase 0 por la tarea de mayor desbloqueo: cerrar el modelo de datos con los casos límite ya definidos y resolver decisiones mínimas de UX/alcance del MVP. Preparar mock-up navegable tras acordar esos flujos. No iniciar código de producto hasta aprobación expresa del cierre de Fase 0.
+
+
+## 17. Decisión de prototipado y siguiente iteración — 26/11/2026
+
+- El usuario ha aprobado que la siguiente tarea sea construir un **prototipo interactivo responsive**, móvil primero y también usable en ordenador, para validar la viabilidad de la experiencia de la app.
+- D-009 autoriza expresamente este prototipo antes del cierre de Fase 0, con límites estrictos: datos ficticios, sin backend, autenticación, sincronización, persistencia real, catálogo ni servicios externos. No es el MVP ni código de producto.
+- El objetivo de la siguiente iteración es implementar el prototipo y dejarlo listo para revisión del usuario y su amigo en navegador Android y escritorio.
+- La planificación detallada y las estimaciones de dedicación están en docs/BACKLOG.md, sección «Planificación de entregables y estimación».
+- **Estimación inicial:** 29–45 horas para construir el prototipo (aprox. 4–6 jornadas de 7–8 h), más 6–10 horas para revisión y ajustes. Son rangos orientativos, sujetos a la estructura existente del repositorio y al feedback.
+- La investigación CELLAR queda cerrada como inconclusa en su última prueba (sección 16 de docs/CELLAR_POC.md); no es el siguiente paso.
+- Fase 0 continúa abierta. No se ha aprobado el MVP ni se ha modificado main.
