@@ -127,3 +127,25 @@ Registro vivo de decisiones de producto. Las propuestas no aprobadas se etiqueta
 - **Decisión:** conservar denominación original y añadir, cuando esté documentado, valor facial normalizado como racional exacto (numerador/denominador enteros) respecto de la unidad principal. Se podrá conservar etiqueta de unidad/subunidad.
 - **Límites:** no usar coma flotante ni crear monedas independientes para subunidades sin existencia monetaria/legal propia. Para sistemas históricos no decimales o datos incompletos, conservar texto y normalizar solo con equivalencia acreditada.
 - **Motivo:** permitir ordenación/comparación fiables sin confundir subunidades —como el centavo ecuatoriano— con monedas independientes.
+
+
+## D-018 — Atribución de autoridad monetaria por emisión
+
+- **Estado:** Aprobada (2026-11-26).
+- **Decisión:** permitir una relación opcional y temporal entre `catalog_issue` y `monetary_authority`, con rol controlado y procedencia. Roles iniciales: `legal_issuer` (competencia/responsabilidad legal de emisión) y `operational_issuer` (ejecución o puesta en circulación).
+- **Límites:** no exigir la relación cuando no aporte precisión o falte evidencia. Cecas e imprentas siguen siendo productores físicos, no autoridades. No confundir emisión legal con puesta en circulación.
+- **Motivo:** atribuir responsabilidades institucionales a emisiones concretas cuando una moneda y periodo incluyen varias autoridades o funciones.
+
+## D-019 — Intención de circulación y unidades nominales de colección
+
+- **Estado:** Aprobada (2026-11-26).
+- **Decisión:** incorporar en `catalog_issue` un atributo opcional y controlado de intención de circulación, con valores iniciales `intended_for_circulation` y `not_intended_for_circulation`. Conservar denominaciones y unidades nominales originales de piezas de colección aunque la unidad no sea una moneda oficial independiente.
+- **Límites:** ausencia del atributo significa desconocido; no inferir que una pieza no circuló por falta de evidencia. Las categorías de prueba/patrón quedan separadas. No crear una entidad `currency` para una unidad nominal no oficial (por ejemplo, diners) por el mero hecho de aparecer en una pieza. Normalizar solo cuando exista una unidad de referencia documentada.
+- **Motivo:** representar emisiones no circulantes y piezas de colección sin inventar monedas legales ni mezclar intención con estado jurídico efectivo.
+
+## D-020 — Naturaleza oficial o de facto del uso monetario
+
+- **Estado:** Aprobada (2026-11-26).
+- **Decisión:** añadir a `issuer_currency` un calificador opcional `use_basis`, con valores iniciales `official` y `de_facto`, independiente del rol temporal `uses`.
+- **Límites:** registrar el calificador solo cuando exista evidencia suficiente. No deducir curso legal, adopción oficial ni competencia de emisión a partir del uso de facto; los eventos jurídicos y los demás roles de D-013 permanecen independientes.
+- **Motivo:** distinguir la adopción oficial de la circulación de facto de monedas extranjeras, como en Andorra antes del euro.
