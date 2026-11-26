@@ -424,3 +424,33 @@ Retomar la validación del modelo conceptual y su encaje con el catálogo, usand
 
 ### Siguiente paso exacto
 Realizar una revisión estructural de `docs/DATA_MODEL.md` contra los casos enumerados y la evidencia de `docs/CATALOG_SOURCES.md`. Entregar una matriz caso → entidades/relaciones necesarias → cobertura actual → hueco o ambigüedad → propuesta mínima. No modificar el modelo como decisión aprobada sin explicar el impacto y distinguir propuesta de decisión consolidada.
+
+
+## Validación estructural del modelo numismático — 26/11/2026
+
+**Resultado:** revisión conceptual de `docs/DATA_MODEL.md` frente a Andorra, Cuba CUP/CUC, Ecuador (sucre, USD y moneda fraccionaria nacional), euro, XOF/XAF, peseta y monedas históricas, contrastada con `docs/CATALOG_SOURCES.md`.
+
+### Conclusiones
+- La separación actual entre emisor, moneda, relación temporal, diseño, emisión y posesión es una base válida; no basta aún para expresar con precisión todas las relaciones de autoridad y estatus monetario.
+- Huecos principales detectados: distinguir entidad política de autoridad monetaria; roles explícitos en la relación emisor-moneda; estados y fechas independientes de circulación/retirada/canje; transición monetaria con coexistencia y conversión; identidad por caras compartibles; denominaciones estructuradas.
+- Casos críticos: Ecuador (USD utilizado y fraccionaria nacional), euro (múltiples emisores y cara común), XOF/XAF (autoridad supranacional distinta de estados usuarios), Cuba (coexistencia CUP/CUC y retirada), monedas históricas (emisores/autoridades extinguidos y sucesión monetaria).
+- Se prepararon seis propuestas no aprobadas: P1 autoridad emisora; P2 roles de relación emisor-moneda; P3 estado monetario de emisión; P4 modelado de caras; P5 transiciones monetarias; P6 denominaciones estructuradas.
+
+### Fuentes y límites de poblamiento
+- Euro: BCE/Comisión/DOUE y CELLAR ofrecen buen soporte para metadatos de emisiones y avisos; los derechos de las imágenes de caras nacionales y comunes siguen sujetos a verificación separada.
+- Andorra: BCE y AFA ofrecen metadatos de euro y acuerdo monetario; no hay licencia abierta general verificada para imágenes institucionales.
+- XOF/XAF: BCEAO y BEAC publican familias y datos técnicos en HTML/PDF; no se identificó API/dataset común ni licencia abierta general para imágenes. Extracción controlada con revisión humana.
+- Ecuador: BCE/Museo Numismático permiten contrastar sucre y fraccionarias USD; no se identificó licencia abierta general para imágenes.
+- Peseta: Banco de España y Commons ayudan a localizar/contrastar piezas, pero las reglas de reproducción de moneda/billete se deben verificar por separado de la licencia fotográfica.
+- Cuba: fuentes normativas y referencias secundarias permiten un esqueleto histórico, pero no existe en lo revisado un catálogo oficial estructurado y reutilizable; no automatizar ni importar imágenes.
+- Wikidata CC0 puede enriquecer entidades, códigos y relaciones, pero no es autoridad numismática única. ISO 4217/3166 aportan identificadores, no un catálogo de emisiones. Natural Earth es cartografía, no fuente de soberanía monetaria.
+
+### Estado y límites
+- No se modifica `docs/DATA_MODEL.md` ni `docs/DECISIONS.md`: las propuestas requieren revisión y aprobación expresa.
+- D-008 permanece vigente. Acceso institucional o licencia de fotografía no implica permiso para reproducir el diseño monetario.
+- Fase 0 sigue abierta; no se autoriza MVP ni código de producto.
+- D-011 sigue vigente: feedback UX diferido, no cancelado; revisión Android/escritorio pendiente.
+- CELLAR permanece aparcado salvo petición expresa.
+
+### Siguiente paso exacto
+Revisar y decidir P1–P6. Antes de rediseñar el modelo completo, acordar si se acepta la separación de autoridad monetaria y los roles explícitos de las relaciones. Después concretar el mínimo esquema conceptual revisado y volver a probarlo con los mismos casos. No iniciar implementación.
