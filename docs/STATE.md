@@ -2,7 +2,7 @@
 
 **Fase:** 0 — descubrimiento, sin código de producto.
 **Criterio de reutilización:** solo fuentes con derechos de uso claros y compatibles; no se solicitarán permisos particulares.
-**Actualizado:** 2026-11-25
+**Actualizado:** 2026-11-26
 **Rama de trabajo:** `research/source-automation-2026-11`
 **Rama base:** `research/catalog-coverage-2026-11`
 **Pull request #1:** [abierto y en borrador](https://github.com/anonymit-project/album-numismatico/pull/1), sin fusionar ni modificar.
@@ -405,3 +405,22 @@ Esta sección actualiza la situación de entrega descrita en los apartados anter
 
 ### Próximo paso exacto
 Esperar el feedback del amigo. Cuando llegue, clasificar cada observación como usabilidad, diseño, funcionalidad o preferencia personal; evaluar impacto/esfuerzo y proponer una ronda acotada de correcciones. En paralelo o después, realizar la revisión propia en Android y escritorio. No ampliar el prototipo mientras no haya evidencia concreta que lo justifique.
+
+
+## Reorientación del trabajo tras publicar el prototipo — 26/11/2026
+
+### Decisión operativa vigente
+No se esperará el feedback del prototipo para continuar con las tareas de descubrimiento. La validación UX queda **diferida, pero no cancelada**: el usuario ya ha publicado la demo en GitHub Pages y la ha compartido con un amigo; se recogerá y aplicará el feedback cuando esté disponible. La revisión propia en Android y escritorio también queda pendiente, pero ninguna de estas actividades bloquea el trabajo actual de Fase 0.
+
+### Trabajo activo
+Retomar la validación del modelo conceptual y su encaje con el catálogo, usando casos representativos: Andorra, Cuba (CUP/CUC), Ecuador (sucre/USD y moneda fraccionaria nacional), euro, XOF/XAF y peseta, además de emisores/monedas históricos cuando afecten a las relaciones temporales. Partir de `docs/DATA_MODEL.md` y contrastar con la evidencia y limitaciones de `docs/CATALOG_SOURCES.md`. El objetivo inmediato es detectar huecos estructurales y precisar qué entidades, relaciones, vigencias y procedencia requiere el modelo; no crear todavía un catálogo exhaustivo ni importar datos.
+
+### Límites que no cambian
+- Fase 0 sigue abierta. No se ha aprobado su cierre ni el inicio del MVP.
+- No escribir código de producto ni convertir el prototipo en base de producción.
+- Mantener D-008: no incorporar datos o imágenes sin derechos compatibles verificados.
+- La investigación CELLAR queda aparcada; no reanudar parser, feed, cursor o sincronizador salvo petición expresa.
+- La validación de backend/hosting, privacidad, conservación, valoración, mapa y catálogo semilla sigue pendiente.
+
+### Siguiente paso exacto
+Realizar una revisión estructural de `docs/DATA_MODEL.md` contra los casos enumerados y la evidencia de `docs/CATALOG_SOURCES.md`. Entregar una matriz caso → entidades/relaciones necesarias → cobertura actual → hueco o ambigüedad → propuesta mínima. No modificar el modelo como decisión aprobada sin explicar el impacto y distinguir propuesta de decisión consolidada.
