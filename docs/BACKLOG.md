@@ -351,3 +351,18 @@ Esta reordenación no cierra Fase 0 ni autoriza el MVP.
 - [ ] Revalidar los seis casos con el modelo ampliado, especialmente Andorra (de facto/diners), Ecuador (emisión no circulante), euro y XOF/XAF (atribución por emisión).
 
 **Límites:** D-008 y D-012–D-017 permanecen intactas; Fase 0 sigue abierta; CELLAR aparcado; no SQL, código de producto, MVP, cambios en `main` ni merge.
+
+
+## Vocabularios y validación conceptual — 26/11/2026
+
+- [x] Definir vocabularios iniciales para roles emisor-moneda, calificador de uso, roles autoridad-emisión, intención de circulación, eventos monetarios, transiciones y tipos de caras.
+- [x] Definir vocabularios auxiliares para tipos de emisor/autoridad, procedencia y estado de verificación.
+- [x] Especificar precisión de fechas, intervalos de vigencia, cronología de eventos y reglas de solapamiento.
+- [x] Definir reglas de procedencia por afirmación, tratamiento de fuentes contradictorias y evidencia derivada.
+- [x] Definir validaciones entre entidades, relaciones, factores racionales, códigos externos y eventos.
+- [x] Clasificar errores, advertencias e información sin convertir datos desconocidos en errores.
+- [x] Contrastar la especificación con Andorra, Cuba CUP/CUC, Ecuador, euro, XOF/XAF y peseta.
+- [ ] Revisar y aprobar por el usuario los vocabularios/reglas propuestos antes de convertirlos en especificación cerrada de Fase 0.
+- [ ] En una fase posterior, traducir reglas aprobadas a esquema físico y tests; no iniciar antes del cierre de Fase 0 y autorización expresa.
+
+**Documento:** [docs/VALIDATION_RULES.md](VALIDATION_RULES.md). La tarea conceptual queda preparada para revisión; no equivale a validación automatizada ni a cierre de Fase 0.
