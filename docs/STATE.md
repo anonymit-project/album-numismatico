@@ -476,3 +476,15 @@ El usuario ha aprobado expresamente las seis propuestas P1–P6 según las recom
 - La aprobación consolida el modelo conceptual, no un esquema SQL ni autoriza el MVP o código de producto.
 - **Fase 0 sigue abierta.** CELLAR continúa aparcado. No se modifica `main`, no se fusionan ramas ni se abre PR.
 - Pendiente: validar el modelo actualizado con casos representativos y concretar vocabularios/reglas conceptuales antes de proponer el cierre de Fase 0.
+
+
+## Validación del modelo consolidado — 26/11/2026
+
+- Validado conceptualmente el modelo consolidado con Andorra, Cuba CUP/CUC, Ecuador sucre/USD, euro, XOF/XAF y peseta; matriz y razonamiento en `docs/MODEL_VALIDATION.md`.
+- **Resultado:** cobertura satisfactoria de las relaciones principales. No se detectan contradicciones que justifiquen reabrir D-012–D-017.
+- Casos confirmados: coexistencia CUP/CUC sin factor universal; sucre→USD con factor exacto; fraccionaria ecuatoriana denominada en USD; euro con responsabilidades diferentes para billetes/monedas; XOF y XAF separados; peseta→EUR con transición y eventos cronológicos diferenciados.
+- Identificados tres huecos de especificación pendientes de decisión: P7 atribución de autoridad por emisión; P8 intención de circulación y unidad nominal de colección; P9 distinción entre uso oficial y uso de facto.
+- No se modifican `DATA_MODEL.md` ni `DECISIONS.md` en esta iteración: P7–P9 son propuestas, no decisiones aprobadas. D-008 y D-012–D-017 permanecen intactas.
+- Fase 0 continúa abierta; CELLAR aparcado; sin SQL, código de producto, cambios en `main`, merges ni PR.
+
+**Siguiente paso exacto:** revisar y decidir P7–P9. Después, si se aprueban, incorporar solo los ajustes mínimos al modelo y definir vocabularios/reglas conceptuales. No iniciar el MVP.
