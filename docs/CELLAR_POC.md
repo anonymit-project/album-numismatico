@@ -501,3 +501,61 @@ No se recorrieron secuencialmente P1–P329. La búsqueda binaria no registró l
 ### Siguiente tarea atómica recomendada
 
 Inspeccionar una entrada Atom real en bruto para resolver los campos de identidad (`id`, `cellarId`, `rootCellarId`) y sus relaciones, sin diseñar todavía un cursor ni implementar sincronización.
+
+
+## 14. Inspección de una entrada Atom real e identidad de evento/recurso — 26/11/2026
+
+**Estado:** prueba manual positiva de inspección XML; semántica del identificador de evento aún no resuelta.
+
+### Petición reproducible
+
+El usuario ejecutó desde PowerShell una petición a:
+
+    https://publications.europa.eu/webapi/notification/ingestion?startDate=2026-11-19&endDate=2026-11-25&page=331
+
+Con `Accept: application/atom+xml` y `Invoke-WebRequest -UseBasicParsing`. Resultado: HTTP 200, `Content-Type: text/xml;charset=UTF-8`. Se seleccionó la primera entrada y se mostró su `OuterXml` sin transformación.
+
+### XML observado
+
+La entrada contiene, entre otros, estos valores exactos:
+
+| Elemento | Namespace | Valor |
+|---|---|---|
+| `atom:id` | `http://www.w3.org/2005/Atom` | `${item.cellarUri}_2026-11-24T23:43:56.595+01:00` |
+| `atom:updated` | `http://www.w3.org/2005/Atom` | `2026-11-24T23:43:56.595+01:00` |
+| `notifEntry:cellarId` | `http://publications.europa.eu/atom/notificationEntry` | `cellar:36f412cf-e80d-11f1-b745-01aa75ed71a1.0004` |
+| `notifEntry:rootCellarId` | `http://publications.europa.eu/atom/notificationEntry` | `cellar:36f412cf-e80d-11f1-b745-01aa75ed71a1` |
+| `notifEntry:type` | `http://publications.europa.eu/atom/notificationEntry` | `update` |
+| `notifEntry:wemiClass` | `http://publications.europa.eu/atom/notificationEntry` | `EXPRESSION` |
+
+Otros campos observados:
+
+- `title` contiene literalmente `$item.title` y `summary` contiene `$item.entrySummary`; no son títulos/resúmenes reales en esta respuesta.
+- `link href` contiene literalmente `$item.cellarUri`; tampoco es un enlace de recurso utilizable.
+- `classes/class` contiene `http://publications.europa.eu/ontology/cdm#expression`, coherente con `wemiClass=EXPRESSION`.
+- `identifiers/identifier` contiene `consolidation:2013L0036%2F20270111.CES` y `celex:02013L0036-20270111.CES`.
+- `rootIdentifiers/rootIdentifier` contiene `consolidation:2013L0036%2F20270111`, `celex:02013L0036-20270111` y `eli:dir:2013:36:2027-01-11`.
+- La entrada es un evento `update` para una `EXPRESSION`; los identificadores específicos llevan sufijo `.CES`, mientras los identificadores raíz no lo llevan.
+
+### Interpretación prudente
+
+1. En esta muestra, `cellarId` identifica el recurso CELLAR concreto notificado: una Expression, con sufijo `.0004`.
+2. `rootCellarId` identifica la raíz CELLAR común, sin sufijo de expresión. La relación concreta se observa en esta muestra, pero una sola entrada no establece todas las reglas de la jerarquía.
+3. `wemiClass` y la URI CDM corroboran que el recurso notificado es una Expression.
+4. `identifiers` y `rootIdentifiers` aportan identificadores externos de la expresión y del documento raíz (CELEX, consolidation y ELI), útiles para enlazar con metadatos/documentos WEMI.
+5. **No se ha identificado un valor válido de `atom:id` para el evento:** contiene la plantilla literal `${item.cellarUri}`. Por tanto, no se puede afirmar que la clave de evento esté bien formada ni usarla para deduplicar. Tampoco debe sustituirse automáticamente por `cellarId|updated`.
+6. La plantilla en `title`, `summary` y `link href` sugiere un problema de expansión/renderizado de varios campos de la entrada, no solo de `id`. La respuesta HTTP 200 y el XML bien formado no garantizan que esos campos estén materializados.
+
+### Límites
+
+- Se inspeccionó una única entrada (primera de P331), que corresponde a un documento legislativo consolidado y no a un aviso numismático. Es evidencia de estructura del feed, no de cobertura numismática.
+- No se ha seguido este `cellarId` hasta una respuesta SPARQL o metadatos WEMI independientes.
+- No se ha comparado la misma entrada con otro evento ni con otras clases WEMI.
+- No se demuestra unicidad global de `cellarId`, `rootCellarId`, `updated` ni `cellarId|updated`.
+- No se han probado eventos DELETE, múltiples valores de `wemiClasses` ni la estabilidad de identificadores entre eventos.
+
+### Siguiente prueba atómica
+
+Inspeccionar otra entrada real, preferiblemente de clase `ITEM` o `WORK`, y comprobar si `id`, `title`, `summary` y `link href` vuelven a contener plantillas. Después, en una tarea separada, seguir un `cellarId` real hasta sus metadatos WEMI mediante CELLAR/SPARQL. No diseñar todavía un cursor ni implementar parser/sincronizador.
+
+**No se ha escrito código de producto, parser ni cliente. No se incorporan datos ni imágenes al catálogo. Se mantienen Fase 0 y D-008.**
