@@ -391,3 +391,17 @@ Crear el primer corte navegable con diseño responsive y datos ficticios, limita
 
 ### Siguiente paso exacto
 - Abrir la vista previa y probar en escritorio y Android la navegación Mapamundi ↔ emisor y Álbum → Billetes → Ficha. Recoger feedback antes de otra ronda.
+
+
+## Estado de publicación y revisión externa — 26/11/2026
+
+Esta sección actualiza la situación de entrega descrita en los apartados anteriores, que reflejaban el estado previo a la publicación.
+
+- El usuario confirma que ha publicado el prototipo mediante GitHub Pages, ha conseguido abrir la página renderizada (no solo el código fuente HTML) y ha compartido la URL con un amigo para recoger feedback.
+- La publicación y la revisión por el amigo se registran como **confirmación comunicada por el usuario**; no se han verificado independientemente desde esta sesión ni se ha inspeccionado la URL publicada.
+- El amigo todavía no ha enviado feedback. No hay observaciones recibidas ni cambios de UX aprobados.
+- Sigue pendiente una revisión propia en navegador real, tanto en Android como en escritorio. No se debe marcar como validada la experiencia responsive hasta realizarla.
+- El prototipo sigue siendo desechable, con datos ficticios y sin backend, persistencia, autenticación o sincronización. La Fase 0 permanece abierta.
+
+### Próximo paso exacto
+Esperar el feedback del amigo. Cuando llegue, clasificar cada observación como usabilidad, diseño, funcionalidad o preferencia personal; evaluar impacto/esfuerzo y proponer una ronda acotada de correcciones. En paralelo o después, realizar la revisión propia en Android y escritorio. No ampliar el prototipo mientras no haya evidencia concreta que lo justifique.
