@@ -559,3 +559,70 @@ Otros campos observados:
 Inspeccionar otra entrada real, preferiblemente de clase `ITEM` o `WORK`, y comprobar si `id`, `title`, `summary` y `link href` vuelven a contener plantillas. Después, en una tarea separada, seguir un `cellarId` real hasta sus metadatos WEMI mediante CELLAR/SPARQL. No diseñar todavía un cursor ni implementar parser/sincronizador.
 
 **No se ha escrito código de producto, parser ni cliente. No se incorporan datos ni imágenes al catálogo. Se mantienen Fase 0 y D-008.**
+
+
+## 15. Segunda entrada Atom real: clase ITEM — 26/11/2026
+
+**Estado:** segunda inspección manual completada; las plantillas literales observadas en la primera entrada también aparecen en una entrada ITEM.
+
+### Petición y selección
+
+Se reutilizó en la sesión PowerShell del usuario la respuesta ya descargada de P331 para la misma consulta:
+
+`startDate=2026-11-19&endDate=2026-11-25&page=331`
+
+No se repitió la petición HTTP. La respuesta conservada contenía 959 entradas (HTTP 200). El script había seleccionado la primera entrada `ITEM` encontrada; el índice del array XML es **7** (base cero). La variable de selección permanecía disponible en la sesión.
+
+### XML observado
+
+La entrada original (`OuterXml`) muestra:
+
+| Elemento | Valor exacto |
+|---|---|
+| `atom:title` | `$item.title` |
+| `atom:summary` | `$item.entrySummary` |
+| `atom:id` | `${item.cellarUri}_2026-11-24T23:44:34.567+01:00` |
+| `atom:updated` | `2026-11-24T23:44:34.567+01:00` |
+| `atom:link/@href` | `$item.cellarUri` |
+| `notifEntry:cellarId` | `cellar:ed772589-e81d-11f1-b745-01aa75ed71a1.0024.02/DOC_1` |
+| `notifEntry:rootCellarId` | `cellar:ed772589-e81d-11f1-b745-01aa75ed71a1` |
+| `notifEntry:type` | `create` |
+| `notifEntry:wemiClass` | `ITEM` |
+
+Namespaces: Atom `http://www.w3.org/2005/Atom`; notification entry `http://publications.europa.eu/atom/notificationEntry`.
+
+`identifiers` contiene:
+- `consil:ST_14948_2026_ADD_1.SWE.pdf.st14948-ad01.sv26.pdf`
+- `immc:ST%2014948%202026%20ADD%201.SWE.pdf.st14948-ad01.sv26.pdf`
+
+`rootIdentifiers` contiene:
+- `consil:ST_14948_2026_ADD_1`
+- `immc:ST%2014948%202026%20ADD%201`
+
+`classes` está presente pero vacío en esta entrada.
+
+### Comparación con la entrada EXPRESSION de la sección 14
+
+| Campo | EXPRESSION (sección 14) | ITEM (esta sección) |
+|---|---|---|
+| `atom:id` | plantilla `${item.cellarUri}` + timestamp | plantilla `${item.cellarUri}` + timestamp |
+| `atom:title` | `$item.title` | `$item.title` |
+| `atom:summary` | `$item.entrySummary` | `$item.entrySummary` |
+| `atom:link/@href` | `$item.cellarUri` | `$item.cellarUri` |
+| `wemiClass` | `EXPRESSION` | `ITEM` |
+| `type` | `update` | `create` |
+
+### Conclusión prudente
+
+Las dos entradas inspeccionadas, de clases WEMI distintas (`EXPRESSION` e `ITEM`) y tipos de evento distintos (`update` y `create`), muestran las mismas cuatro plantillas literales sin resolver en `id`, `title`, `summary` y `link href`. En ambas, `cellarId`, `rootCellarId`, `updated`, `type` y `wemiClass` sí contienen valores concretos.
+
+Esto refuerza la hipótesis de que el problema de materialización afecta a más de una clase WEMI, pero **dos muestras no permiten generalizar a todo el feed**, ni demuestran la semántica o unicidad de los identificadores. No usar `atom:id` como identificador de evento válido mientras conserve la plantilla; tampoco sustituirlo automáticamente por `cellarId|updated`.
+
+### Límites y siguiente tarea
+
+- Solo se inspeccionaron dos entradas de P331; no se ha buscado la causa del renderizado de plantillas.
+- No se ha seguido ninguno de los `cellarId` hasta metadatos WEMI independientes.
+- No se han probado `WORK`, eventos `DELETE`, valores múltiples de `wemiClasses` ni unicidad global.
+- No se implementó parser, cliente, sincronizador ni código de producto; no se incorporaron datos ni imágenes al catálogo.
+
+**Siguiente tarea atómica:** seguir un `cellarId` real hasta sus metadatos WEMI mediante CELLAR/SPARQL. Mantener Fase 0 y D-008; no diseñar cursor incremental ni implementar automatización.
