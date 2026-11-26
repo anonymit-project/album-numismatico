@@ -48,36 +48,23 @@ Para CUP/CUC no se debe inferir un factor único. La coexistencia se registra co
 ### D-017 — Denominaciones
 La representación racional evita coma flotante y no crea monedas independientes para céntimos/centavos. Es válida para EUR, USD, CUP/CUC, sucre, peseta y valores enteros XOF/XAF. Debe conservarse siempre el texto original. Queda el caso límite de denominaciones numismáticas en una unidad que no fue moneda oficial (Andorra, diners), tratado en P8.
 
-## 4. Propuestas pendientes (no aprobadas)
+## 4. Decisiones aprobadas P7–P9
 
-Estas propuestas no modifican las decisiones aprobadas ni el modelo consolidado. Requieren decisión expresa antes de alterar `DATA_MODEL.md`.
+El usuario aprobó expresamente las tres propuestas el 26-11-2026. Se incorporan de forma acotada, sin reabrir D-012–D-017.
 
-### P7 — Atribución de autoridad a una emisión concreta
-**Problema:** `monetary_authority_currency` relaciona una autoridad con una moneda y un periodo, pero no identifica inequívocamente qué autoridad o institución tiene cada función respecto de una emisión concreta. Esto importa en billetes euro (derecho legal del BCE y BCN frente a emisión física por BCN), monedas euro (Estados como emisores legales y Comisión como coordinadora) y emisiones comunes XOF/XAF (BCEAO/BEAC como instituto emisor y varios Estados como territorios de curso legal).
+### P7 — Atribución de autoridad a una emisión concreta (D-018)
 
-**Propuesta mínima:** añadir una relación opcional y temporal entre `catalog_issue` y `monetary_authority`, con rol controlado y procedencia. Como mínimo, distinguir competencia/emisión legal de ejecución o puesta en circulación. Mantener ceca/imprenta en la relación de producción ya prevista; no tratarlas como autoridad.
+Se aprueba una relación opcional y temporal entre `catalog_issue` y `monetary_authority`, con procedencia y roles iniciales `legal_issuer` y `operational_issuer`. El primero identifica la competencia/responsabilidad legal de emisión; el segundo, la ejecución o puesta en circulación. No se exige poblarla si no aporta precisión o falta evidencia. Cecas e imprentas siguen siendo productores físicos.
 
-**Alternativa:** derivar la autoridad exclusivamente desde moneda + periodo. Es más simple, pero no resuelve bien los casos en que hay varias instituciones con funciones diferentes o en que una emisión concreta necesita atribución explícita.
+### P8 — Intención de circulación y unidad nominal de colección (D-019)
 
-**Recomendación:** aprobar la relación explícita solo si se confirma que el catálogo necesita consultar esta atribución por emisión; en caso contrario, mantener la relación moneda-autoridad y documentar la autoridad en la procedencia de la emisión.
+Se aprueba un atributo opcional `circulation_intent` en `catalog_issue`, con valores iniciales `intended_for_circulation` y `not_intended_for_circulation`. La ausencia significa desconocido. No equivale a un evento legal ni demuestra si una pieza llegó efectivamente a circular. Las categorías numismáticas de prueba/patrón quedan separadas.
 
-### P8 — Intención de circulación y unidad nominal de colección
-**Problema:** D-014 aclara que «no destinada a circulación» es una característica de emisión, pero `catalog_issue` no define un atributo/vocabulario para expresarla. El BCE documenta una moneda ecuatoriana de 1 sucre de 2000 que no entró en circulación. Andorra emitió piezas de colección denominadas en diners pese a no haber tenido moneda oficial propia antes del euro.
+Se aprueba conservar la denominación y unidad nominal originales aunque no correspondan a una moneda oficial independiente. No crear automáticamente una entidad `currency` para unidades como diners; normalizar solo con una unidad de referencia documentada.
 
-**Propuesta mínima:** definir en `catalog_issue` una característica controlada de intención/ámbito de circulación (por ejemplo, destinada a circulación, colección/no circulación, prueba o patrón, cuando la fuente lo justifique). Separar esta característica de los eventos legales reales. Permitir que la denominación original se conserve aunque la unidad nominal no sea una moneda oficial; normalizar a racional solo cuando exista una unidad de referencia bien definida. No crear automáticamente una moneda legal llamada diner.
+### P9 — Naturaleza del uso de una moneda (D-020)
 
-**Alternativa:** excluir estas emisiones del catálogo. Es válida si el alcance inicial se limita a moneda circulante, pero reduce la cobertura numismática de Andorra y de emisiones especiales.
-
-**Recomendación:** añadir la característica de circulación a nivel de emisión y mantener la normalización de valor opcional cuando la unidad no sea una moneda legal.
-
-### P9 — Naturaleza del uso de una moneda
-**Problema:** el rol `uses` no distingue si una moneda es oficial/adoptada legalmente o si circula de facto. El acuerdo monetario de Andorra confirma que antes del euro no tenía moneda oficial, aunque se utilizaban de facto pesetas españolas y francos franceses. Una simple relación `uses` no expresa por sí sola esa diferencia.
-
-**Propuesta mínima:** añadir un calificador opcional de base/naturaleza del uso en `issuer_currency` (por ejemplo, oficial/adoptada, uso de facto), manteniendo el rol y el periodo de D-013. Los eventos de curso legal siguen siendo hechos jurídicos separados y no se deducen de ese calificador.
-
-**Alternativa:** no añadir calificador y usar únicamente eventos de curso legal. Evita campos adicionales, pero la ausencia de un evento puede significar falta de fuente, no necesariamente uso de facto.
-
-**Recomendación:** calificador opcional, solo cuando una fuente permita distinguirlo. No inferir oficialidad por ausencia de evidencia.
+Se aprueba el calificador opcional `use_basis` en `issuer_currency`, con valores iniciales `official` y `de_facto`, independiente del rol `uses`. Solo se informa cuando existe evidencia. No se deduce curso legal, adopción oficial ni competencia de emisión a partir del uso de facto.
 
 ## 5. Particularidades históricas que no son errores del modelo
 
