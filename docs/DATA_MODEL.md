@@ -111,6 +111,10 @@ Propuestas de alta/corrección con estado y moderador; sesiones de identificaci�
 - RLS/controles: cada usuario solo lee y modifica su inventario y preferencias privadas; el catálogo es de lectura general.
 - Compartición futura explícita y de solo lectura.
 
+## Vocabularios y reglas conceptuales de validación
+
+La especificación inicial de valores controlados, precisión temporal, procedencia/evidencia, coherencia entre entidades y severidades de validación se encuentra en [VALIDATION_RULES.md](VALIDATION_RULES.md). Debe leerse junto con este modelo. No introduce SQL ni altera las decisiones D-001–D-020.
+
 ## Pendiente para diseño físico y validación de Fase 0
 - Definir esquema SQL y constraints solo tras cerrar el resto de Fase 0; este documento es conceptual.
 - Determinar granularidad de emisión/año en series con múltiples años y diseños idénticos.
