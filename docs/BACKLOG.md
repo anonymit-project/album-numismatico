@@ -235,3 +235,15 @@ No se implementan formularios completos de alta/edición, carga o importación s
 **Estado de entrega:** primer corte de código creado en `index.html`. No se considera validado en dispositivos: no se han realizado pruebas de navegador desde este entorno. Fase 0 sigue abierta y el prototipo no es el MVP.
 
 **Estimación vigente:** construcción 4–8 h; revisión y correcciones 2–3 h. No utilizar la estimación histórica de 29–45 h para este alcance reducido.
+
+
+## Ampliación UX: mapa y billetes — 26/11/2026
+
+- [x] Añadir entrada «Mapamundi» a la navegación de escritorio y móvil.
+- [x] Representar los países de muestra en un mapa esquemático: España, Francia, Italia y Madagascar.
+- [x] Añadir Madagascar como emisor ficticio de demostración para comprobar un marcador geográficamente separado.
+- [x] Añadir recorrido visual de billetes, con denominaciones de muestra en euros y ariary, placeholders propios y posesión/cantidad.
+- [ ] Revisar en navegador real la legibilidad, posición de marcadores y recorrido de billetes en Android/escritorio.
+- [ ] Valorar en la revisión si el mapa plano basta para el prototipo o si merece la pena un globo 3D; no incorporar librerías/cartografía real sin decisión y verificación de coste/licencia.
+
+La estimación inicial (4–8 h) queda complementada por esta ampliación acotada. No se reabre el alcance general ni se considera validada la UX hasta la prueba manual.
