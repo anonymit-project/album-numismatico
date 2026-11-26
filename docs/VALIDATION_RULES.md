@@ -404,3 +404,54 @@ Los seis casos encajan con los vocabularios y reglas propuestos. No aparece una 
 - W3C PROV-DM / PROV-O: modelo conceptual de procedencia basado en entidades, actividades y agentes.
 
 Estas referencias orientan la identificación y procedencia; no sustituyen la evidencia primaria de cada hecho numismático ni amplían automáticamente los campos aprobados.
+
+
+
+## 11. Revisión crítica y modificaciones propuestas — 26/11/2026
+
+**Estado: PROPUESTAS PENDIENTES DE APROBACIÓN DEL USUARIO.** Esta sección no altera D-001–D-020 ni convierte las modificaciones en vocabulario aprobado.
+
+### V-01 — Separar tipo de fuente y naturaleza derivada
+
+En la lista de `source_type`, retirar provisionalmente `derived`. Una derivación no es una fuente documental: es una afirmación/valor calculado que debe conservar sus entradas, método, fórmula, orientación y responsable/actividad. Mantener `official_primary`, `official_institutional`, `academic_or_museum`, `reputable_secondary`, `community_reference` y `user_supplied` como tipos de fuente. Si se necesita una categoría para evidencia no documental, definirla separadamente y no llamarla fuente.
+
+### V-02 — Separar estado de afirmación y ciclo de vida de fuente
+
+Aplicar `verification_status` a la afirmación concreta, no indistintamente a la fuente. Mantener inicialmente `verified`, `partially_verified`, `unverified` y `disputed` para afirmaciones. Tratar `superseded` como condición de ciclo de vida de una afirmación sustituida o de una versión de fuente, con historial y enlace a su sucesora; no como un grado de verificación. Una fuente puede seguir siendo auténtica y pertinente aunque una afirmación basada en ella haya sido superada.
+
+### V-03 — Desambiguar `introduced`
+
+Conservar el valor aprobado por D-014, pero limitar su definición: significa introducción/adopción del objeto monetario o régimen identificado, no comienzo de circulación física ni curso legal. El registro debe identificar obligatoriamente el objeto y el sentido concreto del hito en la evidencia/notas. Si la fuente solo acredita puesta en circulación, usar `entered_circulation`; si acredita curso legal, usar `legal_tender_started`. No crear un nuevo valor de evento sin aprobación.
+
+### V-04 — Matriz conceptual de compatibilidad de eventos
+
+Antes de convertir reglas a constraints, especificar una matriz evento × objeto afectado. Como propuesta inicial:
+- `introduced`: moneda o relación emisor-moneda; emisión solo cuando la fuente describa expresamente la introducción de esa emisión.
+- `entered_circulation` y `withdrawn_from_circulation`: moneda en ámbito determinado o emisión concreta; exigir que la evidencia identifique qué circuló/se retiró.
+- `legal_tender_started`, `legal_tender_ended` y `demonetized`: moneda o emisión y jurisdicción/ámbito jurídico aplicable; no atribuir automáticamente el mismo estado a todas las emisiones de una moneda.
+- `exchange_period_ended`: objeto efectivamente canjeable y régimen/ámbito del canje; no inferirlo del fin del curso legal.
+Esta matriz es una propuesta para discusión, no una restricción aprobada. La compatibilidad final debe admitir hechos jurídicos que afecten a una moneda completa y otros limitados a determinadas emisiones.
+
+### V-05 — Distinguir extremos temporales abiertos y desconocidos
+
+La regla actual de extremo nulo admite dos significados diferentes. Propuesta: documentar por separado «sin límite conocido/abierto» y «límite desconocido». No convertir ninguno en una fecha ficticia. Si el modelo físico futuro no permite distinguirlos con los campos actuales, registrar esta limitación antes de diseñar constraints.
+
+### V-06 — Precisar normalización de valor facial
+
+La denominación original sigue siendo obligatoria y la normalización opcional. Añadir que numerador/denominador representan la cantidad en unidades de la moneda de referencia, no una conversión de poder adquisitivo ni de valor metálico. Para unidades históricas no decimales, exigir una relación de conversión documentada y conservar el sistema/unidad original; no presuponer base 10. Para unidades nominales sin referencia monetaria acreditada, no crear un valor racional normalizado. No introducir por ahora una regla universal de positividad del valor facial: debe revisarse con casos numismáticos especiales antes de fijarla.
+
+### V-07 — Clasificar códigos ISO 4217 no circulantes
+
+La advertencia sobre fondos y metales preciosos es correcta, pero falta una distinción conceptual entre moneda de circulación y códigos ISO asignados a otras unidades. Propuesta: no inferir «moneda de circulación» de la mera presencia de un código ISO 4217; documentar la naturaleza/uso del código mediante evidencia externa y mantener fuera del catálogo monetario de circulación las unidades que no satisfagan su alcance. No añadir todavía un campo o enumeración de clasificación sin revisar el modelo.
+
+### V-08 — Evitar errores por solapamiento temporal
+
+La detección de solapamientos debe comparar la misma entidad, rol, ámbito, objeto y alcance de afirmación. Un solapamiento no es contradictorio por sí mismo: puede reflejar competencias compartidas, transición, circulación paralela o jurisdicciones distintas. Mantenerlo como advertencia salvo contradicción explícita y evidencia suficiente.
+
+### V-09 — Completar gobernanza de vocabularios
+
+Toda ampliación de vocabulario cerrado debe registrar: término, definición, campo, motivo, ejemplos positivos/negativos, compatibilidad retrospectiva y aprobación. Los valores desconocidos no deben inventarse ni introducirse como texto libre. Hasta acordar este procedimiento, las ampliaciones quedan sujetas a revisión explícita del usuario.
+
+### Decisiones solicitadas
+
+Se solicita al usuario decidir V-01 a V-09. La aceptación de una propuesta no aprueba automáticamente las demás. No se ha modificado el contenido aprobado de D-001–D-020.
