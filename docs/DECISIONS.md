@@ -75,3 +75,13 @@ Registro vivo de decisiones de producto. Las propuestas no aprobadas se etiqueta
 - **Tecnología:** priorizar la vía más rápida y sencilla que permita una demo navegable en navegador Android y escritorio. No imponer framework ni modularidad de producción; decidir tras inspeccionar el repositorio.
 - **Separación:** mantiene íntegramente los límites de D-009. No cierra Fase 0, no aprueba el modelo ni autoriza el MVP.
 - **Motivo:** el objetivo es obtener feedback temprano de diseño y usabilidad, no construir una aplicación simulada.
+
+
+## D-011 — El feedback del prototipo no bloquea la Fase 0
+
+- **Estado:** Aprobada (2026-11-26).
+- **Decisión:** continuar las tareas de descubrimiento aunque el feedback del prototipo UX todavía no haya llegado. La revisión UX se difiere y deja de ser una dependencia para avanzar en modelo, catálogo, fuentes e infraestructura.
+- **Alcance de la decisión:** no se cancela la revisión. Cuando el usuario y su amigo aporten feedback, se analizará y se utilizará para ajustar UX y alcance V1. La revisión propia en Android y escritorio también sigue pendiente.
+- **Prioridad inmediata:** validar estructuralmente `docs/DATA_MODEL.md` con Andorra, Cuba CUP/CUC, Ecuador, euro, XOF/XAF y peseta, contrastando los requisitos con `docs/CATALOG_SOURCES.md`.
+- **Límites:** Fase 0 permanece abierta; esta decisión no aprueba su cierre ni autoriza código de producto/MVP. D-008 sigue vigente. La investigación CELLAR queda aparcada salvo petición expresa.
+- **Motivo:** el feedback visual puede recogerse sobre una versión funcional más adelante y no justifica detener la reducción de riesgos de catálogo y modelo.
