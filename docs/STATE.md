@@ -374,3 +374,20 @@ Crear el primer corte navegable con diseño responsive y datos ficticios, limita
 ### Límites
 - El fichero es un prototipo desechable, no arquitectura ni código base del MVP.
 - CELLAR continúa aparcado. No reanudar parser, sincronizador ni pruebas de feed en esta iteración.
+
+
+## Ampliación del prototipo: mapamundi y billetes — 26/11/2026
+
+- Solicitud del usuario: añadir una vista de mapamundi con los países seleccionados y ampliar la muestra para incluir billetes.
+- Se amplía el prototipo con una vista de mapa esquemática que destaca España, Francia, Italia y Madagascar. Madagascar se incorpora como emisor de demostración para separar visualmente los marcadores europeos; sus datos son ficticios.
+- Se añade un recorrido de serie «Billetes», con placeholders rectangulares y ejemplos de denominaciones en euros; para Madagascar, ejemplos de ariary. Se mantiene la interacción de posesión y cantidad.
+- El mapa es una ilustración esquemática, no un mapa geográfico preciso ni un globo 3D; no calcula aún progreso por país. No usa teselas ni recursos cartográficos externos.
+- La ampliación sigue siendo UX desechable: sin persistencia, backend ni imágenes monetarias reales.
+
+### Verificación y límites
+- Cambios registrados en la rama de investigación y revisados por contenido/estructura del HTML.
+- No se ha ejecutado en navegador ni validado visualmente en Android/escritorio. La forma, precisión geográfica y usabilidad del mapa deben revisarse en la siguiente prueba manual.
+- El mapa no sustituye la futura decisión de cartografía D3-geo/Natural Earth ni resuelve estados históricos, territorios o uniones monetarias.
+
+### Siguiente paso exacto
+- Abrir la vista previa y probar en escritorio y Android la navegación Mapamundi ↔ emisor y Álbum → Billetes → Ficha. Recoger feedback antes de otra ronda.
