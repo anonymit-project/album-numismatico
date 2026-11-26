@@ -2,7 +2,7 @@
 
 **Fecha:** 2026-11-26  
 **Rama:** `research/source-automation-2026-11`  
-**Estado:** análisis y recomendaciones; ninguna propuesta aprobada.  
+**Estado:** P1–P6 aprobadas expresamente por el usuario el 26/11/2026; consolidadas en D-012–D-017 y `docs/DATA_MODEL.md`.  
 **Alcance:** validación conceptual con Andorra, Cuba CUP/CUC, Ecuador, euro, XOF/XAF, peseta y emisores/monedas históricos. No define SQL ni autoriza implementación.
 
 ## Criterio
@@ -20,7 +20,7 @@ Se distingue entre: (1) hechos que el modelo debe poder representar; (2) datos q
 | P5 Transiciones monetarias | Aprobar relaciones tipadas; coexistencia no debe confundirse con sustitución | Alta | Media |
 | P6 Denominaciones estructuradas | Aprobar estructura numérica exacta más texto original | Alta | Baja-media |
 
-Estas son recomendaciones técnicas, no decisiones del proyecto. Requieren aprobación individual del usuario.
+Las seis recomendaciones fueron aprobadas expresamente por el usuario el 26/11/2026 y consolidadas en D-012–D-017. Este documento conserva el razonamiento y las alternativas evaluadas.
 
 ## P1 — Autoridad monetaria independiente
 
@@ -142,4 +142,4 @@ Aprobar o rechazar individualmente P1–P6. En particular:
 - P5: aceptar transiciones tipadas y tratar coexistencia mediante intervalos salvo excepción documentada.
 - P6: aceptar racional exacto más etiqueta original como representación mínima.
 
-Hasta recibir aprobación expresa, las seis propuestas permanecen pendientes y no modifican D-001–D-011, D-008 ni el modelo vigente.
+Aprobación recibida: P1–P6 quedan consolidadas. D-008 y D-001–D-011 permanecen intactas; D-012–D-017 registran las nuevas decisiones. La aprobación es conceptual y no autoriza SQL, MVP ni código de producto.
