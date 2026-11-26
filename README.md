@@ -2,7 +2,7 @@
 
 Aplicación web progresiva (PWA) para catalogar monedas y billetes actuales e históricos y gestionar colecciones privadas con una experiencia visual de álbum de cromos.
 
-> **Estado:** Fase 0 — descubrimiento y definición. No comenzar el desarrollo del producto hasta cerrar y aprobar esta fase.
+> **Estado:** Fase 0 — descubrimiento y definición. Existe un prototipo UX desechable en `index.html`, autorizado por D-009/D-010; no es el producto ni supone el cierre de Fase 0.
 
 ## Objetivos
 
@@ -21,7 +21,8 @@ MVP previsto para 2 usuarios: España (pesetas y euros, incluidas conmemorativas
 
 ## Estado actual
 
-- Fase 0; aún no hay implementación funcional del producto.
+- Fase 0; no hay implementación funcional del producto.
+- Prototipo visual responsive inicial en `index.html`, sin backend ni persistencia; pendiente de probar en Android y escritorio.
 - Mockups conceptuales revisados: Álbum, Mapa y Resumen.
 - Requisitos y decisiones de producto se documentan en `docs/`.
 - Fuentes, licencias, servicios gratuitos y modelo de datos siguen en investigación/validación.
@@ -50,4 +51,4 @@ MVP previsto para 2 usuarios: España (pesetas y euros, incluidas conmemorativas
 
 ## Desarrollo
 
-Todavía no hay stack ni comandos de desarrollo aprobados. Se decidirán tras la investigación de Fase 0 y quedarán reflejados aquí antes de implementar el MVP.
+El prototipo UX se abre directamente como fichero HTML, sin instalación ni compilación. Esto no establece stack para el MVP; se decidirá tras el cierre aprobado de Fase 0.
