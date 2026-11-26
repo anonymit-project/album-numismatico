@@ -466,3 +466,38 @@ El feed no expone un total explícito en los metadatos inspeccionados. La búsqu
 Consultar directamente P330 y P331 desde PowerShell y registrar para ambas: HTTP, número de entradas, `page`, `moreEntries`, primer y último `updated`. Comparar las claves de frontera disponibles (conservar el identificador de evento si se extrae; `cellarId|updated` solo es una clave candidata). No descargar P1–P329 ni continuar con una exploración secuencial. Solo si P331 confirma `moreEntries=false`, comprobar P332 una vez para caracterizar la respuesta posterior al final, si sigue siendo útil para la decisión técnica.
 
 No implementar sincronizador, cursor incremental ni código de producto. Mantener Fase 0, D-008, staging y revisión humana.
+
+
+## 13. Confirmación del límite de paginación — 26/11/2026
+
+**Consulta:** `startDate=2026-11-19&endDate=2026-11-25`, cabecera `Accept: application/atom+xml`, ejecutada manualmente por el usuario desde PowerShell.
+
+### Resultados directos
+
+| Página | HTTP | Entradas | `page` declarado | `moreEntries` | Primer `updated` | Último `updated` |
+|---|---:|---:|---:|---|---|---|
+| 330 | 200 | 1.000 | 330 | true | 2026-11-24T23:28:33.843+01:00 | 2026-11-24T23:43:56.595+01:00 |
+| 331 | 200 | 959 | 331 | false | 2026-11-24T23:43:56.595+01:00 | 2026-11-24T23:58:29.346+01:00 |
+| 332 | 200 | 0 | 332 | false | — | — |
+
+P330 y P331 se consultaron directamente y se compararon las últimas 10 claves `cellarId|updated` de P330 con las primeras 10 de P331: **cero claves repetidas** en esas dos ventanas. Ambas páginas contienen entradas con timestamp `2026-11-24T23:43:56.595+01:00`, pero la coincidencia temporal no implica que sean el mismo evento o recurso. La comparación realizada no cubre todas las entradas que comparten ese timestamp ni prueba unicidad global de la clave compuesta.
+
+P332 se consultó una vez después del final: HTTP 200, `page=332`, `moreEntries=false` y cero entradas.
+
+### Conclusión de la prueba
+
+Para esta consulta y esta captura temporal queda **validada manualmente la paginación y su condición terminal observada**: P330 es una página completa con continuación; P331 es la última página no vacía observada, parcial y sin continuación; P332 está vacía y mantiene el indicador a false. La búsqueda por saltos había localizado la transición entre P330 y P331 y las consultas directas la han confirmado.
+
+No se recorrieron secuencialmente P1–P329. La búsqueda binaria no registró los recuentos de todas las páginas intermedias, por lo que **no se afirma un total exacto de entradas para toda la ventana**. Tampoco se demuestra que el feed sea inmutable, que no existan inserciones tardías, que la paginación sea estable entre capturas, que `cellarId|updated` sea globalmente única ni que la ventana sea exhaustiva respecto de avisos numismáticos.
+
+### Estado y límites
+
+- Paginación/terminal para la consulta probada: **completada**.
+- Estabilidad temporal, inserciones tardías y estrategia de cursor incremental: **no probadas**.
+- Identificador de evento `id`, valores múltiples de `wemiClasses`, eventos DELETE y resolución de eventos a metadatos WEMI: **pendientes**.
+- No se ha implementado cliente, parser, sincronizador ni código de producto.
+- No se incorporan datos ni imágenes al catálogo. D-008, staging y revisión humana siguen vigentes.
+
+### Siguiente tarea atómica recomendada
+
+Inspeccionar una entrada Atom real en bruto para resolver los campos de identidad (`id`, `cellarId`, `rootCellarId`) y sus relaciones, sin diseñar todavía un cursor ni implementar sincronización.
