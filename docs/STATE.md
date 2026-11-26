@@ -488,3 +488,21 @@ El usuario ha aprobado expresamente las seis propuestas P1–P6 según las recom
 - Fase 0 continúa abierta; CELLAR aparcado; sin SQL, código de producto, cambios en `main`, merges ni PR.
 
 **Siguiente paso exacto:** revisar y decidir P7–P9. Después, si se aprueban, incorporar solo los ajustes mínimos al modelo y definir vocabularios/reglas conceptuales. No iniciar el MVP.
+
+
+## Aprobación y consolidación de P7–P9 — 26/11/2026
+
+El usuario ha aprobado expresamente P7, P8 y P9, sin solicitar modificaciones. Se consolidan únicamente sus alcances aprobados:
+
+- **D-018 / P7:** relación opcional y temporal entre emisión y autoridad monetaria, con roles `legal_issuer` y `operational_issuer`, procedencia y sin confundir autoridad con ceca/imprenta.
+- **D-019 / P8:** `circulation_intent` opcional en emisión (`intended_for_circulation` / `not_intended_for_circulation`); ausencia significa desconocido. Se conservan unidades nominales originales no oficiales sin crear automáticamente monedas independientes; normalización solo con referencia documentada. Pruebas y patrones quedan como clasificación separada.
+- **D-020 / P9:** calificador opcional `use_basis` en `issuer_currency` (`official` / `de_facto`), sin inferir curso legal ni competencia de emisión.
+
+### Documentación consolidada
+- Actualizados `docs/DATA_MODEL.md`, `docs/DECISIONS.md`, `docs/MODEL_VALIDATION.md`, `docs/BACKLOG.md` y este `docs/STATE.md`.
+- D-008 y D-012–D-017 permanecen intactas; no se reabren.
+- No se ha escrito SQL ni código de producto, no se ha modificado `main`, ni se ha fusionado o abierto una PR.
+- Fase 0 permanece abierta; CELLAR sigue aparcado; el MVP continúa bloqueado.
+
+### Siguiente paso exacto
+Definir vocabularios controlados y reglas conceptuales de validación del modelo ampliado, y volver a contrastar los seis casos con foco en P7–P9. Después continuar las tareas restantes de Fase 0. No iniciar SQL, código de producto ni MVP.
