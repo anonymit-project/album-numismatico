@@ -118,3 +118,26 @@ La especificación complementaria está en [VALIDATION_RULES.md](VALIDATION_RULE
 **Resultado:** no se identifica contradicción que requiera reabrir D-001–D-020 ni modificar la estructura aprobada. Las advertencias más relevantes son de evidencia y completitud, especialmente para Cuba, y de no inferir relaciones o hitos a partir de otros conceptos.
 
 La validación es conceptual y documental. No se ha ejecutado un validador automatizado, ni se han auditado registros de catálogo individuales. No constituye cierre de Fase 0.
+
+
+
+## 9. Revisión crítica de la propuesta de vocabularios y reglas — 26/11/2026
+
+La revisión detecta mejoras necesarias, pero no invalida la estructura del modelo ni reabre decisiones aprobadas.
+
+**Modificaciones propuestas, pendientes de decisión expresa del usuario:**
+- V-01: separar `derived` de los tipos de fuente; modelar derivación como afirmación/actividad con entradas y método.
+- V-02: separar verificación de afirmación y ciclo de vida/sustitución de fuentes o afirmaciones.
+- V-03: acotar el significado de `introduced` para que no se confunda con circulación o curso legal.
+- V-04: definir una matriz de compatibilidad entre tipo de evento y objeto afectado.
+- V-05: distinguir extremos temporales abiertos de extremos desconocidos.
+- V-06: precisar la semántica de la normalización racional y los sistemas históricos no decimales.
+- V-07: no inferir moneda de circulación por la mera existencia de código ISO 4217.
+- V-08: evitar falsos positivos en solapamientos temporales mediante comparación de ámbito y alcance.
+- V-09: establecer una gobernanza explícita para futuras ampliaciones de vocabularios.
+
+El detalle y las formulaciones propuestas constan en `VALIDATION_RULES.md`, sección 11. No se han incorporado como reglas aprobadas ni se han alterado D-001–D-020.
+
+**Resultado de la iteración:** la propuesta original es aceptable como base, pero requiere resolver V-01–V-09 antes de consolidar la especificación. No se recomienda aprobarla sin cambios. La decisión del usuario sigue pendiente.
+
+No se ha escrito SQL, código ni constraints físicos. No se ha ejecutado un validador automático. Fase 0 continúa abierta y el MVP bloqueado.
