@@ -294,3 +294,28 @@ La repetición en dos muestras refuerza que las plantillas no resueltas no son e
 
 ### Siguiente paso exacto
 Seguir uno de los `cellarId` observados hasta sus metadatos WEMI mediante CELLAR/SPARQL, en una tarea separada. No investigar todavía DELETE ni múltiples `wemiClasses`; no implementar parser, cliente, cursor ni sincronizador. Fase 0 y D-008 continúan vigentes; sin datos ni imágenes incorporados al catálogo.
+
+
+## Cierre de prueba de seguimiento WEMI y planificación — 26/11/2026
+
+### Prueba CELLAR
+- Se intentó consultar las propiedades salientes del ITEM `cellar:ed772589-e81d-11f1-b745-01aa75ed71a1.0024.02/DOC_1` en el editor SPARQL oficial.
+- La consulta simplificada devolvió `bindings: []`. Una consulta previa con UNION/BIND falló al compilar (Virtuoso SP031).
+- Resultado: prueba **inconclusa**. No demuestra que el recurso sea inválido ni que no exista; no se obtuvieron triples con esa URI y consulta. Detalle en la sección 16 de `docs/CELLAR_POC.md`.
+- No continuar investigando CELLAR en esta iteración. No implementar parser, cliente ni sincronizador.
+
+### Previsión de producto (estimación orientativa, no compromiso)
+
+Supuesto de planificación: una persona desarrollando con ayuda de herramientas, unas 8–10 horas efectivas por semana, decisiones del usuario en plazos cortos y sin bloqueos extraordinarios de servicios gratuitos. Las estimaciones se recalibrarán tras cerrar Fase 0 y probar el primer esqueleto técnico.
+
+- **Mock-up navegable para revisión:** objetivo de 2–4 semanas desde ahora. Incluye flujos principales y pantallas clave, no backend ni datos reales completos.
+- **V1 mínimamente funcional:** objetivo de 3–5 meses desde ahora, condicionado al cierre/aprobación de Fase 0 y a limitar el alcance al MVP descrito abajo.
+- Si la dedicación semanal es menor, hay decisiones pendientes o el alcance crece hacia mapa, escáner, catálogo mundial o automatización completa, la fecha se desplaza. No presentar estas fechas como garantía.
+
+### Alcance propuesto para V1
+
+PWA móvil instalable; autenticación; colección privada; catálogo semilla limitado y trazable; álbum con tengo/falta y cantidades; alta/edición manual; importación CSV básica; KPIs sencillos; exportación de datos; diseño adaptable, modo oscuro, CI y pruebas esenciales. Quedan fuera de V1 el globo/mapa avanzado, escáner por foto, importación XLSX avanzada/asistente por lotes, catálogo mundial completo, contribuciones públicas, gamificación y funciones sociales.
+
+### Siguiente paso exacto
+
+Continuar Fase 0 por la tarea de mayor desbloqueo: cerrar el modelo de datos con los casos límite ya definidos y resolver decisiones mínimas de UX/alcance del MVP. Preparar mock-up navegable tras acordar esos flujos. No iniciar código de producto hasta aprobación expresa del cierre de Fase 0.
