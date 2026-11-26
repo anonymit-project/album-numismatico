@@ -35,3 +35,28 @@ KPIs ilustrativos; las métricas definitivas dependerán del catálogo validado 
 - Selector de emisor cuando existan emisores históricos o territorios.
 - Comportamiento en móvil y escritorio.
 - Mapa final y leyenda.
+
+
+## Prototipo visual interactivo reducido — 26/11/2026
+
+Conforme a D-010, la siguiente entrega no es una simulación completa de la aplicación. Es una maqueta visual navegable para validar jerarquía, diseño, navegación y usabilidad.
+
+### Recorrido que debe cubrir
+Inicio/resumen → selector de emisor → moneda → serie → álbum → ficha de pieza.
+
+### Interacciones que sí aportan valor
+- Seleccionar emisor, moneda y serie.
+- Cambiar entre «Lo tengo» y «Me falta».
+- Ajustar una cantidad simple.
+- Ver el progreso del álbum actualizarse.
+- Buscar, filtrar y ordenar el conjunto de demostración.
+
+### Elementos que no es necesario implementar
+Alta y edición completas, importación/carga de ficheros, validaciones, procesos administrativos y simulación detallada de operaciones. No añadirlos por parecer funcionalidades del PRD: solo se incluirán si una prueba UX concreta los necesita.
+
+### Criterios de diseño
+- Móvil primero, cómodo con interacción táctil; escritorio también debe ser útil.
+- Datos ficticios claramente reconocibles y placeholders neutros.
+- La posesión se distingue visualmente; las piezas faltantes aparecen atenuadas.
+- No usar imágenes monetarias de terceros sin derechos verificados (D-008).
+- Sin persistencia: los cambios viven solo mientras la demo está abierta.
