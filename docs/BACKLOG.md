@@ -198,3 +198,24 @@ Estimación preliminar: **100–180 horas de esfuerzo**, aproximadamente **6–1
 - [x] Intentar seguir un ITEM real observado en Atom hasta triples/metadatos WEMI mediante una consulta SPARQL de propiedades salientes.
 - Resultado: `bindings: []` para la URI consultada; una consulta previa con UNION/BIND dio error de compilación Virtuoso SP031. Prueba cerrada como **inconclusa**: no acredita inexistencia o invalidez del recurso. Evidencia en `docs/CELLAR_POC.md`, sección 16.
 - [ ] Resolver en una iteración futura, si se prioriza expresamente, por qué esa URI no devuelve triples. No convertir esta prueba fallida en una tarea de automatización ni en un bloqueo para el mock-up.
+
+
+### Revisión del alcance del prototipo UX — 26/11/2026 (D-010)
+
+La tabla anterior de 29–45 h corresponde al alcance inicial más amplio y queda **sustituida** para esta iteración por el siguiente alcance visual reducido:
+
+| Tarea | Trabajo incluido | Esfuerzo |
+|---|---|---:|
+| 1. Definir recorrido y jerarquía visual | Priorizar pantallas/estados para la revisión | 0,5–1 h |
+| 2. Maqueta responsive | Navegación, estilo visual, componentes mínimos y datos ficticios | 2–4 h |
+| 3. Recorrido principal | Inicio, emisor, moneda, serie, álbum y ficha | 2–4 h |
+| 4. Interacciones UX esenciales | Tengo/me falta, cantidad, progreso, búsqueda/filtros/orden básicos | 1,5–3 h |
+| 5. Pruebas y correcciones | Navegación táctil, legibilidad y tamaños Android/escritorio | 1,5–3 h |
+| 6. Entrega para revisión | Instrucciones y lista breve de aspectos a evaluar | 0,5–1 h |
+| **Total de construcción** | | **8–16 h** |
+
+**Revisión posterior estimada:** 3–5 h, según el feedback y el número de ajustes.
+
+No se implementan formularios completos de alta/edición, carga o importación simulada, validaciones, procesos administrativos ni simulación detallada de operaciones. Pueden omitirse o mostrarse como elementos visuales sin comportamiento. El criterio de éxito es que el usuario y su amigo puedan evaluar el diseño y recorrer las funciones principales en navegador Android y escritorio.
+
+**Siguiente tarea:** implementar el primer corte visual navegable. No ampliar alcance sin autorización. La estimación anterior queda conservada como histórico, pero no debe utilizarse para planificar esta versión reducida.
