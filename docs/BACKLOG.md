@@ -302,3 +302,14 @@ Esta reordenación no cierra Fase 0 ni autoriza el MVP.
 - Wikidata CC0, ISO y Natural Earth son fuentes auxiliares para entidades/códigos/cartografía, no sustitutos de catálogos numismáticos ni autoridades de emisión.
 
 **Siguiente tarea:** obtener decisión del usuario sobre P1–P6. Fase 0 continúa abierta; D-008 y D-011 siguen vigentes; CELLAR aparcado; no iniciar MVP.
+
+
+### Revisión conceptual P1–P6 — 26/11/2026
+
+- [x] Analizar individualmente las seis propuestas y sus alternativas, consecuencias, complejidad y cobertura de casos representativos.
+- [x] Documentar recomendaciones y dependencias en `docs/MODEL_REVIEW.md`.
+- [ ] Obtener aprobación/rechazo expreso del usuario para cada propuesta P1–P6.
+- [ ] Tras la aprobación, actualizar únicamente las partes autorizadas de `docs/DATA_MODEL.md` y registrar las decisiones aprobadas en `docs/DECISIONS.md`; actualizar después `STATE.md` y este backlog.
+- [ ] Revalidar la matriz de casos tras consolidar las decisiones aprobadas.
+
+**Nota:** las recomendaciones de `MODEL_REVIEW.md` no son decisiones aprobadas. D-008 se mantiene; Fase 0 continúa abierta; CELLAR aparcado; MVP bloqueado.
