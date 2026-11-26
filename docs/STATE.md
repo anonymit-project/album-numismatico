@@ -530,3 +530,15 @@ Definir vocabularios controlados y reglas conceptuales de validación del modelo
 
 ### Pendiente / siguiente paso exacto
 Solicitar revisión del usuario sobre [VALIDATION_RULES.md](VALIDATION_RULES.md), en particular los valores iniciales de vocabulario y las reglas de fechas/evidencia. No traducir todavía a SQL ni código. Tras su aprobación, continuar con los demás riesgos de Fase 0 (catálogo semilla/derechos, infraestructura, privacidad/moderación, conservación, valoración y mapa) según prioridad actual.
+
+
+
+## Revisión de vocabularios y reglas — 26/11/2026
+
+- Leídos los documentos obligatorios: `AGENTS.md`, `docs/STATE.md`, `docs/DECISIONS.md`, `docs/BACKLOG.md`, `docs/DATA_MODEL.md`, `docs/MODEL_VALIDATION.md` y `docs/VALIDATION_RULES.md`.
+- Consideradas aprobadas y no reabiertas D-001–D-020.
+- Revisada críticamente la propuesta de vocabularios y reglas; se han identificado nueve modificaciones propuestas (V-01–V-09), documentadas en `docs/VALIDATION_RULES.md` sección 11 y resumidas en `docs/MODEL_VALIDATION.md` sección 9.
+- Las modificaciones están pendientes de decisión expresa del usuario; no se interpretan como aprobación.
+- No se ha implementado SQL, código de producto ni constraints físicos. No se ha cerrado Fase 0.
+
+**Siguiente paso exacto:** recibir la decisión del usuario sobre V-01–V-09. Si se aprueban total o parcialmente, consolidar solo las aceptadas en la especificación principal y actualizar el registro de decisiones/estado. Si se solicitan cambios, analizarlos antes de aplicarlos.
