@@ -63,3 +63,15 @@ Registro vivo de decisiones de producto. Las propuestas no aprobadas se etiqueta
 - **Separación de Fase 0:** esta autorización es una excepción limitada para validar experiencia de uso y viabilidad de interfaz; **no** supone cierre de Fase 0, aprobación del modelo de datos, autorización para iniciar el MVP ni permiso para incorporar código de producto.
 - **Criterio de salida:** el usuario y su amigo pueden recorrer los flujos principales en móvil y escritorio, registrar problemas y decidir qué ajustar antes de cerrar Fase 0.
 - **Motivo:** reducir incertidumbre de diseño y usabilidad antes de comprometer arquitectura y desarrollo de producto.
+
+
+## D-010 — Alcance visual del prototipo UX
+
+- **Estado:** Aprobada (aclaración de D-009, 2026-11-26).
+- **Decisión:** el prototipo será ante todo una maqueta visual interactiva, móvil primero y responsive, para validar aspecto, navegación y usabilidad de las funcionalidades principales. No se pretende simular fielmente toda la lógica ni los procesos operativos del futuro producto.
+- **Interacciones suficientes:** navegación entre inicio, emisor, moneda, serie, álbum y ficha; marcar/desmarcar posesión; ajustar una cantidad sencilla; observar progreso; búsqueda, filtros y orden básicos con respuesta visible.
+- **No requerido:** formularios completos de administración, alta/edición funcionales, carga/importación simulada, validación de ficheros, persistencia, lógica de negocio exhaustiva, backend o arquitectura de producción. Se pueden representar visualmente como elementos estáticos o dejarse fuera si no ayudan a validar UX.
+- **Datos y recursos:** datos ficticios y placeholders propios/neutros; sin material de terceros no autorizado, conforme a D-008.
+- **Tecnología:** priorizar la vía más rápida y sencilla que permita una demo navegable en navegador Android y escritorio. No imponer framework ni modularidad de producción; decidir tras inspeccionar el repositorio.
+- **Separación:** mantiene íntegramente los límites de D-009. No cierra Fase 0, no aprueba el modelo ni autoriza el MVP.
+- **Motivo:** el objetivo es obtener feedback temprano de diseño y usabilidad, no construir una aplicación simulada.
