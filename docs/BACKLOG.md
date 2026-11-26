@@ -63,7 +63,7 @@ Prioridad orientativa. No implica autorización para saltarse el cierre de Fase 
 - [ ] Implementar y probar un parser/mapeo pequeño Formex/XML → staging con tests; conservar procedencia por campo y revisión humana.
 - [x] Investigar y documentar CELLAR RSS/Atom frente a alertas RSS de EUR-Lex; recomendación híbrida y limitaciones en docs/CELLAR_POC.md.
 - [x] Ejecutar prueba manual del feed CELLAR desde PowerShell: acceso HTTP 200, respuesta Atom, filtros `type=create`, `type=update`, `wemiClasses=DOSSIER` y combinación create + ITEM; las primeras entradas inspeccionadas cumplen los filtros. Evidencia y límites en `docs/CELLAR_POC.md`.
-- [ ] Completar el recorrido paginado CELLAR hasta moreEntries=false; P1–P5 (1.000 entradas cada una) y tres fronteras están validadas sin claves cellarId|updated repetidas. Investigar página final, huecos y estabilidad ante nuevas notificaciones/inserciones tardías.
+- [x] Validar manualmente la paginación y condición terminal CELLAR para la consulta 19–25/11/2026: P330 (1.000, moreEntries=true), P331 (959, moreEntries=false) y P332 (0, moreEntries=false); comparación de las ventanas de 10 claves cellarId|updated a ambos lados de P330→P331 sin repeticiones. Evidencia en docs/CELLAR_POC.md, sección 13.
 - [ ] Investigar campos que aparecen como plantillas `$item.*`, valores múltiples de `wemiClasses`, eventos DELETE y seguimiento de un evento hasta sus metadatos WEMI.
 - [ ] Configurar y validar, con autorización y acceso del usuario a EUR-Lex, una búsqueda guardada RSS para las variantes de títulos numismáticos; no se ha creado ninguna alerta.
 - [ ] Crear manifiesto versionado de URLs BEAC/BCEAO por familia, estado legal, país y fecha de consulta; validar cambios de HTML antes de automatizar extracción.
@@ -98,6 +98,11 @@ La paginación queda **validada parcialmente**, no completada. P1–P5 devuelven
 - [x] Inspeccionar metadatos de la respuesta Atom: se observan `startDate`, `endDate`, `page` y `moreEntries`; no se observó total de resultados ni enlace a última página.
 - [x] Aplicar búsqueda exponencial/binaria para localizar el cambio comunicado entre P330 (`moreEntries=true`) y P331 (`moreEntries=false`), evitando recorrer secuencialmente las páginas intermedias.
 - [ ] Confirmar directamente P330 y P331: HTTP, recuento de entradas, número de página, `moreEntries`, primer/último `updated` y continuidad de frontera.
-- [ ] Caracterizar opcionalmente P332 una sola vez después de confirmar P331, para observar el comportamiento posterior al final.
+- [x] Caracterizar P332 una vez después de confirmar P331: HTTP 200, página 332, cero entradas y moreEntries=false.
 
 **Límite:** no dar por cerrada la validación de paginación hasta caracterizar P331 y comprobar la frontera P330→P331. No diseñar aún cursor incremental ni implementar sincronizador/parser. Detalle en `docs/CELLAR_POC.md`, sección 12.
+
+
+### Cierre de validación terminal CELLAR — 26/11/2026
+
+La prueba manual de paginación para la consulta 19–25/11/2026 queda completada: P330 y P331 confirmadas directamente, frontera comparada en ventanas de 10 claves y P332 consultada una vez. No se recorrieron P1–P329 secuencialmente y no se conoce un total exacto de toda la ventana. El cierre **no** cubre estabilidad ante inserciones tardías, unicidad global de `cellarId|updated`, identificación del evento ni cobertura numismática. Esos asuntos siguen separados en el backlog; no implementar cursor/sincronizador ni parser como consecuencia automática de esta prueba. Ver sección 13 de `docs/CELLAR_POC.md`.
