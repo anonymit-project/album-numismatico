@@ -506,3 +506,27 @@ El usuario ha aprobado expresamente P7, P8 y P9, sin solicitar modificaciones. S
 
 ### Siguiente paso exacto
 Definir vocabularios controlados y reglas conceptuales de validación del modelo ampliado, y volver a contrastar los seis casos con foco en P7–P9. Después continuar las tareas restantes de Fase 0. No iniciar SQL, código de producto ni MVP.
+
+
+## Vocabularios controlados y reglas conceptuales — 26/11/2026
+
+**Objetivo de la iteración:** definir vocabularios controlados, precisión temporal, procedencia/evidencia y reglas conceptuales de coherencia del modelo consolidado, sin SQL ni código de producto.
+
+### Hecho
+- Leídos AGENTS.md, STATE.md, DECISIONS.md, BACKLOG.md, DATA_MODEL.md y MODEL_VALIDATION.md en la rama de trabajo.
+- Confirmadas D-001 a D-020 como decisiones aprobadas; no se reabre ninguna.
+- Creado [docs/VALIDATION_RULES.md](VALIDATION_RULES.md), con vocabularios iniciales para roles y eventos, tipos institucionales, intención de circulación, transiciones, caras, códigos externos, procedencia y estado de evidencia.
+- Definidas reglas de precisión temporal, intervalos, cronología, procedencia por afirmación, relaciones entre entidades, racionales exactos y severidades ERROR/ADVERTENCIA/INFORMACIÓN.
+- Contraste explícito completado con Andorra, Cuba CUP/CUC, Ecuador, euro, XOF/XAF y peseta.
+- Enlazado el nuevo documento desde DATA_MODEL.md y añadido el resultado a MODEL_VALIDATION.md y BACKLOG.md.
+
+### Resultado y límites
+- No se detecta contradicción que obligue a reabrir D-001–D-020 ni cambiar las relaciones aprobadas.
+- Se distingue validez estructural, calidad de evidencia y completitud. Los datos desconocidos y la ausencia de códigos ISO no se convierten en errores por defecto.
+- Cuba mantiene una limitación de evidencia/cobertura, no un defecto estructural del modelo.
+- Trabajo conceptual/documental solamente: no se ha definido SQL, código, JSON Schema ni validador ejecutable.
+- D-008 sigue intacta. No se aprueban imágenes ni nuevas fuentes de ingesta.
+- Fase 0 permanece abierta y el MVP bloqueado.
+
+### Pendiente / siguiente paso exacto
+Solicitar revisión del usuario sobre [VALIDATION_RULES.md](VALIDATION_RULES.md), en particular los valores iniciales de vocabulario y las reglas de fechas/evidencia. No traducir todavía a SQL ni código. Tras su aprobación, continuar con los demás riesgos de Fase 0 (catálogo semilla/derechos, infraestructura, privacidad/moderación, conservación, valoración y mapa) según prioridad actual.
