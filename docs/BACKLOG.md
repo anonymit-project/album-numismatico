@@ -28,7 +28,7 @@ Prioridad orientativa. No implica autorización para saltarse el cierre de Fase 
 - [ ] Resolver valoración de monedas sin cotización y equivalencias históricas.
 - [ ] Proponer escala sencilla de conservación.
 - [ ] Definir moderación de contribuciones e imágenes aportadas por usuarios.
-- [ ] Validar mockups con el usuario y su amigo.
+- [ ] Validar mockups con el usuario y su amigo (DIFERIDO; no bloquea otras tareas de Fase 0. Recoger feedback cuando esté disponible y revisar entonces también la prueba propia en Android/escritorio).
 - [ ] Verificar cuotas gratuitas y condiciones actuales de backend, hosting, almacenamiento y servicios de identificación.
 - [ ] Validar proveedor FX. El BCE ofrece SDMX y tipos de referencia diarios para una selección de divisas; no cubre necesariamente todas las monedas históricas o exóticas y sus tipos son informativos.
 - [ ] Obtener aprobación expresa para cerrar Fase 0.
@@ -252,3 +252,20 @@ La estimación inicial (4–8 h) queda complementada por esta ampliación acotad
 ### Estado de revisión tras publicación — 26/11/2026
 
 El usuario confirma que GitHub Pages está publicado y que ha compartido el prototipo con un amigo. El feedback está pendiente. La publicación se considera completada según confirmación del usuario, no verificada independientemente por el agente. Continúan pendientes la revisión propia en Android y escritorio y la clasificación/priorización del feedback recibido. No considerar validado el prototipo ni cerrar Fase 0.
+
+
+## Reorientación de prioridades — 26/11/2026
+
+El feedback del prototipo deja de ser una dependencia para continuar. No se cancela: se revisará cuando llegue y se aplicarán los ajustes UX que procedan. La prueba propia en Android y escritorio permanece pendiente, pero tampoco bloquea el trabajo de modelo/catálogo.
+
+**Prioridad activa inmediata — validación estructural del modelo (sin código de producto):**
+- [ ] Revisar `docs/DATA_MODEL.md` frente a Andorra, Cuba CUP/CUC, Ecuador (sucre/USD y fraccionaria nacional), euro, XOF/XAF y peseta; incluir casos históricos cuando revelen relaciones temporales.
+- [ ] Preparar matriz de cobertura: caso, entidades/relaciones necesarias, cobertura del modelo actual, hueco/ambigüedad y propuesta mínima.
+- [ ] Contrastar cada necesidad con las fuentes y limitaciones ya documentadas en `docs/CATALOG_SOURCES.md`; separar lo que el modelo debe representar de lo que las fuentes permiten poblar.
+- [ ] Presentar los cambios estructurales propuestos para revisión antes de consolidarlos como decisiones.
+
+**Después de esta tarea:** abordar, por orden de riesgo, catálogo semilla y derechos, backend/hosting/almacenamiento/backups, privacidad y moderación, conservación y valoración. Revisar el feedback UX cuando esté disponible y usarlo para ajustar el alcance V1.
+
+**Aparcado:** toda continuación de investigación operativa CELLAR (parser Formex, feed, eventos, cursor o sincronizador) queda fuera de la prioridad activa salvo petición expresa. La evidencia existente se conserva; no se considera borrada ni invalidada.
+
+Esta reordenación no cierra Fase 0 ni autoriza el MVP.
