@@ -219,3 +219,19 @@ La tabla anterior de 29–45 h corresponde al alcance inicial más amplio y qued
 No se implementan formularios completos de alta/edición, carga o importación simulada, validaciones, procesos administrativos ni simulación detallada de operaciones. Pueden omitirse o mostrarse como elementos visuales sin comportamiento. El criterio de éxito es que el usuario y su amigo puedan evaluar el diseño y recorrer las funciones principales en navegador Android y escritorio.
 
 **Siguiente tarea:** implementar el primer corte visual navegable. No ampliar alcance sin autorización. La estimación anterior queda conservada como histórico, pero no debe utilizarse para planificar esta versión reducida.
+
+
+## Prototipo visual responsive — iteración 26/11/2026
+
+- [x] Inspeccionar la estructura real y elegir la implementación mínima: un `index.html` sin dependencias.
+- [x] Crear recorrido navegable Inicio → Emisor → Moneda → Serie → Álbum → Ficha.
+- [x] Añadir datos ficticios y placeholders neutros, sin recursos numismáticos de terceros.
+- [x] Añadir posesión/faltante, ajuste sencillo de cantidad, progreso, búsqueda, filtros y ordenación con cambios visibles.
+- [x] Adaptar navegación y cuadrícula a pantallas estrechas y escritorio.
+- [ ] Abrir y probar en navegador Android real y escritorio; registrar incidencias y feedback del usuario/amigo.
+- [ ] Configurar una vista previa pública estable (p. ej. GitHub Pages) para compartir la maqueta; hosting aún no configurado.
+- [ ] Corregir los problemas detectados en la revisión UX (estimación global de revisión y correcciones: 2–3 h).
+
+**Estado de entrega:** primer corte de código creado en `index.html`. No se considera validado en dispositivos: no se han realizado pruebas de navegador desde este entorno. Fase 0 sigue abierta y el prototipo no es el MVP.
+
+**Estimación vigente:** construcción 4–8 h; revisión y correcciones 2–3 h. No utilizar la estimación histórica de 29–45 h para este alcance reducido.
