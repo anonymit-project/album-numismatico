@@ -22,7 +22,7 @@ MVP previsto para 2 usuarios: España (pesetas y euros, incluidas conmemorativas
 ## Estado actual
 
 - Fase 0; no hay implementación funcional del producto.
-- Prototipo visual responsive en `index.html`, con álbum de monedas y billetes y vista de mapamundi esquemática; sin backend ni persistencia, pendiente de probar en Android y escritorio.
+- Prototipo visual responsive en `index.html`, publicado mediante GitHub Pages según confirmación del usuario y compartido para recibir feedback; sin backend ni persistencia. Pendientes la revisión propia en Android/escritorio y el análisis del feedback.
 - Mockups conceptuales revisados: Álbum, Mapa y Resumen.
 - Requisitos y decisiones de producto se documentan en `docs/`.
 - Fuentes, licencias, servicios gratuitos y modelo de datos siguen en investigación/validación.
