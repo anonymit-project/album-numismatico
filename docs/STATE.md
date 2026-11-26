@@ -330,3 +330,24 @@ Continuar Fase 0 por la tarea de mayor desbloqueo: cerrar el modelo de datos con
 - **Estimación inicial:** 29–45 horas para construir el prototipo (aprox. 4–6 jornadas de 7–8 h), más 6–10 horas para revisión y ajustes. Son rangos orientativos, sujetos a la estructura existente del repositorio y al feedback.
 - La investigación CELLAR queda cerrada como inconclusa en su última prueba (sección 16 de docs/CELLAR_POC.md); no es el siguiente paso.
 - Fase 0 continúa abierta. No se ha aprobado el MVP ni se ha modificado main.
+
+
+## Cambio de alcance del prototipo UX — 26/11/2026
+
+**Decisión vigente:** D-010 aclara D-009. El prototipo será una maqueta visual interactiva para validar diseño, navegación y usabilidad, no una simulación funcional extensa.
+
+### Alcance mínimo
+- Recorrido navegable: inicio → emisor → moneda → serie → álbum → ficha.
+- Interacciones visibles: tengo/me falta, cantidad sencilla y progreso.
+- Búsqueda, filtros y orden básicos que actualicen la vista.
+- Diseño móvil primero y responsive para Android y escritorio.
+- Datos ficticios, placeholders neutros y sin persistencia.
+
+### Fuera de alcance
+No construir flujos de alta/edición, importación/carga simulada, formularios administrativos completos, validación de ficheros, lógica de negocio exhaustiva, backend ni arquitectura de producción. Esos elementos solo se añadirán si una necesidad concreta de validación UX lo justifica.
+
+### Enfoque y estimación revisados
+Se prioriza el camino más rápido para obtener una demo navegable, sin imponer framework ni estructura de producción. Estimación preliminar revisada: **8–16 horas de construcción** y **3–5 horas de revisión/correcciones**, pendiente de confirmar al implementar el primer corte visual. La estimación anterior de 29–45 h queda sustituida para este alcance reducido; no se ha cambiado la estimación de un MVP futuro.
+
+### Siguiente paso exacto
+Crear el primer corte navegable con diseño responsive y datos ficticios, limitado al recorrido principal y las interacciones descritas. Probarlo realmente en navegador Android y escritorio; si el entorno no permite alguna prueba, documentar la limitación y solicitar la comprobación al usuario. No continuar CELLAR ni ampliar funcionalidades sin autorización.
