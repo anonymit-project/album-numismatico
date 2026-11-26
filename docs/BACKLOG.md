@@ -259,13 +259,46 @@ El usuario confirma que GitHub Pages está publicado y que ha compartido el prot
 El feedback del prototipo deja de ser una dependencia para continuar. No se cancela: se revisará cuando llegue y se aplicarán los ajustes UX que procedan. La prueba propia en Android y escritorio permanece pendiente, pero tampoco bloquea el trabajo de modelo/catálogo.
 
 **Prioridad activa inmediata — validación estructural del modelo (sin código de producto):**
-- [ ] Revisar `docs/DATA_MODEL.md` frente a Andorra, Cuba CUP/CUC, Ecuador (sucre/USD y fraccionaria nacional), euro, XOF/XAF y peseta; incluir casos históricos cuando revelen relaciones temporales.
+- [x] Revisar `docs/DATA_MODEL.md` frente a Andorra, Cuba CUP/CUC, Ecuador (sucre/USD y fraccionaria nacional), euro, XOF/XAF y peseta; incluir casos históricos cuando revelen relaciones temporales.
 - [ ] Preparar matriz de cobertura: caso, entidades/relaciones necesarias, cobertura del modelo actual, hueco/ambigüedad y propuesta mínima.
-- [ ] Contrastar cada necesidad con las fuentes y limitaciones ya documentadas en `docs/CATALOG_SOURCES.md`; separar lo que el modelo debe representar de lo que las fuentes permiten poblar.
-- [ ] Presentar los cambios estructurales propuestos para revisión antes de consolidarlos como decisiones.
+- [x] Contrastar cada necesidad con las fuentes y limitaciones ya documentadas en `docs/CATALOG_SOURCES.md`; separar lo que el modelo debe representar de lo que las fuentes permiten poblar.
+- [x] Presentar los cambios estructurales propuestos para revisión antes de consolidarlos como decisiones.
 
 **Después de esta tarea:** abordar, por orden de riesgo, catálogo semilla y derechos, backend/hosting/almacenamiento/backups, privacidad y moderación, conservación y valoración. Revisar el feedback UX cuando esté disponible y usarlo para ajustar el alcance V1.
 
 **Aparcado:** toda continuación de investigación operativa CELLAR (parser Formex, feed, eventos, cursor o sincronizador) queda fuera de la prioridad activa salvo petición expresa. La evidencia existente se conserva; no se considera borrada ni invalidada.
 
 Esta reordenación no cierra Fase 0 ni autoriza el MVP.
+
+
+## Resultado de validación estructural del modelo — 26/11/2026
+
+- [x] Contrastar `docs/DATA_MODEL.md` con Andorra, Cuba CUP/CUC, Ecuador (sucre/USD/fraccionaria), euro, XOF/XAF, peseta y monedas históricas.
+- [x] Preparar matriz de entidades/relaciones, cobertura conceptual y huecos por caso.
+- [x] Contrastar requisitos del modelo con `docs/CATALOG_SOURCES.md`, separando requisitos estructurales de disponibilidad, automatización y derechos de las fuentes.
+- [x] Presentar propuestas estructurales sin consolidarlas como decisiones aprobadas.
+- [ ] Revisar y aprobar/rechazar individualmente las propuestas P1–P6 antes de modificar `docs/DATA_MODEL.md` o `docs/DECISIONS.md`.
+
+### Propuestas pendientes de decisión
+
+| ID | Propuesta | Consecuencia principal |
+|---|---|---|
+| P1 | Distinguir emisor político y autoridad monetaria (`issuing_authority` o ampliación tipada de `issuer`). | Representar bancos centrales y autoridades supranacionales sin confundirlos con países. |
+| P2 | Hacer explícitos los roles de `issuer_currency`: uso, competencia de emisión, acuñación/producción y pertenencia a unión monetaria. | Resolver euro, Andorra, Ecuador y XOF/XAF sin duplicar monedas. |
+| P3 | Separar estado monetario y fechas de emisión, circulación, retirada y fin de canje. | Representar moneda circulante, retirada, desmonetizada, conmemorativa no circulante y colección. |
+| P4 | Evaluar `design_side` para caras comunes/compartidas. | Evitar duplicar caras comunes del euro conservando identidad visual por ambas caras. |
+| P5 | Formalizar transiciones entre monedas: coexistencia, sustitución, redenominación y factor de conversión. | Representar peseta/euro, sucre/USD y coexistencia CUP/CUC. |
+| P6 | Estructurar valor facial, unidad/subunidad y denominación original. | Representar centavos nacionales de USD sin crear una moneda ecuatoriana distinta del USD. |
+
+**Importante:** P1–P6 son propuestas, no decisiones. No hay cambios aprobados en el modelo conceptual ni en el registro de decisiones.
+
+### Contraste de fuentes
+- BCE/Comisión/DOUE/CELLAR: mejor soporte para metadatos euro, sin autorización automática de imágenes monetarias.
+- AFA/BCE: referencias de metadatos para Andorra; imágenes institucionales sin licencia abierta general verificada.
+- BCE/Museo Numismático: contraste histórico de sucre y fraccionarias ecuatorianas; sin licencia abierta general verificada para imágenes.
+- BEAC/BCEAO: páginas institucionales con familias, denominaciones y estados históricos; extracción controlada, no API/dataset abierto común; imágenes no reutilizables por defecto.
+- Cuba: legislación y referencias secundarias, sin catálogo oficial estructurado/licencia reutilizable suficiente.
+- Banco de España/Commons: localización y contraste de pesetas, sin que la licencia fotográfica resuelva los derechos de reproducción monetaria.
+- Wikidata CC0, ISO y Natural Earth son fuentes auxiliares para entidades/códigos/cartografía, no sustitutos de catálogos numismáticos ni autoridades de emisión.
+
+**Siguiente tarea:** obtener decisión del usuario sobre P1–P6. Fase 0 continúa abierta; D-008 y D-011 siguen vigentes; CELLAR aparcado; no iniciar MVP.
