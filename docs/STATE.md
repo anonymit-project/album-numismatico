@@ -464,3 +464,15 @@ Revisar y decidir P1–P6. Antes de rediseñar el modelo completo, acordar si se
 - **Estado de aprobación:** ninguna propuesta aprobada. No se modifican `DATA_MODEL.md` ni `DECISIONS.md`; D-008 y D-011 siguen vigentes.
 - **Fase 0:** abierta. CELLAR sigue aparcado. No se inicia MVP ni código de producto.
 - **Siguiente paso:** el usuario debe aprobar o rechazar P1–P6 individualmente; solo entonces se consolidarán los cambios autorizados.
+
+
+## Aprobación y consolidación de P1–P6 — 26/11/2026
+
+El usuario ha aprobado expresamente las seis propuestas P1–P6 según las recomendaciones de `docs/MODEL_REVIEW.md`.
+
+- Actualizado `docs/DATA_MODEL.md` con autoridad monetaria independiente, roles temporales emisor-moneda, eventos de estado monetario, caras reutilizables, transiciones tipadas y denominaciones racionales exactas.
+- Registradas D-012 a D-017 en `docs/DECISIONS.md`.
+- D-001 a D-011 se mantienen, incluida D-008 sin cambios. D-002 conserva la identidad de pieza como pareja de caras.
+- La aprobación consolida el modelo conceptual, no un esquema SQL ni autoriza el MVP o código de producto.
+- **Fase 0 sigue abierta.** CELLAR continúa aparcado. No se modifica `main`, no se fusionan ramas ni se abre PR.
+- Pendiente: validar el modelo actualizado con casos representativos y concretar vocabularios/reglas conceptuales antes de proponer el cierre de Fase 0.
