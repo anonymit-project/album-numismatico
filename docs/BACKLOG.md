@@ -23,7 +23,7 @@ Prioridad orientativa. No implica autorización para saltarse el cierre de Fase 
 - [ ] Implementar y probar un parser/mapeo Formex/XML → staging con tests; no es código de producto.
 - [x] Documentar estructura HTML, enlaces y categorías históricas de BEAC/BCEAO, con propuesta de extracción controlada de metadatos. No se ha localizado API/feed específico.
 - [x] Confirmar que las páginas institucionales de BEAC/BCEAO/Cuba no aportan licencia abierta general para sus imágenes; mantener placeholders. La brochure oficial BEAC incluye prohibición expresa de reproducción.
-- [ ] Validar el modelo con Andorra, Cuba CUP/CUC, Ecuador, euro, CFA, peseta y estados históricos.
+- [x] Validar conceptualmente el modelo con Andorra, Cuba CUP/CUC, Ecuador, euro, XOF/XAF, peseta y estados históricos (resultado en MODEL_VALIDATION.md y VALIDATION_RULES.md).
 - [ ] Definir tratamiento cartográfico de microestados, territorios y estados desaparecidos.
 - [ ] Resolver valoración de monedas sin cotización y equivalencias históricas.
 - [ ] Proponer escala sencilla de conservación.
