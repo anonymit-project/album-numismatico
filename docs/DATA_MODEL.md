@@ -29,7 +29,7 @@ Relación temporal muchos-a-muchos entre emisor y moneda. Sustituye el booleano 
 - `legally_issues`: tiene competencia legal para emitir moneda o piezas denominadas en ella.
 - `has_authorized_coinage`: tiene autorización específica para emitir moneda propia dentro de una moneda compartida.
 
-Los roles pueden coexistir si están documentados. No inferir `legally_issues` de `uses`. Acuñación/impresión física (`mints`, `prints`) son relaciones de producción con emisión/pieza y ceca/imprenta, fuera de esta relación. La membresía en una unión monetaria es una relación institucional separada y no se deduce del uso de su moneda.
+Los roles pueden coexistir si están documentados. No inferir `legally_issues` de `uses`. La relación incorpora el calificador opcional `use_basis`: `official` (uso oficialmente adoptado) o `de_facto` (uso de facto). Se registra solo cuando la fuente permita distinguirlo; su ausencia significa desconocido, no uso de facto. Este calificador no determina por sí solo curso legal ni competencia de emisión. Acuñación/impresión física (`mints`, `prints`) son relaciones de producción con emisión/pieza y ceca/imprenta, fuera de esta relación. La membresía en una unión monetaria es una relación institucional separada y no se deduce del uso de su moneda.
 
 ### Hechos de estado y cronología (`currency_status_event`)
 Eventos legales/económicos fechados asociados al objeto afectado (moneda, relación emisor-moneda o emisión) y, cuando corresponda, jurisdicción. Tipos iniciales:
@@ -59,6 +59,24 @@ Unidad visual del álbum: tipo (moneda/billete), moneda, emisor principal y refe
 ### Emisión (`catalog_issue`)
 Concreta un diseño para un emisor y periodo/año, serie, tirada u otros datos necesarios. El año se registra aquí o en el ejemplar según granularidad de la fuente; no crea automáticamente un diseño distinto. Metal/diámetro y otras diferencias técnicas se almacenan como atributos de emisión cuando sean útiles. Solo se separan diseños cuando el cambio visual lo justifique o el usuario necesite distinguirlo. Puede ser ámbito de eventos de estado específicos.
 
+### Atribución de autoridad a una emisión (`catalog_issue_monetary_authority`)
+
+Relación opcional y temporal entre una emisión concreta (`catalog_issue`) y una autoridad monetaria (`monetary_authority`), con rol controlado y procedencia. Roles iniciales:
+- `legal_issuer`: institución con competencia o responsabilidad legal de emisión para esa emisión.
+- `operational_issuer`: institución que ejecuta la emisión o la puesta en circulación.
+
+Puede haber varias autoridades/roles para una emisión. Fechas y procedencia deben respaldar cada atribución. No exigir esta relación cuando no aporte precisión o no exista evidencia. La ceca o imprenta se registra como productor físico, nunca como autoridad por el mero hecho de fabricar la pieza.
+
+### Intención de circulación de la emisión
+
+`catalog_issue` puede incluir el atributo opcional y controlado `circulation_intent`, con valores iniciales:
+- `intended_for_circulation`.
+- `not_intended_for_circulation`.
+
+La ausencia del atributo representa desconocimiento. Expresa la intención/condición de la emisión, no un hecho legal de circulación: los eventos reales de curso legal, circulación, retirada y canje siguen en `currency_status_event`. La clasificación numismática de pruebas, patrones u otras clases debe mantenerse separada; no se deduce automáticamente de la intención.
+
+La denominación y unidad nominal originales de una pieza se conservan aunque no correspondan a una moneda oficial independiente (por ejemplo, diners en piezas andorranas de colección). No crear una entidad `currency` por la mera aparición de esa unidad nominal. La normalización racional solo se realiza si existe una unidad de referencia y una equivalencia documentadas; de lo contrario, se conserva el texto original sin conversión.
+
 ### Denominación y valor facial
 Conservar la denominación original. Cuando se pueda normalizar con evidencia suficiente, almacenar valor facial exacto como racional mediante numerador y denominador enteros (`face_value_numerator`, `face_value_denominator`) respecto de la unidad principal de la moneda. No usar coma flotante. Ejemplos: 1 USD = 1/1 USD; 50 centavos USD = 50/100 USD; 1 céntimo EUR = 1/100 EUR. Puede almacenarse etiqueta de unidad/subunidad para presentación. Las subunidades no son monedas independientes salvo que tengan existencia monetaria/legal propia. Para sistemas históricos no decimales se conserva el texto y solo se normaliza si la equivalencia está documentada.
 
@@ -79,7 +97,11 @@ Propuestas de alta/corrección con estado y moderador; sesiones de identificaci�
 
 ## Reglas de integridad
 - Cada emisión apunta a diseño, moneda y emisor válidos.
-- Roles emisor-moneda y relaciones autoridad-moneda tienen vigencia y procedencia; advertir si las fechas no encajan.
+- Roles emisor-moneda, calificador opcional `use_basis`, relaciones autoridad-moneda y atribuciones autoridad-emisión tienen vigencia y procedencia; advertir si las fechas no encajan.
+- `use_basis=de_facto` no implica curso legal, adopción oficial ni competencia de emisión.
+- La atribución autoridad-emisión distingue `legal_issuer` de `operational_issuer`; no sustituye la relación de producción física.
+- `circulation_intent` expresa intención de la emisión y no sustituye eventos jurídicos o hechos reales de circulación.
+- Las unidades nominales no oficiales se conservan como denominación original y no generan automáticamente entidades `currency`; normalizar solo con referencia acreditada.
 - `uses` no implica `legally_issues`; la autoridad monetaria no sustituye al emisor de la pieza.
 - Eventos de estado indican objeto/ámbito; no extrapolar fechas a emisiones o jurisdicciones sin evidencia.
 - Una transición es dirigida y tipada; el factor, si existe, es exacto y su orientación está documentada.
