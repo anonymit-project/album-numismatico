@@ -127,47 +127,71 @@ La segunda muestra fue una entrada `ITEM`, `type=create`, seleccionada en el ín
 
 ## Planificación de entregables y estimación — 26/11/2026
 
-Estimación de calendario **orientativa**, suponiendo una persona desarrollando con apoyo de herramientas y 8–10 horas efectivas por semana, feedback del usuario en pocos días y sin bloqueos relevantes de proveedores. Reestimar al cerrar Fase 0. No es una fecha comprometida.
+Estimaciones de esfuerzo, no compromisos de calendario. Para convertirlas en calendario, usar la dedicación semanal real. Los rangos incluyen apoyo de herramientas de IA, pero no eliminan el tiempo de revisión, pruebas, decisiones y correcciones. Reestimar al cerrar cada hito.
 
-| Entregable | Previsión desde 26/11/2026 | Criterio de aceptación |
-|---|---:|---|
-| Mock-up navegable | 2–4 semanas | Flujos principales enlazados y pantallas de álbum, ficha, colección, importación y ajustes revisables por usuario y amigo; sin backend real. |
-| V1 mínimamente funcional | 3–5 meses | PWA desplegada e instalable; dos usuarios pueden registrarse, mantener colecciones privadas, cargar piezas, ver tengo/falta, importar CSV y consultar KPIs básicos desde móvil. |
+### Próximo entregable: prototipo interactivo responsive (autorizado por D-009)
 
-La V1 depende del cierre y aprobación expresa de Fase 0. Menos dedicación semanal, retrasos de feedback, decisiones de arquitectura o ampliaciones de alcance desplazan las fechas. No incluir en estas previsiones el mapa/globo, escáner por foto, catálogo mundial exhaustivo, contribuciones públicas ni funciones sociales.
+**Objetivo:** validar navegación, usabilidad y viabilidad de la interfaz en móvil Android y ordenador, antes de cerrar Fase 0. No valida por sí solo la viabilidad legal del catálogo, las fuentes, el backend, la sincronización ni los costes de infraestructura.
 
-### Inventario priorizado hasta V1
+| Tarea | Trabajo incluido | Esfuerzo |
+|---|---|---:|
+| 1. Definir flujos y criterios de aceptación | Priorizar navegación y escenarios de prueba; revisar decisiones existentes sin reabrirlas automáticamente | 3–5 h |
+| 2. Estructura visual responsive | Navegación móvil/escritorio, jerarquía visual, componentes base y estados | 4–6 h |
+| 3. Pantallas principales | Inicio, selección de emisor/moneda, álbum, ficha de pieza, colección y ajustes | 8–12 h |
+| 4. Interacciones simuladas | Tengo/me falta, cantidades, búsqueda, filtros, orden, alta/edición y recorrido de importación simulado | 8–12 h |
+| 5. Datos ficticios y estados | Dataset de demostración claramente rotulado, placeholders, estados vacíos y ejemplos representativos | 2–3 h |
+| 6. Pruebas y correcciones responsive | Probar tamaños móviles y escritorio, navegación táctil, legibilidad y errores principales | 3–5 h |
+| 7. Preparar revisión | Instrucciones y entrega de una vista previa accesible para el usuario y su amigo | 1–2 h |
+| **Total de construcción** | | **29–45 h** |
 
-**A. Cerrar Fase 0 y preparar el mock-up (bloqueante)**
-- [ ] Cerrar el modelo de datos con pruebas conceptuales para Andorra, Cuba CUP/CUC, Ecuador, euro, XOF/XAF, peseta y emisores/estados históricos.
-- [ ] Confirmar alcance exacto de V1 y reglas de identidad pieza visual / emisión / ejemplar.
-- [ ] Resolver decisiones mínimas que afectan a las pantallas: escala de conservación, valoración inicial, offline (recomendación: lectura offline; escritura sincronizada se pospone), moderación y privacidad.
-- [ ] Terminar verificación comparativa de backend, hosting, autenticación, almacenamiento, backups y FX; documentar cuotas y límites actuales.
-- [ ] Definir un conjunto semilla pequeño, con procedencia por campo y derechos claros; usar placeholders para imágenes no autorizadas.
-- [ ] Crear mock-up navegable de inicio, álbum, detalle de pieza, alta/edición, importación CSV, perfil/ajustes y estados vacíos; revisión del usuario y su amigo.
-- [ ] Obtener aprobación expresa del cierre de Fase 0 y congelar el alcance de V1.
+**Revisión posterior:** 6–10 h (aprox. 1–2 jornadas), para recoger feedback, priorizar problemas y aplicar una ronda de ajustes.
 
-**B. Construcción V1 (solo tras aprobar Fase 0)**
-- [ ] Crear estructura de aplicación TypeScript/React/Vite y PWA, lint, tipos, tests y CI.
-- [ ] Configurar backend/BD, migraciones versionadas, autenticación y políticas de acceso por fila; probar aislamiento entre dos usuarios.
-- [ ] Implementar modelo de catálogo y colección con integridad referencial, alias/versionado básico y procedencia.
-- [ ] Cargar catálogo semilla acotado y validado; no intentar cubrir el mundo en V1.
-- [ ] Implementar álbum móvil: selector de emisor, moneda/tipo, orden, filtros, tengo/falta, cantidades y detalle.
-- [ ] Implementar alta/edición manual y búsqueda dentro del catálogo semilla.
-- [ ] Implementar importación CSV con plantilla, vista previa, validación, errores por fila y confirmación; XLSX y asistente por lotes se posponen.
-- [ ] Implementar KPIs básicos y exportación CSV/JSON como respaldo del usuario.
-- [ ] Añadir modo oscuro, accesibilidad básica, estados de carga/error/vacío y comportamiento adaptable.
-- [ ] Añadir tests unitarios/integración y un flujo E2E: registro → añadir piezas → ver álbum → importar → exportar.
-- [ ] Desplegar entorno de producción gratuito, configurar variables/secretos y documentar restauración/exportación.
-- [ ] Prueba de aceptación con el usuario y su amigo en Android/móvil; corregir bloqueantes antes de declarar V1.
+**Criterios de aceptación del prototipo**
+- Se puede recorrer el flujo principal desde inicio hasta emisor, moneda/serie y ficha.
+- Se puede marcar una pieza como adquirida/faltante, cambiar cantidad y ver el efecto en el álbum e indicadores.
+- Búsqueda, filtros y orden producen cambios visibles y coherentes.
+- Las acciones de alta/edición e importación están simuladas y se identifican como tales.
+- Se puede usar con comodidad en un móvil Android y en escritorio; no se exige instalación PWA en esta fase.
+- Todo dato e imagen de demostración es ficticio o un placeholder; no se incorpora material de terceros sin verificar D-008.
+- No hay backend, cuentas reales, sincronización ni persistencia fuera de la sesión.
 
-**C. Posponer expresamente hasta después de V1**
-- [ ] Mapa plano y globo 3D.
-- [ ] Escáner/identificación por foto.
-- [ ] Importadores automáticos CELLAR, BEAC/BCEAO y catálogo global; la investigación no equivale a autorización ni a implementación.
-- [ ] Importación XLSX avanzada y asistente por lotes.
-- [ ] FX histórico/amplio, valoración avanzada y KPIs avanzados.
-- [ ] Contribuciones moderadas, compartición social, intercambio y gamificación.
+### Preparación y cierre de Fase 0 (paralela o posterior a la revisión UX)
+
+| Tarea pendiente | Esfuerzo inicial |
+|---|---:|
+| Validar modelo con Andorra, Cuba CUP/CUC, Ecuador, euro, XOF/XAF, peseta y estados históricos | 4–8 h |
+| Resolver decisiones mínimas de conservación, valoración, privacidad/moderación y alcance V1 | 4–8 h |
+| Verificar backend, hosting, autenticación, almacenamiento, backups y FX con cuotas vigentes | 5–8 h |
+| Definir catálogo semilla pequeño, trazable y con derechos compatibles | 4–8 h |
+| Revisar feedback del prototipo y congelar alcance de V1 | 2–4 h |
+| **Subtotal estimado** | **19–36 h** |
+
+Siguen pendientes también las tareas de cobertura/fuentes que figuran arriba en el backlog, incluido el parser Formex → staging; no se consideran bloqueantes para construir el prototipo UX. El cierre de Fase 0 requiere aprobación expresa del usuario.
+
+### V1 funcional acotada (solo después de aprobar el cierre de Fase 0)
+
+Estimación preliminar: **100–180 horas de esfuerzo**, aproximadamente **6–10 semanas** si se dedican 15–20 horas semanales y no aparecen bloqueos importantes. Debe revisarse tras el prototipo y la selección del backend. No es una fecha comprometida.
+
+| Bloque | Trabajo principal | Esfuerzo |
+|---|---|---:|
+| Base técnica | Proyecto, PWA, CI, calidad, despliegue inicial | 10–16 h |
+| Backend y seguridad | Base de datos, migraciones, autenticación, aislamiento de colecciones | 18–30 h |
+| Catálogo y colección | Modelo aprobado, semillas, procedencia, posesión y faltantes | 16–28 h |
+| Experiencia principal | Álbum móvil, navegación, filtros, búsqueda, detalle y edición | 20–32 h |
+| Importación/exportación | CSV, validación, vista previa, exportación y backups | 10–18 h |
+| Calidad y entrega | Tests, E2E, accesibilidad básica, pruebas Android, documentación y correcciones | 26–56 h |
+| **Total preliminar** | | **100–180 h** |
+
+**Incluido en la V1 acotada:** PWA móvil primero, dos o pocos usuarios, cuentas privadas, catálogo semilla limitado, álbum, posesión/cantidad, búsqueda/filtros, importación CSV, KPIs básicos, exportación y pruebas.  
+**Excluido expresamente:** catálogo mundial exhaustivo, mapa/globo, escáner por foto, importadores automáticos, XLSX avanzado, asistente por lotes, red social e intercambio.
+
+### Fases posteriores
+
+- Mapa plano/globo.
+- Identificación asistida por foto, si coste y privacidad lo permiten.
+- Importadores CELLAR, BEAC/BCEAO y ampliación del catálogo, tras validar fuentes, licencias y automatización.
+- Importación XLSX avanzada y asistente por lotes.
+- Valoración avanzada, contribuciones moderadas, compartición social, intercambio y gamificación.
 
 ### Actualización de la prueba CELLAR
 
