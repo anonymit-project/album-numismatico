@@ -351,3 +351,26 @@ Se prioriza el camino más rápido para obtener una demo navegable, sin imponer 
 
 ### Siguiente paso exacto
 Crear el primer corte navegable con diseño responsive y datos ficticios, limitado al recorrido principal y las interacciones descritas. Probarlo realmente en navegador Android y escritorio; si el entorno no permite alguna prueba, documentar la limitación y solicitar la comprobación al usuario. No continuar CELLAR ni ampliar funcionalidades sin autorización.
+
+
+## Prototipo visual responsive — 26/11/2026
+
+### Alcance y decisiones aplicadas
+- Se inicia el prototipo visual interactivo conforme a D-009 y D-010; la Fase 0 permanece abierta y esto no autoriza el MVP.
+- Inspección de la rama: existe README y documentación de proyecto, pero no se encontraron `package.json`, `index.html` ni estructura frontend en las rutas habituales. Se elige un único `index.html` autocontenido, sin framework, dependencias ni compilación.
+- Se crea `index.html` con navegación Inicio → Emisores → Moneda → Serie → Álbum → Ficha; pantallas de progreso; datos de demostración; placeholders geométricos neutros; posesión/cantidad; búsqueda, filtros y ordenación.
+- Diseño responsive con navegación lateral en escritorio y barra inferior en pantallas estrechas. Los cambios son solo memoria de la pestaña/sesión; no hay backend ni persistencia.
+- No se modifica el modelo de datos ni se incorporan imágenes, textos o datos numismáticos de terceros. No se añade una decisión de producto nueva; D-010 es suficiente.
+
+### Verificación
+- Confirmada por GitHub la creación y posterior ajuste de `index.html` en `research/source-automation-2026-11`.
+- No se ha ejecutado el prototipo en un navegador real ni probado Android/escritorio desde este entorno. Tampoco se ha configurado hosting público. La revisión visual/táctil queda pendiente del usuario.
+- La muestra contiene ocho piezas ficticias; cantidades y progreso se recalculan al interactuar. No representa catálogo ni reglas numismáticas reales.
+
+### Próximo paso exacto
+- Abrir la maqueta en escritorio y Android mediante un servidor estático o una vista previa publicada; revisar navegación, legibilidad, filtros y cambios de posesión/cantidad. Registrar feedback antes de modificar el diseño.
+- Para facilitar una URL pública estable, decidir/configurar el hosting estático (por ejemplo, GitHub Pages) en una tarea posterior; no asumir que está habilitado.
+
+### Límites
+- El fichero es un prototipo desechable, no arquitectura ni código base del MVP.
+- CELLAR continúa aparcado. No reanudar parser, sincronizador ni pruebas de feed en esta iteración.
