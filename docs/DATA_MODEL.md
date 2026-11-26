@@ -119,7 +119,7 @@ La especificación inicial de valores controlados, precisión temporal, proceden
 - Definir esquema SQL y constraints solo tras cerrar el resto de Fase 0; este documento es conceptual.
 - Determinar granularidad de emisión/año en series con múltiples años y diseños idénticos.
 - Representar variantes que el usuario quiera separar aunque sean visualmente casi iguales.
-- Concretar vocabularios controlados y precisión de fechas/eventos.
+- Traducir los vocabularios y reglas conceptuales de VALIDATION_RULES.md a constraints/tests únicamente tras aprobar el cierre de Fase 0 y autorizar esa implementación.
 - Ordenar denominaciones históricas no decimales o no normalizadas.
 - Escala de conservación y tratamiento de monedas sin cotización.
 - Modelo de almacenamiento/licencia de imágenes.
