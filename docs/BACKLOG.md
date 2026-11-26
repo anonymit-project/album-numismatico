@@ -111,8 +111,15 @@ La prueba manual de paginación para la consulta 19–25/11/2026 queda completad
 ### Actualización de identidad de eventos CELLAR — 26/11/2026
 
 - [x] Inspeccionar en bruto una entrada Atom real y registrar namespaces, `cellarId`, `rootCellarId`, `wemiClass`, `classes`, `identifiers` y `rootIdentifiers` (evidencia en `docs/CELLAR_POC.md`, sección 14).
-- [ ] Comprobar otra entrada de distinta clase WEMI para determinar si las plantillas sin resolver de `id`, `title`, `summary` y `link href` se repiten.
+- [x] Inspeccionar una segunda entrada Atom de clase ITEM (índice 7 de P331): las plantillas sin resolver de `id`, `title`, `summary` y `link href` se repiten respecto a la entrada EXPRESSION. Evidencia y límites en `docs/CELLAR_POC.md`, sección 15.
 - [ ] Seguir un `cellarId` real hasta sus metadatos WEMI mediante CELLAR/SPARQL.
 - [ ] Probar eventos DELETE y valores múltiples de `wemiClasses`.
 
 **Conclusión parcial:** la muestra identifica un recurso `EXPRESSION` y su raíz, y aporta CELEX/consolidation/ELI para relacionarlos. Sin embargo, `atom:id`, `title`, `summary` y `link href` llegaron como plantillas literales; el identificador de evento no queda validado. No usar `cellarId|updated` como clave global demostrada ni diseñar aún cursor/sincronizador. Mantener Fase 0 y D-008.
+
+
+### Resultado de la segunda inspección Atom — 26/11/2026
+
+La segunda muestra fue una entrada `ITEM`, `type=create`, seleccionada en el índice 7 de P331. Repite exactamente los campos plantilla observados en la entrada `EXPRESSION`: `atom:id` con `${item.cellarUri}`, `title=$item.title`, `summary=$item.entrySummary` y `link href=$item.cellarUri`. Los campos `cellarId` y `rootCellarId` sí están materializados. Se marca completada la comparación de dos muestras, no una caracterización general del feed.
+
+**Siguiente acción atómica:** seguir un `cellarId` observado hasta sus metadatos WEMI mediante CELLAR/SPARQL. Mantener pendientes la prueba de DELETE y los valores múltiples de `wemiClasses`. No implementar parser, cliente, cursor ni sincronizador.
