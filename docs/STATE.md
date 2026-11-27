@@ -542,3 +542,15 @@ Solicitar revisión del usuario sobre [VALIDATION_RULES.md](VALIDATION_RULES.md)
 - No se ha implementado SQL, código de producto ni constraints físicos. No se ha cerrado Fase 0.
 
 **Siguiente paso exacto:** recibir la decisión del usuario sobre V-01–V-09. Si se aprueban total o parcialmente, consolidar solo las aceptadas en la especificación principal y actualizar el registro de decisiones/estado. Si se solicitan cambios, analizarlos antes de aplicarlos.
+
+
+
+## Aprobación de vocabularios y reglas — 27/11/2026
+
+- El usuario aprobó expresamente V-01–V-09, sin modificaciones, el 2026-11-27.
+- Las nueve propuestas se consolidaron en `docs/VALIDATION_RULES.md` como reglas conceptuales aprobadas.
+- Se registró D-021 en `docs/DECISIONS.md`. D-001–D-020 permanecen intactas.
+- La revisión conceptual de vocabularios y reglas queda aprobada; no equivale al cierre de Fase 0.
+- No se ha implementado SQL, código de producto, esquema físico ni validador ejecutable.
+
+**Siguiente paso:** continuar con los demás riesgos y entregables pendientes de Fase 0 según BACKLOG. No iniciar implementación ni MVP hasta completar y aprobar esa fase.
