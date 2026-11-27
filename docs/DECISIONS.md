@@ -158,3 +158,12 @@ Registro vivo de decisiones de producto. Las propuestas no aprobadas se etiqueta
 - **Decisión:** aprobar y consolidar las modificaciones V-01–V-09 de `docs/VALIDATION_RULES.md`, relativas a separación entre fuente y derivación, estado de afirmación y ciclo de vida, semántica de eventos, compatibilidad evento/objeto, extremos temporales, normalización de denominaciones, códigos ISO 4217, solapamientos temporales y gobernanza de vocabularios.
 - **Límites:** esta aprobación es conceptual/documental. No autoriza SQL, código de producto, esquema físico ni validador ejecutable. No cierra Fase 0 ni modifica D-001–D-020.
 - **Motivo:** reducir ambigüedades y falsos positivos antes de traducir las reglas a validaciones técnicas.
+
+
+## D-022 — Flujo Git simplificado: `main` como rama habitual
+
+- **Estado:** Aprobada (2026-11-27).
+- **Decisión:** usar `main` como única rama activa habitual y trabajar directamente en ella. Crear ramas temporales solo cuando aporten una separación útil y concreta; no exigir pull requests para el trabajo ordinario.
+- **Transición:** la rama `research/source-automation-2026-11` se mantiene como rama de trabajo hasta completar el bloque de Fase 0 actualmente en curso. Después se revisará e integrará su trabajo en `main` con autorización expresa, y se retomará el trabajo directo en `main`.
+- **Límites:** no descartar ramas, commits o PR existentes sin revisar su contenido y dependencias. No fusionar ni modificar `main` durante esta transición sin autorización expresa. No crear nuevas ramas por rutina.
+- **Motivo:** reducir carga operativa y evitar confusión sobre cuál es la versión actualizada del proyecto, manteniendo aislamiento solo cuando aporte valor real.
