@@ -8,9 +8,9 @@
 **Pull request #1:** [abierto y en borrador](https://github.com/anonymit-project/album-numismatico/pull/1), sin fusionar ni modificar.
 **Pull request #2:** [abierto y en borrador](https://github.com/anonymit-project/album-numismatico/pull/2), dirigido a la rama de documentación de la PR #1.
 
-## Estado vigente — estrategia de catálogo mundial (27/11/2026)
+## Estado vigente — estrategia operativa aprobada (27/11/2026)
 
-**Objetivo activo:** diseñar la estrategia de construcción de un catálogo numismático mundial progresivo, con fuentes múltiples y trazabilidad por afirmación. La aprobación D-023 establece la dirección estratégica; no autoriza ingesta, implementación física ni MVP.
+**Objetivo activo:** aplicar la estrategia operativa D-024 para construir progresivamente un catálogo numismático mundial propio. P1–P9 están aprobadas y desarrolladas en `docs/CATALOG_OPERATIONS.md`. D-023 establece la dirección estratégica y D-024 concreta su operación conceptual; ninguna autoriza ingesta, implementación física ni MVP.
 
 ### Criterios aprobados
 - Ambición mundial progresiva: emisores actuales e históricos, monedas, billetes, familias/series, diseños, piezas y emisiones.
@@ -26,7 +26,7 @@
 - Rama activa de esta iteración: `research/source-automation-2026-11`. No modificar ni fusionar `main` sin autorización expresa.
 
 ### Siguiente tarea
-Diseñar la estrategia operativa del catálogo mundial: taxonomía/cobertura, clases de fuentes y criterios de aceptación, flujo de ingesta y staging, derechos, métricas, mantenimiento y costes. Presentar las decisiones pendientes al usuario antes de consolidarlas.
+Resolver los pendientes conceptuales de D-024: criterios verificables para `reviewed` y `high_coverage`, representación del alcance conocido y sus lagunas, correspondencia de los siete niveles con el modelo y plantilla/frecuencia de auditoría de fuentes. Después priorizar los restantes bloques de Fase 0. No implementar ingesta ni iniciar el MVP.
 
 ## Objetivo de la iteración
 
