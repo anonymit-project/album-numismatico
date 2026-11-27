@@ -167,3 +167,13 @@ Registro vivo de decisiones de producto. Las propuestas no aprobadas se etiqueta
 - **Transición:** la rama `research/source-automation-2026-11` se mantiene como rama de trabajo hasta completar el bloque de Fase 0 actualmente en curso. Después se revisará e integrará su trabajo en `main` con autorización expresa, y se retomará el trabajo directo en `main`.
 - **Límites:** no descartar ramas, commits o PR existentes sin revisar su contenido y dependencias. No fusionar ni modificar `main` durante esta transición sin autorización expresa. No crear nuevas ramas por rutina.
 - **Motivo:** reducir carga operativa y evitar confusión sobre cuál es la versión actualizada del proyecto, manteniendo aislamiento solo cuando aporte valor real.
+
+
+## D-023 — Estrategia de catálogo numismático mundial progresivo
+
+- **Estado:** Aprobada (2026-11-27).
+- **Decisión:** diseñar y construir un catálogo propio con ambición de cobertura mundial progresiva: emisores actuales e históricos, monedas, billetes, familias/series, diseños, piezas y emisiones. La cobertura crecerá por etapas; no se promete exhaustividad mundial ni se exige completar el catálogo antes del lanzamiento inicial.
+- **Arquitectura de fuentes:** ninguna fuente externa será autoridad única. Se combinarán identificadores y vocabularios generales, fuentes institucionales primarias, datasets especializados auditados, referencias auxiliares y curación documentada. Los datos externos pasarán por normalización, deduplicación, control de procedencia y revisión antes de incorporarse al catálogo consolidado; no habrá sobrescritura automática de datos verificados.
+- **Imágenes:** la cobertura de metadatos es independiente de la disponibilidad de imágenes. Una pieza podrá incorporarse sin fotografía y mostrarse con placeholder. Toda imagen seguirá sujeta íntegramente a D-008; la licencia de un dataset o de una fotografía no se presumirá extensible al diseño monetario.
+- **Límites:** el catálogo mundial es una dirección estratégica, no una condición de salida del MVP ni una promesa de registrar absolutamente todas las emisiones. No se aprueba importar datos, implementar ingesta, definir arquitectura física ni iniciar el MVP. Fase 0 permanece abierta.
+- **Motivo:** maximizar la cobertura a largo plazo sin depender de un proveedor único, preservar la calidad y trazabilidad por dato y evitar que la falta de imágenes o la exhaustividad retrasen indefinidamente la primera versión.
