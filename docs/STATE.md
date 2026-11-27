@@ -565,3 +565,28 @@ Solicitar revisión del usuario sobre [VALIDATION_RULES.md](VALIDATION_RULES.md)
 - Esta preferencia prima la simplicidad: no introducir procesos Git que no aporten un beneficio claro.
 
 **Siguiente paso:** continuar con los entregables restantes de Fase 0 según el backlog, empezando por revisar prioridades y dependencias actuales. Mantener la rama de trabajo actual durante este bloque. No iniciar SQL, código de producto ni MVP antes del cierre aprobado de Fase 0.
+## Evaluación de datasets numismáticos modernos — 27/11/2026
+
+**Objetivo:** identificar y evaluar datasets especializados de monedas y billetes modernos con licencia explícita compatible, sin incorporarlos ni iniciar el MVP.
+
+### Hecho
+- Leídos los documentos obligatorios: `AGENTS.md`, `docs/STATE.md`, `docs/PRD.md`, `docs/DECISIONS.md`, `docs/BACKLOG.md` y `docs/CATALOG_SOURCES.md`.
+- Evaluados Open Coin Data (Coinection), Banknote Dimensions (Rising-Throne) y NumisLib (World Currencies Database).
+- Verificadas declaraciones de licencia en los repositorios: CC BY 4.0 para Open Coin Data y Banknote Dimensions; MIT para NumisLib.
+- Comprobada actividad reciente de Open Coin Data (19/11/2026) y actividad de NumisLib hasta 23/04/2026.
+- Revisados cobertura declarada/observable, tipos de piezas, atributos físicos, emisiones, mantenimiento y limitaciones de trazabilidad.
+- Reconfirmada la exclusión de Numista y descartados como fuentes de ingesta DataVault, Banknotes Online y TheBanknoteDB por condiciones restrictivas o licencia compatible no acreditada.
+- Documentada la evaluación y recomendación en `docs/CATALOG_SOURCES.md`.
+
+### Resultado
+- **Open Coin Data:** candidato recomendado para estudiar una complementación de monedas euro; no cubre billetes ni otras monedas y requiere auditoría de procedencia por atributo.
+- **Banknote Dimensions:** candidato recomendado como complemento experimental de datos físicos; cobertura reducida y algunos valores estimados.
+- **NumisLib:** queda en observación; MIT declarada, pero falta confirmar alcance sobre los datos y auditar cobertura y procedencia.
+- No se ha encontrado un dataset maestro adecuado para monedas y billetes modernos a escala mundial.
+- Ningún dataset ni imagen se incorpora al catálogo. D-008 permanece intacta.
+
+### Límites y siguiente paso
+- La evaluación es documental y preliminar; no constituye auditoría exhaustiva ni dictamen jurídico.
+- No se han descargado/importado datos, contactado proveedores, implementado código ni iniciado el MVP.
+- Fase 0 permanece abierta. La rama de trabajo sigue siendo `research/source-automation-2026-11`; no se crean ramas ni se fusiona nada.
+- Siguiente paso: continuar con los riesgos restantes de Fase 0 según BACKLOG. La eventual integración de estos datasets requiere una decisión específica posterior y auditoría de muestras/procedencia.
