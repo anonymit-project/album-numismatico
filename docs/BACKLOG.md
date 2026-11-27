@@ -421,3 +421,23 @@ Esta reordenación no cierra Fase 0 ni autoriza el MVP.
 - No diseñar SQL, esquema físico, API ni código de producto.
 - Los candidatos Open Coin Data, Banknote Dimensions y NumisLib conservan el estado documentado en `CATALOG_SOURCES.md`; cualquier incorporación requiere auditoría y decisión específica.
 - Fase 0 permanece abierta; la integración en `main` sigue sujeta a autorización expresa según D-022.
+
+
+## Estrategia operativa del catálogo mundial — D-024 (27/11/2026)
+
+- [x] Aprobar taxonomía conceptual de siete niveles y cobertura independiente por ámbito.
+- [x] Aprobar estados de cobertura distintos del estado de verificación de afirmaciones.
+- [x] Aprobar arquitectura lógica de cinco clases de fuentes, sin autoridad única ni jerarquía automática universal.
+- [x] Aprobar criterios de aceptación y auditoría separados para fuente, afirmación y registro consolidado.
+- [x] Aprobar staging conceptual con conservación de dato original y normalizado.
+- [x] Aprobar procedencia por afirmación, historial y resolución documentada de conflictos.
+- [x] Aprobar evaluación independiente de derechos de datos, textos, fotografías y diseños monetarios; D-008 prevalece.
+- [x] Aprobar métricas multidimensionales y prohibición de porcentajes mundiales sin denominador fiable.
+- [x] Aprobar crecimiento progresivo por unidades independientes, sin exigir cobertura mundial antes del MVP.
+- [ ] Definir criterios verificables para los estados `reviewed` y `high_coverage`.
+- [ ] Definir cómo registrar alcance conocido, universo evaluado y lagunas no cuantificables.
+- [ ] Mapear los siete niveles de cobertura a las entidades del modelo sin crear entidades redundantes.
+- [ ] Definir plantilla de auditoría de fuente/licencia y periodicidad proporcional al tipo de fuente.
+- [ ] Priorizar las siguientes tareas de Fase 0; no iniciar importadores, staging físico ni MVP hasta autorización expresa.
+
+**Límites:** la aprobación D-024 es conceptual. No se han descargado ni importado datasets, no se han descargado imágenes ni implementado automatizaciones. Fase 0 permanece abierta.
