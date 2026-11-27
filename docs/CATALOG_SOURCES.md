@@ -382,3 +382,39 @@ Fuentes adicionales:
 - [CELLAR Knowledge Graph: consultas y relaciones WEMI](https://op.europa.eu/en/web/cellar/cellar-data/metadata/knowledge-graph)
 - [CELLAR RSS/Atom: parámetros de notificación y paginación](https://op.europa.eu/en/web/cellar/cellar-data/rss-and-atom-feeds)
 - [EUR-Lex: alertas RSS personalizadas desde búsquedas guardadas](https://eur-lex.europa.eu/content/help/my-eurlex/my-searches.html?locale=en)
+## 7. Evaluación de datasets especializados modernos — 27/11/2026
+
+**Alcance:** localizar datasets especializados de monedas y billetes modernos con licencia explícita compatible. Evaluación documental; no se han descargado ni incorporado datos, no se ha contactado con proveedores y no se ha iniciado código de producto.
+
+### Criterio de admisión
+
+La disponibilidad pública no equivale a permiso de reutilización. Se considera candidato reutilizable únicamente cuando existe una licencia explícita compatible, sin perjuicio de comprobar derechos de terceros sobre los datos y especialmente sobre diseños e imágenes. La licencia del software o del esquema no se presume aplicable a todo el contenido.
+
+### Candidatos recomendados para evaluación adicional
+
+| Fuente | Cobertura y contenido observado | Licencia declarada | Mantenimiento / trazabilidad | Evaluación |
+|---|---|---|---|---|
+| [Open Coin Data — Coinection](https://github.com/Coinection/Open-Coin-Data) | Catálogo de monedas euro por 23 países emisores; monedas regulares y conmemorativas, organización por país/año e información de emisiones y tiradas. No cubre billetes ni monedas no euro. | CC BY 4.0 explícita en el repositorio; permite reutilización comercial y adaptación con atribución. | Actividad reciente comprobada: commit «Update 2026 week 47» del 19/11/2026. La procedencia granular de cada atributo y la cobertura completa por país/año requieren auditoría adicional. | **Recomendado como complemento euro**, no como fuente primaria única ni como sustituto de DOUE/CELLAR. |
+| [Banknote Dimensions — Rising-Throne](https://github.com/Rising-Throne/banknote-dimensions) | Dataset especializado en características físicas de monedas y billetes; cobertura observada limitada a seis monedas (CHF, CNY, EUR, GBP, JPY y USD), 34 billetes y 38 monedas. Incluye dimensiones y otros atributos físicos. | CC BY 4.0 declarada en el proyecto. | Se documentan fuentes y confianza para atributos, pero parte de los valores son estimaciones. Mantenimiento y frecuencia de actualización no quedan suficientemente acreditados. La cobertura anunciada/planificada no debe confundirse con datos ya publicados. | **Recomendado como complemento técnico experimental**, con validación atributo por atributo. |
+| [NumisLib — World Currencies Database](https://github.com/NumisLib/world-currencies-database) | Esquema y base relacional para países, monedas, denominaciones, monedas/billetes, especificaciones físicas, diseños, cecas e emisiones. Declara una base SQLite y exportaciones SQL/CSV. Cobertura real y exhaustividad por país no verificadas. | MIT explícita en README y archivo LICENSE del repositorio. La licencia del repositorio debe contrastarse con la procedencia/derechos de cada conjunto de datos y contribución antes de reutilizar el contenido. | Commits observados hasta 23/04/2026, incluidos cambios de restricciones únicas y corrección de duplicados. Trazabilidad de los datos a fuentes primarias insuficiente en la revisión realizada. | **Mantener en observación**. No importar hasta auditar muestras, cobertura y procedencia de registros. |
+
+### Candidatos no admitidos
+
+| Fuente | Motivo |
+|---|---|
+| [Numista](https://en.numista.com/) | Se mantiene excluida conforme a la evaluación contractual ya documentada: sus condiciones no garantizan la reutilización y redistribución prevista. No reabrir sin evidencia nueva. |
+| [DataVault](https://datavault.coins/) | Las condiciones revisadas no permiten incorporar datos sustanciales a una base de datos/producto destinado a terceros; además, es un servicio de suscripción. No utilizar. |
+| [Banknotes Online](https://www.banknotesonline.com/) y [TheBanknoteDB](https://www.thebanknotedb.com/) | No se ha acreditado licencia explícita compatible para reutilización del catálogo. La accesibilidad pública no basta. Excluir de ingesta; conservar como referencia solo si resulta útil. |
+| [Syllogeum](https://www.syllogeum.org/) y [CANOA](https://www.canoa.org/) | Corpus orientados principalmente a moneda antigua; no satisfacen el alcance de moneda y billete moderno. Las condiciones pueden variar por colección/procedencia. No incorporarlos a este bloque. |
+
+### Recomendación
+
+No existe un dataset maestro que combine cobertura mundial moderna, monedas y billetes, licencia compatible, mantenimiento y trazabilidad suficiente.
+
+1. Priorizar Open Coin Data para estudiar una posible complementación del catálogo euro, manteniendo DOUE/CELLAR y las autoridades emisoras como referencias primarias.
+2. Evaluar Banknote Dimensions únicamente para enriquecer atributos físicos, conservando el nivel de confianza y la fuente de cada valor.
+3. Mantener NumisLib en observación hasta auditar una muestra representativa de registros y confirmar la licencia aplicable al contenido, no solo al repositorio.
+4. No incorporar imágenes de ninguno de estos datasets por el mero hecho de que el dataset tenga licencia abierta. Los derechos del diseño monetario y de cada imagen deben verificarse por separado, conforme a D-008.
+5. No importar ni sincronizar datos en esta iteración. La eventual incorporación requerirá una decisión posterior y un mapeo explícito al modelo consolidado.
+
+**Límites de la evaluación:** no se ha realizado una auditoría exhaustiva de todos los registros, ficheros, contribuciones o licencias de terceros. La compatibilidad indicada es una evaluación preliminar de las licencias declaradas y no un dictamen jurídico. No se ha contactado con ningún proveedor o titular.
