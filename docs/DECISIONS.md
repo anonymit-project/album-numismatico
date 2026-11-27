@@ -149,3 +149,12 @@ Registro vivo de decisiones de producto. Las propuestas no aprobadas se etiqueta
 - **Decisión:** añadir a `issuer_currency` un calificador opcional `use_basis`, con valores iniciales `official` y `de_facto`, independiente del rol temporal `uses`.
 - **Límites:** registrar el calificador solo cuando exista evidencia suficiente. No deducir curso legal, adopción oficial ni competencia de emisión a partir del uso de facto; los eventos jurídicos y los demás roles de D-013 permanecen independientes.
 - **Motivo:** distinguir la adopción oficial de la circulación de facto de monedas extranjeras, como en Andorra antes del euro.
+
+
+
+## D-021 — Aprobación de vocabularios controlados y reglas conceptuales
+
+- **Estado:** Aprobada (2026-11-27).
+- **Decisión:** aprobar y consolidar las modificaciones V-01–V-09 de `docs/VALIDATION_RULES.md`, relativas a separación entre fuente y derivación, estado de afirmación y ciclo de vida, semántica de eventos, compatibilidad evento/objeto, extremos temporales, normalización de denominaciones, códigos ISO 4217, solapamientos temporales y gobernanza de vocabularios.
+- **Límites:** esta aprobación es conceptual/documental. No autoriza SQL, código de producto, esquema físico ni validador ejecutable. No cierra Fase 0 ni modifica D-001–D-020.
+- **Motivo:** reducir ambigüedades y falsos positivos antes de traducir las reglas a validaciones técnicas.
