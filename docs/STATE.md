@@ -2,7 +2,7 @@
 
 **Fase:** 0 — descubrimiento, sin código de producto.
 **Criterio de reutilización:** solo fuentes con derechos de uso claros y compatibles; no se solicitarán permisos particulares.
-**Actualizado:** 2026-11-26
+**Actualizado:** 2026-11-27
 **Rama de trabajo:** `research/source-automation-2026-11`
 **Rama base:** `research/catalog-coverage-2026-11`
 **Pull request #1:** [abierto y en borrador](https://github.com/anonymit-project/album-numismatico/pull/1), sin fusionar ni modificar.
@@ -554,3 +554,14 @@ Solicitar revisión del usuario sobre [VALIDATION_RULES.md](VALIDATION_RULES.md)
 - No se ha implementado SQL, código de producto, esquema físico ni validador ejecutable.
 
 **Siguiente paso:** continuar con los demás riesgos y entregables pendientes de Fase 0 según BACKLOG. No iniciar implementación ni MVP hasta completar y aprobar esa fase.
+
+
+## Simplificación del flujo Git — 27/11/2026
+
+- El usuario ha confirmado que prefiere trabajar normalmente con una única rama `main`, para evitar dudas sobre qué rama contiene la versión actualizada.
+- Se registra D-022 en `docs/DECISIONS.md` y se actualiza `AGENTS.md`: `main` será la rama habitual; las ramas temporales y PR se reservarán para casos con una justificación concreta.
+- **Transición acordada:** mantener `research/source-automation-2026-11` mientras se completa el bloque de Fase 0 en curso; después revisar e integrar sus cambios en `main` con autorización expresa y continuar directamente en `main`.
+- No se han fusionado ramas ni modificado `main` en esta actualización. No se han eliminado ramas ni PR existentes.
+- Esta preferencia prima la simplicidad: no introducir procesos Git que no aporten un beneficio claro.
+
+**Siguiente paso:** continuar con los entregables restantes de Fase 0 según el backlog, empezando por revisar prioridades y dependencias actuales. Mantener la rama de trabajo actual durante este bloque. No iniciar SQL, código de producto ni MVP antes del cierre aprobado de Fase 0.
