@@ -388,3 +388,14 @@ Esta reordenación no cierra Fase 0 ni autoriza el MVP.
 - [ ] Revisar las ramas y PR históricas antes de decidir si se cierran o archivan; no eliminar trabajo por rutina.
 
 **Regla operativa:** no crear nuevas ramas ni PR por defecto. La fuente de verdad sigue siendo el repositorio; una vez completada la transición, `main` será la referencia de trabajo cotidiana.
+## Evaluación de datasets especializados modernos — 27/11/2026
+
+- [x] Identificar datasets especializados de monedas y billetes modernos con licencia explícita compatible.
+- [x] Evaluar Open Coin Data (Coinection): cobertura euro, emisiones/tiradas, CC BY 4.0 y mantenimiento reciente; candidato recomendado como complemento, pendiente de auditoría de procedencia.
+- [x] Evaluar Banknote Dimensions: cobertura reducida de monedas y billetes, atributos físicos, CC BY 4.0 y valores parcialmente estimados; candidato recomendado como complemento experimental.
+- [x] Evaluar NumisLib World Currencies Database: esquema amplio y licencia MIT declarada; mantener en observación por trazabilidad, cobertura real y alcance de licencia sobre los datos.
+- [x] Reconfirmar exclusión de Numista y descartar DataVault, Banknotes Online y TheBanknoteDB como fuentes de ingesta por restricciones o ausencia de licencia compatible acreditada.
+- [x] Documentar evaluación, limitaciones y recomendación en `docs/CATALOG_SOURCES.md`.
+- [ ] Si se considera incorporar algún candidato en el futuro, auditar muestras de registros, procedencia por atributo, licencia de datos y derechos de diseños/imágenes antes de una decisión expresa.
+
+**Resultado:** no se ha encontrado un dataset maestro mundial adecuado. No se ha importado ni descargado contenido, no se ha contactado con proveedores y no se ha iniciado código de producto. Fase 0 continúa abierta.
