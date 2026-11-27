@@ -31,9 +31,10 @@ Este repositorio corresponde al proyecto Álbum numismático. El usuario es un i
 
 ## Flujo de Git
 
-- Trabajar en ramas descriptivas, nunca directamente en `main`.
-- Proponer cambios mediante pull request.
-- No fusionar PR ni modificar `main` sin autorización explícita.
+- **Flujo simple por defecto:** trabajar directamente en `main`, que será la única rama activa habitual y la referencia actualizada del proyecto.
+- Usar una rama temporal solo cuando exista una razón concreta (por ejemplo, una investigación aislada o cambios experimentales que convenga revisar por separado). No crear ramas ni PR por rutina.
+- Si ya existe una rama de trabajo activa con cambios pendientes —como la rama actual de Fase 0—, terminar el bloque acordado en ella y después integrar/revisar esos cambios en `main`. Una vez integrada, volver a trabajar directamente en `main`.
+- No mantener ramas paralelas ni PR abiertas por inercia. Antes de simplificar/eliminar estructuras existentes, comprobar su contenido y dependencias; no descartar trabajo ni fusionar cambios sin autorización explícita.
 - Revisar el contenido actual antes de reemplazar un archivo; evitar sobrescribir trabajo ajeno.
 - Mantener commits pequeños y con mensajes claros.
 
