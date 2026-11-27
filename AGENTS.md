@@ -8,6 +8,10 @@ Este repositorio corresponde al proyecto Álbum numismático. El usuario es un i
 2. El repositorio es la fuente de verdad, no el historial del chat. No pedir de nuevo información ya documentada.
 3. Al cerrar cada iteración, actualizar como mínimo `docs/STATE.md`, `docs/DECISIONS.md` si hubo decisiones, y `docs/BACKLOG.md`.
 4. Dejar un resumen de lo realizado, errores, decisiones, bloqueos y siguiente paso exacto. Preparar un prompt de relevo autosuficiente cuando el usuario lo solicite o antes de cambiar de sesión/contexto.
+5. **No terminar una tarea o conversación sin continuidad explícita.** Si la tarea ha terminado o se va a cambiar de chat, cerrar con un prompt de relevo autosuficiente listo para copiar (o una pregunta concreta si no hace falta cambiar de chat).
+6. **No pedir relevo mientras haya una prueba o respuesta pendiente en el mismo chat.** Si se ha pedido al usuario ejecutar un comando, aportar un resultado o confirmar un dato, mantener el hilo abierto y esperar ese resultado; no añadir simultáneamente un prompt de relevo. Preparar el relevo solo cuando la prueba pendiente haya concluido, cuando la tarea esté cerrada o cuando el contexto esté próximo a agotarse y convenga trasladar expresamente la prueba pendiente al nuevo chat.
+7. **Vigilar proactivamente la capacidad del contexto.** Cuando la conversación se acerque a un nivel en el que pueda perderse información relevante, avisar antes de que ocurra y preparar el prompt de relevo. Si hay una prueba pendiente que deba trasladarse, el prompt debe indicarlo explícitamente y conservar el comando/estado necesario.
+8. **Preferencia por chats cortos y tareas atómicas.** El usuario prefiere dividir el trabajo en muchos chats breves, cada uno dedicado a una tarea sencilla y bien delimitada. Al terminar una tarea, cerrar con un prompt de relevo autosuficiente que indique objetivo único, documentos que debe leer, rama y restricciones, evidencia disponible y resultado esperado. No encadenar tareas adicionales en el mismo chat salvo que el usuario lo pida expresamente. Esta preferencia no justifica interrumpir una prueba pendiente: primero recibir y analizar el resultado, salvo que el contexto exija trasladarla.
 
 ## Reglas de producto
 
@@ -27,9 +31,10 @@ Este repositorio corresponde al proyecto Álbum numismático. El usuario es un i
 
 ## Flujo de Git
 
-- Trabajar en ramas descriptivas, nunca directamente en `main`.
-- Proponer cambios mediante pull request.
-- No fusionar PR ni modificar `main` sin autorización explícita.
+- **Flujo simple por defecto:** trabajar directamente en `main`, que será la única rama activa habitual y la referencia actualizada del proyecto.
+- Usar una rama temporal solo cuando exista una razón concreta (por ejemplo, una investigación aislada o cambios experimentales que convenga revisar por separado). No crear ramas ni PR por rutina.
+- Si ya existe una rama de trabajo activa con cambios pendientes —como la rama actual de Fase 0—, terminar el bloque acordado en ella y después integrar/revisar esos cambios en `main`. Una vez integrada, volver a trabajar directamente en `main`.
+- No mantener ramas paralelas ni PR abiertas por inercia. Antes de simplificar/eliminar estructuras existentes, comprobar su contenido y dependencias; no descartar trabajo ni fusionar cambios sin autorización explícita.
 - Revisar el contenido actual antes de reemplazar un archivo; evitar sobrescribir trabajo ajeno.
 - Mantener commits pequeños y con mensajes claros.
 

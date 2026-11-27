@@ -52,3 +52,137 @@ Registro vivo de decisiones de producto. Las propuestas no aprobadas se etiqueta
 - **Aplicación:** Wikidata para datos estructurados CC0; Wikimedia Commons solo para archivos cuya licencia individual permita el uso previsto y tras registrar atribución y condiciones; Natural Earth para cartografía en dominio público; fuentes oficiales para verificar hechos, sin reutilizar automáticamente sus imágenes o textos protegidos. Numista queda excluida como fuente de importación o integración mientras no exista una licencia pública inequívoca compatible con el uso previsto.
 - **Motivo:** evitar riesgos contractuales y de propiedad intelectual, mantener el presupuesto objetivo de 0 € y no añadir decisiones legales innecesarias al usuario.
 - **Consecuencia:** primar catálogo pequeño y fiable, aunque haya menos imágenes o cobertura; las fichas sin imagen usarán placeholder.
+
+
+## D-009 — Prototipo interactivo previo al cierre de Fase 0
+
+- **Estado:** Aprobada.
+- **Decisión:** se autoriza construir un prototipo desechable de validación UX antes de aprobar el cierre de Fase 0. Debe ser web responsive, móvil primero y usable también en ordenador. Se probará en navegador móvil Android y escritorio.
+- **Alcance:** navegación y flujos simulados con datos ficticios claramente identificados; álbum, emisores/monedas/series, ficha, marcar posesión y faltantes, cantidades, búsqueda, filtros, orden, indicadores básicos, simulación de alta/edición e importación y ajustes cuando aporten valor a la validación.
+- **Límites:** sin backend, autenticación real, sincronización, persistencia de servidor, catálogo real, importación efectiva, servicios externos ni imágenes de terceros. Los cambios solo se conservan durante la sesión del prototipo. No crear arquitectura de producción ni reutilizar el prototipo como base automática del MVP.
+- **Separación de Fase 0:** esta autorización es una excepción limitada para validar experiencia de uso y viabilidad de interfaz; **no** supone cierre de Fase 0, aprobación del modelo de datos, autorización para iniciar el MVP ni permiso para incorporar código de producto.
+- **Criterio de salida:** el usuario y su amigo pueden recorrer los flujos principales en móvil y escritorio, registrar problemas y decidir qué ajustar antes de cerrar Fase 0.
+- **Motivo:** reducir incertidumbre de diseño y usabilidad antes de comprometer arquitectura y desarrollo de producto.
+
+
+## D-010 — Alcance visual del prototipo UX
+
+- **Estado:** Aprobada (aclaración de D-009, 2026-11-26).
+- **Decisión:** el prototipo será ante todo una maqueta visual interactiva, móvil primero y responsive, para validar aspecto, navegación y usabilidad de las funcionalidades principales. No se pretende simular fielmente toda la lógica ni los procesos operativos del futuro producto.
+- **Interacciones suficientes:** navegación entre inicio, emisor, moneda, serie, álbum y ficha; marcar/desmarcar posesión; ajustar una cantidad sencilla; observar progreso; búsqueda, filtros y orden básicos con respuesta visible.
+- **No requerido:** formularios completos de administración, alta/edición funcionales, carga/importación simulada, validación de ficheros, persistencia, lógica de negocio exhaustiva, backend o arquitectura de producción. Se pueden representar visualmente como elementos estáticos o dejarse fuera si no ayudan a validar UX.
+- **Datos y recursos:** datos ficticios y placeholders propios/neutros; sin material de terceros no autorizado, conforme a D-008.
+- **Tecnología:** priorizar la vía más rápida y sencilla que permita una demo navegable en navegador Android y escritorio. No imponer framework ni modularidad de producción; decidir tras inspeccionar el repositorio.
+- **Separación:** mantiene íntegramente los límites de D-009. No cierra Fase 0, no aprueba el modelo ni autoriza el MVP.
+- **Motivo:** el objetivo es obtener feedback temprano de diseño y usabilidad, no construir una aplicación simulada.
+
+
+## D-011 — El feedback del prototipo no bloquea la Fase 0
+
+- **Estado:** Aprobada (2026-11-26).
+- **Decisión:** continuar las tareas de descubrimiento aunque el feedback del prototipo UX todavía no haya llegado. La revisión UX se difiere y deja de ser una dependencia para avanzar en modelo, catálogo, fuentes e infraestructura.
+- **Alcance de la decisión:** no se cancela la revisión. Cuando el usuario y su amigo aporten feedback, se analizará y se utilizará para ajustar UX y alcance V1. La revisión propia en Android y escritorio también sigue pendiente.
+- **Prioridad inmediata:** validar estructuralmente `docs/DATA_MODEL.md` con Andorra, Cuba CUP/CUC, Ecuador, euro, XOF/XAF y peseta, contrastando los requisitos con `docs/CATALOG_SOURCES.md`.
+- **Límites:** Fase 0 permanece abierta; esta decisión no aprueba su cierre ni autoriza código de producto/MVP. D-008 sigue vigente. La investigación CELLAR queda aparcada salvo petición expresa.
+- **Motivo:** el feedback visual puede recogerse sobre una versión funcional más adelante y no justifica detener la reducción de riesgos de catálogo y modelo.
+
+## D-012 — Autoridad monetaria independiente
+
+- **Estado:** Aprobada (2026-11-26).
+- **Decisión:** modelar `monetary_authority` como entidad institucional independiente de `issuer`, relacionada con monedas mediante relaciones temporales y tipadas que identifiquen sus funciones (política monetaria, autoridad monetaria o emisión de billetes).
+- **Límites:** no sustituye al emisor político/legal de una pieza. Cecas e imprentas son productores físicos, no autoridades por fabricar. No exigir poblar autoridades históricas sin fuentes suficientes.
+- **Motivo:** representar BCEAO/BEAC, BCE/Eurosistema, bancos centrales nacionales y autoridades históricas sin confundir institución, territorio y emisor.
+
+## D-013 — Roles temporales de la relación emisor-moneda
+
+- **Estado:** Aprobada (2026-11-26).
+- **Decisión:** sustituir `issuer_currency.issues_own` por roles tipados y temporalmente delimitados. Roles iniciales: `uses`, `legally_issues` y `has_authorized_coinage`; un emisor puede tener varios roles documentados.
+- **Límites:** uso no implica competencia legal de emisión. Acuñación/impresión física y membresía en una unión monetaria se modelan por separado. Cada rol requiere procedencia.
+- **Motivo:** distinguir estados usuarios, emisores legales y estados autorizados a emitir moneda propia dentro de una moneda compartida.
+
+## D-014 — Cronología de estados monetarios
+
+- **Estado:** Aprobada (2026-11-26).
+- **Decisión:** representar cambios legales/económicos mediante eventos tipados, fechados y asociados al ámbito afectado (moneda, relación emisor-moneda o emisión y, cuando proceda, jurisdicción). Tipos iniciales: introducción, inicio de circulación/curso legal, fin de curso legal, retirada de circulación, fin de canje y desmonetización.
+- **Límites:** no usar un único estado global como verdad primaria. Una etiqueta podrá derivarse o ser descriptiva. No inventar fechas ausentes. «Conmemorativa» o «no destinada a circulación» es característica de emisión, no estado legal de moneda.
+- **Motivo:** distinguir coexistencia, retirada, canje y desmonetización, que pueden ocurrir en fechas diferentes y afectar a ámbitos distintos.
+
+## D-015 — Reutilización de caras en diseños
+
+- **Estado:** Aprobada (2026-11-26).
+- **Decisión:** permitir caras/anversos/reversos reutilizables mediante `design_side`; `catalog_design` referencia la pareja concreta de caras.
+- **Límites:** identidad visual sigue siendo la combinación de anverso y reverso conforme a D-002. Compartir una cara no fusiona diseños ni crea fichas por cara. La reutilización de imágenes sigue sujeta a D-008.
+- **Motivo:** evitar duplicación de caras comunes, especialmente en monedas euro, sin alterar la identidad del álbum.
+
+## D-016 — Transiciones monetarias tipadas
+
+- **Estado:** Aprobada (2026-11-26).
+- **Decisión:** representar relaciones dirigidas entre monedas mediante `currency_transition`, con tipo inicial `replacement` o `redenomination`, periodo y factor exacto opcional (unidades destino por unidad origen).
+- **Límites:** no asumir que sustitución implica conversión fija. La coexistencia ordinaria se representa con periodos/eventos de uso y estado, no como transición. Registrar circulación paralela solo si existe régimen transitorio específico documentado. XOF y XAF siguen siendo monedas distintas.
+- **Motivo:** distinguir sustitución, redenominación y coexistencia sin relaciones ambiguas.
+
+## D-017 — Denominaciones y valores faciales exactos
+
+- **Estado:** Aprobada (2026-11-26).
+- **Decisión:** conservar denominación original y añadir, cuando esté documentado, valor facial normalizado como racional exacto (numerador/denominador enteros) respecto de la unidad principal. Se podrá conservar etiqueta de unidad/subunidad.
+- **Límites:** no usar coma flotante ni crear monedas independientes para subunidades sin existencia monetaria/legal propia. Para sistemas históricos no decimales o datos incompletos, conservar texto y normalizar solo con equivalencia acreditada.
+- **Motivo:** permitir ordenación/comparación fiables sin confundir subunidades —como el centavo ecuatoriano— con monedas independientes.
+
+
+## D-018 — Atribución de autoridad monetaria por emisión
+
+- **Estado:** Aprobada (2026-11-26).
+- **Decisión:** permitir una relación opcional y temporal entre `catalog_issue` y `monetary_authority`, con rol controlado y procedencia. Roles iniciales: `legal_issuer` (competencia/responsabilidad legal de emisión) y `operational_issuer` (ejecución o puesta en circulación).
+- **Límites:** no exigir la relación cuando no aporte precisión o falte evidencia. Cecas e imprentas siguen siendo productores físicos, no autoridades. No confundir emisión legal con puesta en circulación.
+- **Motivo:** atribuir responsabilidades institucionales a emisiones concretas cuando una moneda y periodo incluyen varias autoridades o funciones.
+
+## D-019 — Intención de circulación y unidades nominales de colección
+
+- **Estado:** Aprobada (2026-11-26).
+- **Decisión:** incorporar en `catalog_issue` un atributo opcional y controlado de intención de circulación, con valores iniciales `intended_for_circulation` y `not_intended_for_circulation`. Conservar denominaciones y unidades nominales originales de piezas de colección aunque la unidad no sea una moneda oficial independiente.
+- **Límites:** ausencia del atributo significa desconocido; no inferir que una pieza no circuló por falta de evidencia. Las categorías de prueba/patrón quedan separadas. No crear una entidad `currency` para una unidad nominal no oficial (por ejemplo, diners) por el mero hecho de aparecer en una pieza. Normalizar solo cuando exista una unidad de referencia documentada.
+- **Motivo:** representar emisiones no circulantes y piezas de colección sin inventar monedas legales ni mezclar intención con estado jurídico efectivo.
+
+## D-020 — Naturaleza oficial o de facto del uso monetario
+
+- **Estado:** Aprobada (2026-11-26).
+- **Decisión:** añadir a `issuer_currency` un calificador opcional `use_basis`, con valores iniciales `official` y `de_facto`, independiente del rol temporal `uses`.
+- **Límites:** registrar el calificador solo cuando exista evidencia suficiente. No deducir curso legal, adopción oficial ni competencia de emisión a partir del uso de facto; los eventos jurídicos y los demás roles de D-013 permanecen independientes.
+- **Motivo:** distinguir la adopción oficial de la circulación de facto de monedas extranjeras, como en Andorra antes del euro.
+
+
+
+## D-021 — Aprobación de vocabularios controlados y reglas conceptuales
+
+- **Estado:** Aprobada (2026-11-27).
+- **Decisión:** aprobar y consolidar las modificaciones V-01–V-09 de `docs/VALIDATION_RULES.md`, relativas a separación entre fuente y derivación, estado de afirmación y ciclo de vida, semántica de eventos, compatibilidad evento/objeto, extremos temporales, normalización de denominaciones, códigos ISO 4217, solapamientos temporales y gobernanza de vocabularios.
+- **Límites:** esta aprobación es conceptual/documental. No autoriza SQL, código de producto, esquema físico ni validador ejecutable. No cierra Fase 0 ni modifica D-001–D-020.
+- **Motivo:** reducir ambigüedades y falsos positivos antes de traducir las reglas a validaciones técnicas.
+
+
+## D-022 — Flujo Git simplificado: `main` como rama habitual
+
+- **Estado:** Aprobada (2026-11-27).
+- **Decisión:** usar `main` como única rama activa habitual y trabajar directamente en ella. Crear ramas temporales solo cuando aporten una separación útil y concreta; no exigir pull requests para el trabajo ordinario.
+- **Transición:** la rama `research/source-automation-2026-11` se mantiene como rama de trabajo hasta completar el bloque de Fase 0 actualmente en curso. Después se revisará e integrará su trabajo en `main` con autorización expresa, y se retomará el trabajo directo en `main`.
+- **Límites:** no descartar ramas, commits o PR existentes sin revisar su contenido y dependencias. No fusionar ni modificar `main` durante esta transición sin autorización expresa. No crear nuevas ramas por rutina.
+- **Motivo:** reducir carga operativa y evitar confusión sobre cuál es la versión actualizada del proyecto, manteniendo aislamiento solo cuando aporte valor real.
+
+
+## D-023 — Estrategia de catálogo numismático mundial progresivo
+
+- **Estado:** Aprobada (2026-11-27).
+- **Decisión:** diseñar y construir un catálogo propio con ambición de cobertura mundial progresiva: emisores actuales e históricos, monedas, billetes, familias/series, diseños, piezas y emisiones. La cobertura crecerá por etapas; no se promete exhaustividad mundial ni se exige completar el catálogo antes del lanzamiento inicial.
+- **Arquitectura de fuentes:** ninguna fuente externa será autoridad única. Se combinarán identificadores y vocabularios generales, fuentes institucionales primarias, datasets especializados auditados, referencias auxiliares y curación documentada. Los datos externos pasarán por normalización, deduplicación, control de procedencia y revisión antes de incorporarse al catálogo consolidado; no habrá sobrescritura automática de datos verificados.
+- **Imágenes:** la cobertura de metadatos es independiente de la disponibilidad de imágenes. Una pieza podrá incorporarse sin fotografía y mostrarse con placeholder. Toda imagen seguirá sujeta íntegramente a D-008; la licencia de un dataset o de una fotografía no se presumirá extensible al diseño monetario.
+- **Límites:** el catálogo mundial es una dirección estratégica, no una condición de salida del MVP ni una promesa de registrar absolutamente todas las emisiones. No se aprueba importar datos, implementar ingesta, definir arquitectura física ni iniciar el MVP. Fase 0 permanece abierta.
+- **Motivo:** maximizar la cobertura a largo plazo sin depender de un proveedor único, preservar la calidad y trazabilidad por dato y evitar que la falta de imágenes o la exhaustividad retrasen indefinidamente la primera versión.
+
+
+## D-024 — Estrategia operativa del catálogo mundial progresivo
+
+- **Estado:** Aprobada (2026-11-27).
+- **Decisión:** aprobar íntegramente las propuestas P1–P9 de `docs/CATALOG_OPERATIONS.md`: taxonomía de siete niveles; estados de cobertura independientes; arquitectura lógica multicapa de fuentes; aceptación y auditoría separadas para fuente, afirmación y registro; staging conceptual obligatorio; procedencia y resolución trazable de conflictos; evaluación separada de derechos de datos, textos, fotografías y diseños monetarios; métricas multidimensionales sin porcentaje mundial ficticio; y crecimiento por unidades de cobertura independientes.
+- **Límites:** decisión conceptual/documental. Los niveles y estados de cobertura no crean entidades ni sustituyen `verification_status`. No se define jerarquía automática universal de fuentes, umbral cuantitativo de cobertura, denominador mundial, SQL, esquema físico, API, automatización, importador ni código de producto. No se autoriza descargar/importar datasets ni imágenes. D-008 permanece íntegramente vigente. Fase 0 sigue abierta y no se inicia el MVP.
+- **Riesgos reconocidos:** licencias de repositorio que no cubren necesariamente todo su contenido; deduplicación errónea de emisiones/variantes; falsa sensación de exhaustividad; y dependencia de cuotas/condiciones gratuitas cambiantes.
+- **Motivo:** hacer escalable la ambición mundial sin sacrificar trazabilidad, derechos, calidad ni viabilidad operativa, y sin convertir la exhaustividad en requisito previo del MVP.
