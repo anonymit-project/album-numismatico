@@ -628,3 +628,23 @@ Solicitar revisión del usuario sobre [VALIDATION_RULES.md](VALIDATION_RULES.md)
 - [ ] No importar datos ni implementar ingesta durante este bloque de diseño.
 
 **Resultado:** queda aprobada la dirección estratégica mundial progresiva. El catálogo semilla será una primera entrega, no el límite del producto. No se exige completar el catálogo mundial para lanzar el MVP. Fase 0 permanece abierta; D-008 y las restricciones de D-023 siguen vigentes.
+
+
+## Actualización vigente — estrategia operativa aprobada (27/11/2026)
+
+**Decisión:** D-024 aprobada. El usuario aprobó P1–P9 íntegramente, sin modificaciones ni observaciones.
+
+**Documentación consolidada:**
+- `docs/CATALOG_OPERATIONS.md`: estrategia operativa conceptual aprobada.
+- `docs/DECISIONS.md`: D-024 añadida.
+- `docs/BACKLOG.md`: tareas de Fase 0 derivadas de la estrategia añadidas.
+
+**Resultado:** taxonomía de siete niveles; estados de cobertura independientes de verificación; cinco clases lógicas de fuentes; aceptación/auditoría de fuente, afirmación y registro; staging conceptual obligatorio; procedencia y resolución de conflictos; derechos separados por tipo de material; métricas multidimensionales; crecimiento por unidades independientes; costes y mantenimiento con objetivo de 0 €.
+
+**Riesgos y límites:** no hay denominador mundial fiable; los niveles de cobertura no son nuevas entidades ni sustituyen estados de verificación; licencias de repositorios no necesariamente cubren todo el contenido; similitud no basta para deduplicar; cuotas gratuitas y condiciones pueden cambiar. Umbrales de cobertura, mapeo definitivo al modelo y periodicidad de auditoría siguen pendientes.
+
+**No realizado:** no se descargaron ni importaron datasets, no se descargaron imágenes, no se implementaron automatizaciones, staging físico, SQL ni código de producto. No se inició el MVP.
+
+**Estado de fase y rama:** Fase 0 permanece abierta. Trabajo limitado a `research/source-automation-2026-11`; no modificar ni fusionar `main`.
+
+**Siguiente tarea recomendada:** cerrar las cuestiones conceptuales pendientes de D-024 (criterios para `reviewed`/`high_coverage`, alcance conocido y correspondencia de niveles con el modelo) o seleccionar el siguiente bloque pendiente de Fase 0. No implementar ingesta todavía.
