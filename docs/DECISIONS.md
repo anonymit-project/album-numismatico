@@ -177,3 +177,12 @@ Registro vivo de decisiones de producto. Las propuestas no aprobadas se etiqueta
 - **Imágenes:** la cobertura de metadatos es independiente de la disponibilidad de imágenes. Una pieza podrá incorporarse sin fotografía y mostrarse con placeholder. Toda imagen seguirá sujeta íntegramente a D-008; la licencia de un dataset o de una fotografía no se presumirá extensible al diseño monetario.
 - **Límites:** el catálogo mundial es una dirección estratégica, no una condición de salida del MVP ni una promesa de registrar absolutamente todas las emisiones. No se aprueba importar datos, implementar ingesta, definir arquitectura física ni iniciar el MVP. Fase 0 permanece abierta.
 - **Motivo:** maximizar la cobertura a largo plazo sin depender de un proveedor único, preservar la calidad y trazabilidad por dato y evitar que la falta de imágenes o la exhaustividad retrasen indefinidamente la primera versión.
+
+
+## D-024 — Estrategia operativa del catálogo mundial progresivo
+
+- **Estado:** Aprobada (2026-11-27).
+- **Decisión:** aprobar íntegramente las propuestas P1–P9 de `docs/CATALOG_OPERATIONS.md`: taxonomía de siete niveles; estados de cobertura independientes; arquitectura lógica multicapa de fuentes; aceptación y auditoría separadas para fuente, afirmación y registro; staging conceptual obligatorio; procedencia y resolución trazable de conflictos; evaluación separada de derechos de datos, textos, fotografías y diseños monetarios; métricas multidimensionales sin porcentaje mundial ficticio; y crecimiento por unidades de cobertura independientes.
+- **Límites:** decisión conceptual/documental. Los niveles y estados de cobertura no crean entidades ni sustituyen `verification_status`. No se define jerarquía automática universal de fuentes, umbral cuantitativo de cobertura, denominador mundial, SQL, esquema físico, API, automatización, importador ni código de producto. No se autoriza descargar/importar datasets ni imágenes. D-008 permanece íntegramente vigente. Fase 0 sigue abierta y no se inicia el MVP.
+- **Riesgos reconocidos:** licencias de repositorio que no cubren necesariamente todo su contenido; deduplicación errónea de emisiones/variantes; falsa sensación de exhaustividad; y dependencia de cuotas/condiciones gratuitas cambiantes.
+- **Motivo:** hacer escalable la ambición mundial sin sacrificar trazabilidad, derechos, calidad ni viabilidad operativa, y sin convertir la exhaustividad en requisito previo del MVP.
