@@ -377,3 +377,14 @@ Esta reordenación no cierra Fase 0 ni autoriza el MVP.
 - [ ] En una fase posterior, traducir reglas aprobadas a esquema físico y tests; no iniciar antes del cierre de Fase 0 y autorización expresa.
 
 **Límite:** la especificación conceptual de vocabularios y reglas queda aprobada; Fase 0 sigue abierta por los demás entregables pendientes y Fase 1/MVP permanece bloqueada.
+
+
+## Simplificación del flujo Git — 27/11/2026
+
+- [x] Acordar `main` como única rama activa habitual; ramas temporales y PR solo cuando aporten una separación justificada.
+- [x] Actualizar `AGENTS.md`, `docs/DECISIONS.md` (D-022) y `docs/STATE.md` con la política y transición.
+- [ ] Completar el bloque de Fase 0 en `research/source-automation-2026-11`.
+- [ ] Revisar e integrar en `main` el trabajo de la rama actual, con autorización expresa; después continuar directamente en `main`.
+- [ ] Revisar las ramas y PR históricas antes de decidir si se cierran o archivan; no eliminar trabajo por rutina.
+
+**Regla operativa:** no crear nuevas ramas ni PR por defecto. La fuente de verdad sigue siendo el repositorio; una vez completada la transición, `main` será la referencia de trabajo cotidiana.
