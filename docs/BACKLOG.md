@@ -362,7 +362,7 @@ Esta reordenación no cierra Fase 0 ni autoriza el MVP.
 - [x] Definir validaciones entre entidades, relaciones, factores racionales, códigos externos y eventos.
 - [x] Clasificar errores, advertencias e información sin convertir datos desconocidos en errores.
 - [x] Contrastar la especificación con Andorra, Cuba CUP/CUC, Ecuador, euro, XOF/XAF y peseta.
-- [ ] Revisar y aprobar por el usuario los vocabularios/reglas propuestos antes de convertirlos en especificación cerrada de Fase 0.
+- [x] Revisar, aprobar y consolidar por el usuario los vocabularios/reglas conceptuales (V-01–V-09 aprobadas el 2026-11-27).
 - [ ] En una fase posterior, traducir reglas aprobadas a esquema físico y tests; no iniciar antes del cierre de Fase 0 y autorización expresa.
 
 **Documento:** [docs/VALIDATION_RULES.md](VALIDATION_RULES.md). La tarea conceptual queda preparada para revisión; no equivale a validación automatizada ni a cierre de Fase 0.
@@ -372,7 +372,8 @@ Esta reordenación no cierra Fase 0 ni autoriza el MVP.
 ## Revisión de vocabularios y reglas conceptuales — 26/11/2026
 
 - [x] Revisar críticamente `VALIDATION_RULES.md` frente a `DATA_MODEL.md`, `MODEL_VALIDATION.md` y D-001–D-020.
-- [ ] Decidir y consolidar las modificaciones propuestas V-01–V-09 (pendiente de respuesta expresa del usuario).
-- [ ] Tras la decisión, actualizar vocabularios y reglas consolidados; no traducir aún a SQL, código ni constraints físicos.
+- [x] Decidir y consolidar las modificaciones V-01–V-09 (aprobadas por el usuario el 2026-11-27).
+- [x] Actualizar vocabularios y reglas conceptuales consolidados.
+- [ ] En una fase posterior, traducir reglas aprobadas a esquema físico y tests; no iniciar antes del cierre de Fase 0 y autorización expresa.
 
 **Límite:** la revisión documental está realizada, pero la especificación no se considera aprobada definitivamente. Fase 0 sigue abierta y Fase 1/MVP permanece bloqueada.
