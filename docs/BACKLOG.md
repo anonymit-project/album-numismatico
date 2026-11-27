@@ -399,3 +399,25 @@ Esta reordenación no cierra Fase 0 ni autoriza el MVP.
 - [ ] Si se considera incorporar algún candidato en el futuro, auditar muestras de registros, procedencia por atributo, licencia de datos y derechos de diseños/imágenes antes de una decisión expresa.
 
 **Resultado:** no se ha encontrado un dataset maestro mundial adecuado. No se ha importado ni descargado contenido, no se ha contactado con proveedores y no se ha iniciado código de producto. Fase 0 continúa abierta.
+
+
+## Estrategia de catálogo numismático mundial — 27/11/2026 (D-023)
+
+**Dirección aprobada:** catálogo propio con ambición mundial progresiva; no prometer exhaustividad ni condicionar el MVP a completar el mundo. Ninguna fuente externa será autoridad única. Toda aportación externa deberá pasar por normalización, deduplicación, procedencia por afirmación, evaluación de conflictos y revisión antes de consolidarse. Los metadatos pueden incorporarse sin imágenes; D-008 gobierna cualquier recurso visual.
+
+### Diseño pendiente (siguiente bloque de Fase 0)
+- [ ] Definir taxonomía de cobertura: emisores actuales/históricos, monedas, billetes, familias/series, diseños, piezas y emisiones.
+- [ ] Definir métricas separadas de cobertura y calidad; no usar un único porcentaje agregado de «completitud».
+- [ ] Diseñar arquitectura lógica de fuentes: identificadores/vocabularios generales, fuentes institucionales primarias, datasets especializados auditados, referencias auxiliares y curación propia.
+- [ ] Definir criterios de aceptación por tipo de fuente y por afirmación; distinguir autoridad, alcance, granularidad y calidad de evidencia.
+- [ ] Definir flujo conceptual de staging: captura, normalización, mapeo, deduplicación, detección de conflictos, revisión y consolidación con historial.
+- [ ] Definir tratamiento de licencias de datos, textos, fotografías y diseños monetarios por separado, respetando D-008.
+- [ ] Estimar costes operativos y carga de mantenimiento, priorizando 0 € y evitando infraestructura desproporcionada.
+- [ ] Identificar lagunas regionales/históricas y una estrategia de ampliación progresiva sin exigir cobertura completa antes del MVP.
+
+### Límites
+- No descargar ni importar datasets todavía.
+- No iniciar parser CELLAR, extracción BEAC/BCEAO ni otras automatizaciones aparcadas.
+- No diseñar SQL, esquema físico, API ni código de producto.
+- Los candidatos Open Coin Data, Banknote Dimensions y NumisLib conservan el estado documentado en `CATALOG_SOURCES.md`; cualquier incorporación requiere auditoría y decisión específica.
+- Fase 0 permanece abierta; la integración en `main` sigue sujeta a autorización expresa según D-022.
