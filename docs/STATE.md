@@ -8,6 +8,26 @@
 **Pull request #1:** [abierto y en borrador](https://github.com/anonymit-project/album-numismatico/pull/1), sin fusionar ni modificar.
 **Pull request #2:** [abierto y en borrador](https://github.com/anonymit-project/album-numismatico/pull/2), dirigido a la rama de documentación de la PR #1.
 
+## Estado vigente — estrategia de catálogo mundial (27/11/2026)
+
+**Objetivo activo:** diseñar la estrategia de construcción de un catálogo numismático mundial progresivo, con fuentes múltiples y trazabilidad por afirmación. La aprobación D-023 establece la dirección estratégica; no autoriza ingesta, implementación física ni MVP.
+
+### Criterios aprobados
+- Ambición mundial progresiva: emisores actuales e históricos, monedas, billetes, familias/series, diseños, piezas y emisiones.
+- El catálogo será propio y consolidado; ninguna fuente externa tendrá autoridad única ni podrá sobrescribir automáticamente datos verificados.
+- Toda incorporación externa pasará por staging conceptual: normalización, deduplicación, procedencia, evaluación de conflictos y revisión antes de consolidarse.
+- Cobertura de metadatos independiente de cobertura de imágenes. Se permiten fichas sin fotografía y placeholders; D-008 sigue plenamente vigente.
+- No se exige completar el catálogo mundial antes del MVP ni se promete exhaustividad absoluta.
+
+### Límites y continuidad
+- Fase 0 sigue abierta; no iniciar SQL, arquitectura física, importadores ni código de producto.
+- La investigación operativa CELLAR permanece aparcada salvo petición expresa.
+- No repetir la evaluación general de datasets modernos ya documentada. La posible incorporación de candidatos requiere auditoría de muestras, procedencia y derechos.
+- Rama activa de esta iteración: `research/source-automation-2026-11`. No modificar ni fusionar `main` sin autorización expresa.
+
+### Siguiente tarea
+Diseñar la estrategia operativa del catálogo mundial: taxonomía/cobertura, clases de fuentes y criterios de aceptación, flujo de ingesta y staging, derechos, métricas, mantenimiento y costes. Presentar las decisiones pendientes al usuario antes de consolidarlas.
+
 ## Objetivo de la iteración
 
 Completar la prueba de cobertura numismática para España, Andorra, Cuba, Ecuador y monedas XOF/XAF; evaluar imágenes y datasets bajo D-008; documentar sin iniciar el MVP.
@@ -45,7 +65,11 @@ No se ha añadido ninguna decisión de producto. D-001 a D-008 siguen vigentes. 
 5. Las imágenes oficiales de billetes euro solo son candidatas si se usan tal como permite el BCE, con «SPECIMEN» y los límites técnicos.
 6. Continúan pendientes las validaciones de modelo, mapa, conservación, valoración histórica, backend/hosting, privacidad de identificación por foto, mockups y aprobación de cierre de Fase 0.
 
-## Siguiente paso exacto
+## Siguiente paso exacto (histórico; sustituido el 27/11/2026)
+
+La continuación operativa de CELLAR quedó aparcada por la reorientación posterior. No ejecutar este paso salvo petición expresa. El siguiente paso vigente figura en «Estado vigente — estrategia de catálogo mundial» al inicio de este documento.
+
+### Plan histórico de CELLAR (no vigente)
 
 Probar CELLAR con un segundo aviso de moneda euro de otra clase (preferiblemente una nueva cara nacional regular, además de la conmemorativa de 2 € ya validada). Después, definir y probar un mapeo pequeño Formex/XML → staging con tests, sin conectarlo todavía al catálogo de producto. Para BEAC/BCEAO, preparar una extracción controlada de texto desde el manifiesto de páginas, con detección de cambios y revisión humana. Cuba permanece sin ingesta automatizada ni imágenes. No iniciar el MVP.
 
@@ -590,3 +614,17 @@ Solicitar revisión del usuario sobre [VALIDATION_RULES.md](VALIDATION_RULES.md)
 - No se han descargado/importado datos, contactado proveedores, implementado código ni iniciado el MVP.
 - Fase 0 permanece abierta. La rama de trabajo sigue siendo `research/source-automation-2026-11`; no se crean ramas ni se fusiona nada.
 - Siguiente paso: continuar con los riesgos restantes de Fase 0 según BACKLOG. La eventual integración de estos datasets requiere una decisión específica posterior y auditoría de muestras/procedencia.
+
+
+## Aprobación de la estrategia de catálogo mundial — 27/11/2026 (D-023)
+
+- [x] Proponer catálogo mundial progresivo como objetivo estratégico, no como requisito de exhaustividad previo al MVP.
+- [x] Aprobar catálogo propio consolidado: ninguna fuente externa es autoridad única ni sobrescribe automáticamente datos verificados.
+- [x] Aprobar separación entre cobertura de metadatos e imágenes; admitir piezas sin imagen y placeholders bajo D-008.
+- [x] Registrar los tres criterios aprobados en D-023.
+- [x] Actualizar el estado vigente y la continuidad de Fase 0.
+- [ ] Diseñar la estrategia operativa del catálogo mundial: taxonomía y métricas de cobertura; arquitectura lógica de fuentes; criterios de aceptación y auditoría; staging, normalización, deduplicación y resolución de conflictos; procedencia por afirmación; derechos; mantenimiento y costes.
+- [ ] Presentar decisiones de diseño pendientes antes de consolidarlas.
+- [ ] No importar datos ni implementar ingesta durante este bloque de diseño.
+
+**Resultado:** queda aprobada la dirección estratégica mundial progresiva. El catálogo semilla será una primera entrega, no el límite del producto. No se exige completar el catálogo mundial para lanzar el MVP. Fase 0 permanece abierta; D-008 y las restricciones de D-023 siguen vigentes.
