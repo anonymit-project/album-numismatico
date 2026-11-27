@@ -376,4 +376,4 @@ Esta reordenación no cierra Fase 0 ni autoriza el MVP.
 - [x] Actualizar vocabularios y reglas conceptuales consolidados.
 - [ ] En una fase posterior, traducir reglas aprobadas a esquema físico y tests; no iniciar antes del cierre de Fase 0 y autorización expresa.
 
-**Límite:** la revisión documental está realizada, pero la especificación no se considera aprobada definitivamente. Fase 0 sigue abierta y Fase 1/MVP permanece bloqueada.
+**Límite:** la especificación conceptual de vocabularios y reglas queda aprobada; Fase 0 sigue abierta por los demás entregables pendientes y Fase 1/MVP permanece bloqueada.
