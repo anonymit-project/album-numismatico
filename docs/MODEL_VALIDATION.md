@@ -125,7 +125,7 @@ La validación es conceptual y documental. No se ha ejecutado un validador autom
 
 La revisión detecta mejoras necesarias, pero no invalida la estructura del modelo ni reabre decisiones aprobadas.
 
-**Modificaciones propuestas, pendientes de decisión expresa del usuario:**
+**Modificaciones aprobadas expresamente por el usuario el 2026-11-27:**
 - V-01: separar `derived` de los tipos de fuente; modelar derivación como afirmación/actividad con entradas y método.
 - V-02: separar verificación de afirmación y ciclo de vida/sustitución de fuentes o afirmaciones.
 - V-03: acotar el significado de `introduced` para que no se confunda con circulación o curso legal.
@@ -136,8 +136,8 @@ La revisión detecta mejoras necesarias, pero no invalida la estructura del mode
 - V-08: evitar falsos positivos en solapamientos temporales mediante comparación de ámbito y alcance.
 - V-09: establecer una gobernanza explícita para futuras ampliaciones de vocabularios.
 
-El detalle y las formulaciones propuestas constan en `VALIDATION_RULES.md`, sección 11. No se han incorporado como reglas aprobadas ni se han alterado D-001–D-020.
+El detalle y las formulaciones propuestas constan en `VALIDATION_RULES.md`, sección 11. Las nueve modificaciones quedan aprobadas y consolidadas en la sección 11 de `VALIDATION_RULES.md`. No se altera D-001–D-020.
 
-**Resultado de la iteración:** la propuesta original es aceptable como base, pero requiere resolver V-01–V-09 antes de consolidar la especificación. No se recomienda aprobarla sin cambios. La decisión del usuario sigue pendiente.
+**Resultado de la iteración:** V-01–V-09 han sido aprobadas y consolidadas. La especificación conceptual de vocabularios y reglas queda aprobada en esta iteración, sujeta a los límites y pendientes generales de Fase 0.
 
 No se ha escrito SQL, código ni constraints físicos. No se ha ejecutado un validador automático. Fase 0 continúa abierta y el MVP bloqueado.
