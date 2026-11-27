@@ -409,7 +409,7 @@ Estas referencias orientan la identificación y procedencia; no sustituyen la ev
 
 ## 11. Revisión crítica y modificaciones propuestas — 26/11/2026
 
-**Estado: PROPUESTAS PENDIENTES DE APROBACIÓN DEL USUARIO.** Esta sección no altera D-001–D-020 ni convierte las modificaciones en vocabulario aprobado.
+**Estado: APROBADAS POR EL USUARIO (2026-11-27).** Las nueve modificaciones V-01–V-09 quedan aceptadas y pasan a formar parte de las reglas conceptuales. No alteran D-001–D-020.
 
 ### V-01 — Separar tipo de fuente y naturaleza derivada
 
@@ -452,6 +452,6 @@ La detección de solapamientos debe comparar la misma entidad, rol, ámbito, obj
 
 Toda ampliación de vocabulario cerrado debe registrar: término, definición, campo, motivo, ejemplos positivos/negativos, compatibilidad retrospectiva y aprobación. Los valores desconocidos no deben inventarse ni introducirse como texto libre. Hasta acordar este procedimiento, las ampliaciones quedan sujetas a revisión explícita del usuario.
 
-### Decisiones solicitadas
+### Resolución
 
-Se solicita al usuario decidir V-01 a V-09. La aceptación de una propuesta no aprueba automáticamente las demás. No se ha modificado el contenido aprobado de D-001–D-020.
+El usuario aprobó expresamente V-01–V-09 en conjunto el 2026-11-27. Se consolidan como reglas conceptuales aprobadas. La aprobación no autoriza implementación SQL/código ni cierra Fase 0. D-001–D-020 permanecen intactas.
